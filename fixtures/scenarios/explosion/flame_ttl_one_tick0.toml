@@ -1,0 +1,67 @@
+# R-158: tuổi lửa tính cả tick tạo; một tick vẫn nhốt người, tick kế tiếp hết lửa.
+name = "flame_ticks = 1: gây sát thương đúng tick nổ 0"
+features = ["V1-014", "V1-015", "V1-020"]
+claims = ["R-156", "R-158"]
+status = "active"
+ticks = 4
+overlays = ["../../rules/flame-ttl-one.toml"]
+map = [
+    "#######",
+    "#0..+.#",
+    "#######",
+]
+
+[[player]]
+id = 0
+speed = [5, 7]
+bombs = [1, 10]
+range = [1, 7]
+cell = [1, 1]
+
+[[bomb]]
+cell = [2, 1]
+owner = 0
+range = 1
+fuse = 0
+
+[[expect]]
+tick = 1
+event = "bomb_exploded"
+where = { x = 2, y = 1, chained = 0 }
+count = 1
+
+[[expect]]
+tick = 1
+event = "player_trapped"
+count = 1
+
+[[expect]]
+tick = 1
+at = [1, 1]
+flame = true
+
+[[expect]]
+tick = 1
+at = [2, 1]
+flame = true
+
+[[expect]]
+tick = 1
+at = [3, 1]
+flame = true
+kind = "floor"
+
+[[expect]]
+tick = 1
+player = 0
+life = "trapped"
+
+[[expect]]
+tick = 2
+at = [1, 1]
+flame = false
+
+[[expect]]
+tick = 2
+event = "player_trapped"
+count = 0

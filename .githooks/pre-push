@@ -1,0 +1,15 @@
+#!/bin/sh
+# AGENTS §5: mọi thay đổi vào main qua pull request, kể cả của integrator (không khóa nhánh trên GitHub,
+# hook này thay thế). Bật một lần: cargo xtask setup.
+# Từ chối push thẳng main; nhánh khác phải qua cargo xtask ci trước khi push.
+# Ngoại lệ khẩn cấp: git push --no-verify, và phải ghi lý do vào issue.
+while read -r local_ref local_sha remote_ref remote_sha; do
+    if [ "$remote_ref" = "refs/heads/main" ]; then
+        echo "pre-push: không push thẳng main — mở PR (AGENTS §5)." >&2
+        exit 1
+    fi
+done
+# Git đặt GIT_DIR... cho hook; gỡ để lệnh git trong test/tool không thao tác nhầm lên repo này.
+unset $(git rev-parse --local-env-vars)
+echo "pre-push: cargo xtask ci" >&2
+cargo xtask ci

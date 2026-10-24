@@ -1,0 +1,187 @@
+# Đo tĩnh KR 00967 — consumer âm thanh theo event (2026-10-23)
+
+Metadata cho lượt điều tra [#196](https://github.com/aquaplatinumberlitz/boom-rs/issues/196) / Q-015,
+V1-034 (mục 8 hàng đợi RE: event→entry, biến thể, BGM Village, chồng tiếng). Claim tương ứng:
+[RULES_V1 § (đánh số khi merge)](../../../specification/gameplay/RULES_V1.md#-đánh-số-khi-merge--re-kr-00967--âm-thanh-theo-event-r-203r-208)
+(R-203…R-208); suy luận, đề xuất AUDIO_V1 và giới hạn ở [KR_RE_AUDIO](../../../research/findings/KR_RE_AUDIO.md).
+
+## Định danh build
+
+| Build | File | Byte | SHA-256 | Image base | RVA |
+|---|---|---|---|---|---|
+| KR `00967` (module đã unpack) | `kr-full.exe` (bản sao `.re-tmp/kr-full.exe`) | 26.074.624 | `cf72da112308d9f1ca256df8089594c5f787875310933073bf6bd5ba6f70e63b` | `0x00400000` | `VA − 0x00400000` |
+
+Không commit binary/DB/âm thanh. Bản sao ngoài repo trong `.re-tmp/` (đã `git/info/exclude`).
+
+## Công cụ và provenance
+
+| Bước | Tool | Ghi chú |
+|---|---|---|
+| Bind + decompile | REA `open_binary` `provider_id: "ida"` trên bản sao | REA spawn worker mới; lần gọi đầu trong phiên lỗi schema `data/module must be string` (upstream ida-pro-mcp), đóng/mở lại binary thì thành công — không dùng kết quả lần lỗi |
+| Bảng id→tên | IDA MCP trực tiếp trên bản sao `.i64` | parse `0x41C980` (mỗi entry 0x20 B, id tại `base+0x20n`, tên do `push "Wave/..."` ngay sau) |
+| Quét site gọi | IDA MCP | 597 xref tới `0xD1CD10`, lọc `push imm` làm đối số id |
+| Vtable/RTTI | IDA MCP | slot 146 `CGOBomber` `0x1744964` = `0xB53C80`; `B8B680` trong vtable `0x1746AAC` (lớp item) |
+| Chạy client/âm thanh | không | chỉ tĩnh/offline |
+
+## Bằng chứng REA trong phiên
+
+| `evidence_id` | operation | Đối tượng | Dùng cho |
+|---|---|---|---|
+| `ev_794131143dc920b7c1363d664cf204769039c306ccee15ee8c23cc9c64f6b2d6` | `procedure_pseudo_code` | `0xD1CD10` | R-203/R-205 (dispatcher, remap có guard, dedup 90/200 ms, 7↔8) |
+| `ev_003bb7d0c32710a4ad1a34941670471050fd4d2288da48f8b1e3e4a4b3a03fa9` | `procedure_pseudo_code` | `0x14BF4D0` | R-207 (pool voice, dedup theo id, bỏ khi hết) |
+| `ev_6ac4a4d1ed4b0d5302a30c6a79e93cb7a7e92dcbe6e710a0f4d576cbfaa4a443` | `procedure_pseudo_code` | `0xEB3720` | R-204 (nổ: 7 / 343 tuyết) |
+| `ev_8cb8b610131ce11c72b663eac6b01223d924d36185e7548015d1256e0b9e0fa7` | `procedure_pseudo_code` | `0xB53C80` | R-204 (chết: 42) |
+| `ev_e53b55a542c18b49046fa0120ccb757c411f9944feea9da58b5dad6ca3b74026` | `procedure_pseudo_code` | `0xE71D70` | R-206 (BGM: `Mp3/%s`, record map, Xmas Carol random) |
+
+Bundle: `.re-tmp/evidence-audio-196.json` (5 record, không commit).
+
+## Mỏ neo chính (VA → RVA)
+
+| Vai trò | VA | RVA |
+|---|---|---|
+| Bảng SFX 649 entry (0x20 B) | `0x19E40D8` | `0x15E40D8` |
+| Khởi tạo bảng SFX | `0x41C980` | `0x1C980` |
+| Manager singleton `CSoundManRenew` | `0x19D8A88` / getter `0x54EAF0` | `0x15D8A88` / `0x14EAF0` |
+| Dispatcher phát SFX | `0xD1CD10` | `0x91CD10` |
+| Play thấp (pool voice) | `0x14BF4D0` | `0x10BF4D0` |
+| Đếm voice cùng id/age | `0x14BEA70` | `0x10BEA70` |
+| RNG kiểu MSVC | `0x15625C2` | `0x11625C2` |
+| Nổ: chọn 7/343 | `0xEB3720` | `0xAB3720` |
+| Lọc theo khung nhìn trước khi phát nổ | `0x114A1B0` | `0xD4A1B0` |
+| Đặt bom: 9/344 | `0xAF1140`; `0x71F490` | `0x6F1140`; `0x31F490` |
+| Domino 10 | `0x8326F0` | `0x4326F0` |
+| Nhốt: 444/37/77 | `0xB42D60` | `0x742D60` |
+| Chết 42 | `0xB53C80` | `0x753C80` |
+| Item ăn 68 / lộ 69 / trap 174 | `0xB4B410` / `0xB8B680` / `0xB9DEF0` | `0x74B410` / `0x78B680` / `0x79DEF0` |
+| Bảng BGM 117 entry | `0x19E9258` | `0x15E9258` |
+| `Mp3/Village` (id 48) | chuỗi `0x1761FE8`; entry `0x19E9858` | `0x1361FE8` |
+| Phát BGM | `0xE71D70` → `0xD1D710` | `0xA71D70` → `0x91D710` |
+| Tra record map / tên BGM | `0xE04F00` / `0xE02110` | `0xA04F00` / `0xA02110` |
+
+## Bảng id → entry (trích; 649 entry)
+
+| Id | Entry | Id | Entry |
+|---:|---|---:|---|
+| 7 | `Wave/Cha_BombExplode` | 68 | `Wave/Itm_ItemEaten` |
+| 8 | `Wave/Cha_BombExplodeMulti` | 69 | `Wave/Itm_ItemPop` |
+| 9 | `Wave/Cha_BombIgnite` | 77 | `Wave/Cha_LockedIn` |
+| 10 | `Wave/Cha_DominoBombIgnite` | 78 | `Wave/Ntc_Lose` |
+| 37 | `Wave/Cha_CoupleLockedIn` | 164 | `Wave/Ntc_TimebombExplode` |
+| 42 | `Wave/Cha_Die` | 174 | `Wave/Itm_UseTrap` |
+| 43 | `Wave/Ntc_Draw` | 175 | `Wave/Ntc_Win` |
+| 47 | `Wave/Ntc_GameEnd` | 343 | `Wave/Cha_BombExplode_SnowBall` |
+| 444 | `Wave/Ntc_Help2` | 344 | `Wave/Cha_BombIgnite_SnowBall` |
+| 471 | `Wave/BombExplosion001` | 428..457 | `Ntc_Draw1..2`, `GameEnd1..6`, `GameReady1..4`, `GameStart1..4`, `HurryUp1..2`, `Lose1..6`, `Win1..5` |
+
+## Remap biến thể trong `0xD1CD10`
+
+Chỉ khi guard `sub_76FBF0(&v24) != 0` mới lấy `v20 = rand()` (`0x15625C2`: `state = 214013*state + 2531011`, trả `(state>>16)&0x7FFF`) và remap `id = v20 % N + base`; guard false thì giữ id gốc. Công thức modulo, **không** claim phân bố đều: `rand()` 15-bit nên `%5`/`%6` có modulo bias.
+
+| Id gốc | N | base | Dải |
+|---:|---:|---:|---|
+| 18, 128 | 4 | 436 | 436..439 |
+| 21 | 4 | 440 | 440..443 |
+| 43 | 2 | 428 | 428..429 |
+| 47 | 6 | 430 | 430..435 |
+| 64 | 2 | 445 | 445..446 |
+| 78 | 6 | 447 | 447..452 |
+| 175 | 5 | 453 | 453..457 |
+
+Nổ 7: `count(7,200ms) > 0` → stop 7+8, play 8; ngược lại `count(8,200ms) != 0` → play 7; còn lại play 8.
+
+## Voice
+
+`0x14BF4D0`: block `engine+16`, count `engine+12` (engine=`[manager+0x68]`, R-212); `a3 != 0` + cùng id → trả handle cũ (không phát
+thêm); tìm voice `state == 2` (rảnh); không có → `return 0` (bỏ). Volume: `v27 * *(float*)(engine+48) / const`.
+LượtR-212 bên dưới đã nối khởi tạo tốiđa16voice thành công; runtime count chưa đo, không claim8DESIGN lànative.
+
+## Giới hạn
+
+- Chỉ tĩnh; không chạy client/không nghe, không có packet capture.
+- Bảng id→entry parse từ bản dump đã init; 649 entry, id 0..651; có id trống.
+- Chưa đọc record map trong pack để chốt map Village → tên BGM (R-081 phủ entry/hash).
+- "Không thấy consumer" cho 471/brick-break là bounded negative **chỉ** cho direct call + literal
+  push trong 649 entry + 597 site `0xD1CD10`; virtual `vf+148` (trong `0xEB9840`), id động, wrapper và
+  script `PlayWaveEffect` theo tên chưa bị loại trừ.
+- Không sửa `data/assets/audio-v1.toml` hay bảng AUDIO_V1; đề xuất ở findings §7.
+
+## Lượt 2026-10-24 (phiên 2) — init pool voice (`CSoundManRenew`)
+
+Build KR `00967`, SHA-256 `cf72da112308d9f1ca256df8089594c5f787875310933073bf6bd5ba6f70e63b`,
+imagebase `0x00400000`, `RVA = VA − 0x400000`. Ngân sách thực dùng: **6 call phân tích**, **4 thân mới**
+(`0x60FA30`, `0xD20E10`, `0xD217F0`, `0xD1C0A0`); không đọc lại thân #200.
+
+| Vai trò | VA | RVA | Ghi chú |
+|---|---|---|---|
+| Con trỏ singleton | `0x019D8A88` | `0x015D8A88` | 4 xref data: `0x54EAF3`, `0x60FA34`, `0xD20E3D`, `0xD21800` |
+| Getter singleton | `0x0054EAF0` | `0x0014EAF0` | (không đọc lại, R-203) |
+| `IsInitialized` | `0x0060FA30` | `0x0020FA30` | `return dword_19D8A88 != 0` |
+| Base/singleton ctor | `0x00D20E10` | `0x00920E10` | vftable `TSingleton<CSoundManRenew>`; `dword_19D8A88 = (int)(this - 1)`; xref duy nhất từ `0xD1C0D3` |
+| Reset/huỷ | `0x00D217F0` | `0x009217F0` | vftable; `dword_19D8A88 = 0` |
+| Ctor `CSoundManRenew` | `0x00D1C0A0` | `0x0091C0A0` | 0x178; gọi `D21700`, `D20E10(this+1)`, gán vftable `CSoundManRenew`; zero-init nhiều field; `*(this+15)=1000`; `v2` decoder; `sub_D1C330(this)` cuối |
+| Caller init lớn | `0x01231BD0` | `0x00E31BD0` | gọi `D1C0A0` tại `0x1233BEA` |
+
+Trong thân ctor **không có store tới `+12`/`+16`** (byte); store thấy ở `+20/+24/+52/+56/+60=1000/
++104=v2/+116/+120=-1` (`this` là `_DWORD*`). `+60 = 1000` không phải `+12` ⇒ **không** suy là số voice.
+`sub_D1C330(this)` cuối là candidate init/reset pool (chưa đọc). Ánh xạ singleton ↔ `manager` của
+`0x14BF4D0` chưa kiểm lại.
+
+`evidence_id`: `ev_2f07cd5a83b86bb873b57228b7bbceeff5679e8af01fe194cf929c1e32438157` (xref
+singleton), `ev_378e543a82862ca886ff0e6cea85020fbc271e9870dc40ff0716786857af0650` (batch 3 thân),
+`ev_7fad1e9a26c2e984ef76011f2b1a1b643460862a04fa8f5c7498ca1ea6898faf` (xref `D20E10`),
+`ev_425ff98895aa5399da7536de5fd65f2ac448bf367d17f04420247665f5599d65` (xref `D1C0A0`),
+`ev_d48e48f7c10dae036d6151f87ec1dac236434f0e75bb0661f246d1a32b4f814a` (thân `D1C0A0`).
+
+**Kết luận lịch sử lượt PR231** (cạnh count mới đã giải ở R-212 bên dưới): ctor `CSoundManRenew` đã đọc nhưng **không gán** `manager+12`/`+16`; nguồn số voice
+(literal/param/config) **chưa thấy** ⇒ vẫn `unknown`. `read_bytes` không hỗ trợ (`capability_unavailable`),
+1 lần, không retry. Bước tiếp: kiểm `sub_D1C330` xem có store `[manager+0Ch]`/`+10h` và nguồn giá trị không.
+
+
+## Receiver/count đã giải — R-212 (2026-10-24)
+
+[pool-count.json](pool-count.json) ghi7hash raw giữlocal,5PEanchor ranges vàctor REA cache
+`ev_d48e48f7…`. Binary KR00967 SHA/base như trên. REA session cũ stale nên reusecache vàđọcPEcopy
+chỉđịnh; không mở IDAworker/DB hay chạy client. Hai thân mới D1C3301428B,14BE290463B; prefixdispatcher
+D1D100..D1D15788B, adjacentdataD1D158..15F từng emitted nhưng không được diễn giải.
+
+| Cạnh | Locator | Kết luận |
+|---|---|---|
+| Singleton→engine | cachedD1C0A0:this[26]; D1D12A..D1D142 | Play14BF4D0 nhận `[manager+0x68]` |
+| Zero/countpointer |14BE2D8/14BE2DF;14BE385 | engine+0C/+10 được zero, pointer nhận block0x48byte |
+| Voice loop |14BE3F0..14BE418 | tốiđa16iteration thành công; handle0 dừng |
+| Writer count |14BE423 | engine+0C=EDI số handle tạo thành công |
+
+Block+0 làdriver, voicehandles+4+4i(i0..15), handle riêng+44; sốbyte block không phải sốvoice.
+Chỉ static initialization được xác nhận, không runtime16guaranteed. TìmcounttrênCSoundManRenew+12
+là sai receiver; negativector/D1C330 cũ giữ ý nghĩa phạm vi, đã có cạnh engine đúng nên không giao lại.
+Rustpolicy8voice R-083 chưa đổi trongPR nguồn này, loop/volume/brickbreak còn Q-015.
+
+
+## BGM callback EOS và mapping dependency — R-213
+
+[bgm-eos-loop.json](bgm-eos-loop.json) giữ11rawhash private,5PEbodyranges và7pointer/exportmatches.
+BinaryKRcf72… như trên; dependency `/home/admin/boomkr-full/Mss32.dll`,
+SHA`5cafd1f6910e6eddaacf6b33cc42ea93e2835e61dc9cb91c6f8aca79f6a02e9b`,
+preferredbase21100000. Toàn bộ con trỏ snapshot16EA854/858/868/870/894/89C/8A0 khớp exportRVA
+trong DLL đi kèm; chỉheader/exportdata được đọc, không newDLLbody/provider/runtime.
+
+14BEB10 đặt user_data(sample,5,1) và đăng ký `_AIL_register_EOS_callback@8` tới14BEC60;
+callback nhánh user5!=0 gọi `_AIL_start_sample@4` trên cùng sample. Nhánh user5==0 mới cleanup.
+Từ đó xác nhận static looprequest có điều kiện, không literal0=no-loop hoặc callbackcleanup-only.
+Literal0 được truyền trong wrapper không tự đủ giải loop; userdata6 vàvolumeAPI được giữ riêng.
+
+Các thân hàm kết thúc tại RET:
+
+| Bắt đầu | Byte cuối thân | Số byte |
+|---|---|---:|
+| `0xD1D710` | `0xD1D78A` | 123 |
+| `0xD1DA60` | `0xD1DC04` | 421 |
+| `0x14BF390` | `0x14BF4BD` | 302 |
+| `0x14BEB10` | `0x14BEC5C` | 333 |
+| `0x14BEC60` | `0x14BECCB` | 108 |
+
+`int3` tại `0x14BEC5D` là padding, được loại khỏi thân hàm. Hai capture dẫn xuất D1D710/D1DA60
+được giữ nguyên124/422byte (kèm1byte `int3` cuối tạiD1D78B/D1DC05); phạm vi thân thực123/421byte
+trong bảng vàmanifest loại padding. Không sửa/xóa raw chỉ để đổi số body. Không đọc adjacentmethod làm proof.
+Chưa có nghe/runtimeEOS/livebinding; không đổi Rustmapping/8voice/profile, không kýG5. R-206/R-213
+nối mapBGM→hàm→callbackrequest; namedexportmatch không chứng nhận playback mọidevice/mode.

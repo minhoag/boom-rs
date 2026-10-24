@@ -1,0 +1,39 @@
+[package]
+name = "boom-server"
+description = "Server authoritative V1: phòng (boom-room), trận (boom-core), mạng (boom-proto/boom-net)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+boom-core.workspace = true
+boom-content.workspace = true
+boom-room = { path = "../boom-room" }
+boom-proto = { path = "../boom-proto" }
+boom-net = { path = "../boom-net" }
+boom-sync = { path = "../boom-sync" }
+boom-scenario.workspace = true
+serde_json.workspace = true
+# File cấu hình TOML của server (ADR 0011 §5/§8: tham số vận hành nằm trong config).
+serde.workspace = true
+toml.workspace = true
+# Identity/persistence (ADR 0011 §3–§4, §10): driver SQLite đồng bộ (`bundled` ⇒ CI ba OS
+# không cần libsqlite3) và khóa instance độc quyền theo file (`boom-server.lock`).
+rusqlite.workspace = true
+fs4.workspace = true
+# Argon2id + PHC string (ADR 0011 §5), token 256 bit từ RNG hệ điều hành (ADR 0011 §6),
+# SHA-256 của token thô và base64url không padding.
+argon2.workspace = true
+getrandom.workspace = true
+sha2.workspace = true
+base64.workspace = true
+# Ghi artifact health.json atomic (file tạm + replace; Windows dùng MoveFileExW).
+tempfile.workspace = true
+# Bắt Ctrl-C/SIGTERM để `serve` dừng có trật tự (ADR 0011 §6.1): ngừng nhận kết nối, thu hồi
+# phiên của instance, ghi heartbeat cuối, thoát 0. Feature `termination` bắt cả SIGTERM.
+# Khai trực tiếp ở crate (chưa đưa vào `[workspace.dependencies]` — file gốc do integrator giữ).
+ctrlc = { version = "3.5.2", features = ["termination"] }
+
+[lints]
+workspace = true

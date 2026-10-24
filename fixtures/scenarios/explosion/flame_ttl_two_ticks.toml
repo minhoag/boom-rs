@@ -1,0 +1,95 @@
+# R-158: không giảm mất một tick ngay lúc tạo lửa.
+name = "flame_ticks = 2: lửa sống đủ hai tick"
+features = ["V1-014", "V1-015", "V1-020"]
+claims = ["R-156", "R-158"]
+status = "active"
+ticks = 4
+overlays = ["../../rules/flame-ttl-two.toml"]
+map = [
+    "#######",
+    "#0..+.#",
+    "#######",
+]
+
+[[player]]
+id = 0
+speed = [5, 7]
+bombs = [1, 10]
+range = [1, 7]
+cell = [1, 1]
+
+[[bomb]]
+cell = [2, 1]
+owner = 0
+range = 1
+fuse = 0
+
+[[expect]]
+tick = 1
+event = "bomb_exploded"
+where = { x = 2, y = 1, chained = 0 }
+count = 1
+
+# Tick nổ: lửa còn sống (`until` = tick nổ) nên người đứng trong lửa bị nhốt.
+[[expect]]
+tick = 1
+event = "player_trapped"
+where = { player = 0 }
+count = 1
+
+[[expect]]
+tick = 1
+at = [1, 1]
+flame = true
+
+[[expect]]
+tick = 1
+at = [2, 1]
+flame = true
+
+[[expect]]
+tick = 1
+at = [3, 1]
+flame = true
+kind = "floor"
+
+[[expect]]
+tick = 1
+player = 0
+life = "trapped"
+
+# Tick thứ hai vẫn còn lửa; người đã bị nhốt không phát thêm sự kiện.
+[[expect]]
+tick = 2
+at = [1, 1]
+flame = true
+
+[[expect]]
+tick = 2
+at = [2, 1]
+flame = true
+
+[[expect]]
+tick = 2
+at = [3, 1]
+flame = true
+
+[[expect]]
+tick = 2
+player = 0
+life = "trapped"
+
+[[expect]]
+tick = 2
+event = "player_trapped"
+count = 0
+
+[[expect]]
+tick = 3
+at = [1, 1]
+flame = false
+
+[[expect]]
+tick = 3
+event = "player_trapped"
+count = 0

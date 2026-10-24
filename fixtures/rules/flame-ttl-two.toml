@@ -1,0 +1,10 @@
+# Overlay test: 17 ms ở60Hz làm tròn lên 2 tick; R-158 tính cả tick tạo.
+schema = 1
+overlay_id = "flame-ttl-two"
+base = "skeleton-test"
+
+[bomb.flame_ms]
+value = 17
+unit = "ms"
+source = "design"
+status = "design"

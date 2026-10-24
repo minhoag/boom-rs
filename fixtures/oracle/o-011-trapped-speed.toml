@@ -1,0 +1,24 @@
+# Oracle web lịch sử chỉ nói “đi rất chậm”, không có scalar: giữ expected unknown.
+# Native VN R-161 nay xác nhận slow movement; R-162 chọn17px/s DESIGN cho profile.
+# Không sửa expected thành con số engine để tự tạo oracle native đạt. Format scalar hiện tại
+# chưa biểu diễn qualitative/fit interval; đọc evidence native riêng.
+[oracle]
+id = "O-011"
+name = "Người bị nhốt có di chuyển không"
+feature = "V1-037"
+source = "web"
+status = "candidate"
+claims = ["R-029"]
+evidence = ["docs/specification/gameplay/RULES_V1.md"]
+quantity = "trapped_player_speed"
+unit = "px/s"
+expected = "unknown"
+tolerance = 0
+diff = "G-08"
+note = 'Giữ oracle web R-029 không có scalar để đối chiếu. Native VN R-161 đã xác nhận slow movement; R-162 chọn17px/s DESIGN. Engine đo displacement nguyênpx nên báo16px/s với profile60Hz283mpx/tick; không gọi đây là literalnative17 hoặc tự cho nativeoracle đạt.'
+
+[oracle.check]
+kind = "scenario"
+scenario = "fixtures/scenarios/movement/trapped_moves_slowly.toml"
+measure = "player_speed"
+player = 0

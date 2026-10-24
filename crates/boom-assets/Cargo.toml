@@ -1,0 +1,22 @@
+[package]
+name = "boom-assets"
+description = "Đọc định dạng dữ liệu legacy (map .map, pack .idx/.idd KR/VN) sang schema boom-content"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+boom-content.workspace = true
+# Inflate entry `_mm` (zlib 1.1.4) khi đọc pack; pure Rust, không cần C toolchain.
+miniz_oxide = "0.9"
+# Ghi PNG cho CLI `sprite-png` (soi ảnh bằng mắt); chỉ dùng ở tầng CLI, không nằm trên
+# đường giải mã runtime.
+png = "0.18"
+
+# Chỉ dùng cho test nghiệm thu dựng `World` từ Village00 (V1-030); không phải dependency runtime.
+[dev-dependencies]
+boom-core.workspace = true
+
+[lints]
+workspace = true

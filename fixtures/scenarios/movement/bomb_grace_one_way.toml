@@ -1,0 +1,51 @@
+# R-107 (ADR 0012): `grace` (pass) của bom theo **hộp va chạm** chứ không theo ô của tâm:
+# người đứng trên bom vừa đặt đi ra được, hộp rời hẳn ô bom thì mất quyền này và không quay
+# lại được (BnB `server/game.js:150–153,392–399`).
+#
+# Bom ở ô (1,1) (40…80 px). Người chơi đi sang phải: hộp rời hẳn ô bom khi x ≥ 94 px, từ đó
+# bom chặn người chơi. Quay lại thì bị chặn ở mép hộp x = 94 px.
+name = "Đứng trên bom vừa đặt được đi ra, không được quay lại"
+features = ["V1-012"]
+claims = ["R-049", "R-107"]
+status = "active"
+ticks = 120
+map = [
+    "#######",
+    "#0....#",
+    "#######",
+]
+
+[[player]]
+id = 0
+speed = [5, 7]
+bombs = [1, 10]
+range = [1, 7]
+
+[[bomb]]
+cell = [1, 1]
+owner = 0
+range = 1
+fuse = 1000
+grace = [0]
+
+[[input]]
+tick = 0
+player = 0
+dir = "right"
+
+[[input]]
+tick = 40
+player = 0
+dir = "left"
+
+# Đi ra khỏi ô bom tới x = 140 px; lúc này hộp đã rời hẳn ô bom nên grace bị xóa.
+[[expect]]
+tick = 40
+player = 0
+pos_mpx = [140000, 60000]
+
+# Quay lại bị bom chặn ở mép hộp x = 94 px, không vào lại ô bom.
+[[expect]]
+tick = 120
+player = 0
+pos_mpx = [94000, 60000]
