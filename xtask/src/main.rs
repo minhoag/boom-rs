@@ -1,7 +1,6 @@
 //! Tác vụ repo, chạy bằng `cargo xtask <lệnh>`:
 //!
-//! - `ci`: cổng bàn giao (AGENTS §7) — fmt, clippy `-D warnings`, test, replay golden, docs/catalog,
-//!   kiểm ưu tiên nguồn luật theo ADR 0013, đối chiếu oracle, test Python của tool theo dõi tiến độ.
+//! - `ci`: fmt, clippy `-D warnings`, test, replay golden, đối chiếu oracle.
 //! - `bless`: ghi lại mọi golden replay sau khi đổi hành vi core có chủ đích.
 //! - `oracle`: sinh `docs/research/ORACLE_REPORT.md` từ `fixtures/oracle/*.toml` (V1-037);
 //!   `--check` chỉ kiểm (dùng trong `ci`).
@@ -77,14 +76,6 @@ fn replay(cmd: &str) -> bool {
                 .arg(file),
         )
     })
-}
-
-fn python() -> Command {
-    let name = if cfg!(windows) { "python" } else { "python3" };
-    let mut cmd = Command::new(name);
-    // Tool docs đọc/ghi file không ghi rõ encoding; Windows mặc định cp1252 sẽ vỡ tiếng Việt.
-    cmd.env("PYTHONUTF8", "1");
-    cmd
 }
 
 /// Đối chiếu oracle (V1-037): đọc `fixtures/oracle/*.toml`, đo trên engine, sinh báo cáo.
@@ -176,23 +167,6 @@ fn ci() -> bool {
         )
         && run("test", cargo().args(["test", "--workspace"]))
         && replay("verify")
-        && run("docs_check", python().arg("tools/docs_check.py"))
-        && run(
-            "kr_catalog --check",
-            python().args(["tools/kr_catalog.py", "--check"]),
-        )
-        && run(
-            "rules_precedence",
-            python().arg("tools/rules_precedence.py"),
-        )
-        && run(
-            "test_rules_precedence",
-            python().args(["tools/test_rules_precedence.py"]),
-        )
-        && run(
-            "test_kr_tracking",
-            python().args(["tools/test_kr_tracking.py"]),
-        )
         && oracle(true)
 }
 

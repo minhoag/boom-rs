@@ -5,7 +5,7 @@
 # Ngoại lệ khẩn cấp: git push --no-verify, và phải ghi lý do vào issue.
 while read -r local_ref local_sha remote_ref remote_sha; do
     if [ "$remote_ref" = "refs/heads/main" ]; then
-        echo "pre-push: không push thẳng main — mở PR (AGENTS §5)." >&2
+        echo "stop at main push" >&2
         exit 1
     fi
 done
