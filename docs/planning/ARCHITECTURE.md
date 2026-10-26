@@ -1,49 +1,48 @@
-# Kiến trúc dự án Rust
+# Rust project architecture
 
-Revision **`architecture-r1`**, 2026-10-19 (r0 là draft trước khi có repo). Baseline `KR-00967-V1-scope-1`.
-Nguồn chuẩn về cấu trúc crate, boundary, contract và quy tắc code. Scope/policy người chơi thuộc
-[SCOPE_V1](SCOPE_V1.md); quyết định có lý do ở ADR 0003–0008.
+Revision **`architecture-r1`**, 2026-10-19 (r0 was a draft from before the repo existed). Baseline `KR-00967-V1-scope-1`.
+Canonical source for crate layout, boundaries, contracts, and code rules. Player scope and policy live in
+[SCOPE_V1](SCOPE_V1.md). Reasoned decisions are ADR 0003–0008.
 
-## 1. Repo và crate
+## 1. Repo and crates
 
 Repo `boom-rs` ([ADR 0003](../decisions/0003-engine-repo-and-docs-home.md)):
 
 ```text
 boom-rs/
-  AGENTS.md, CLAUDE.md, opencode.json   # quy tắc
-  docs/                                 # tài liệu điều hành (xem docs/README.md)
-  tools/                                # tool docs/catalog (Python)
-  Cargo.toml, rust-toolchain.toml       # workspace, toolchain ghim phiên bản
-  .cargo/config.toml                    # alias `cargo xtask`
+  docs/                                 # operating docs (see docs/README.md)
+  tools/                                # RE, packaging, and localization scripts (Python)
+  Cargo.toml, rust-toolchain.toml       # workspace, pinned toolchain
+  .cargo/config.toml                    # `cargo xtask` alias
   crates/
-    boom-core/      # [có] luật trận: Mode, System, SimulationEvent, state, RNG, hash; thuần, không IO
-      src/systems/  #      mỗi cơ chế gameplay một module (movement; bom/item/nhốt sẽ thêm)
-    boom-content/   # [có] schema rules profile + map runtime; nạp/validate TOML
-    boom-assets/    # [có] đọc định dạng legacy (.map) → schema content; CLI
-    boom-replay/    # [có] CLI chạy/kiểm replay, so hash checkpoint
-    boom-scenario/  # [có] định dạng dựng trận chung + harness boundary scenario
-    boom-proto/     # [khung, đợt 2] envelope + DTO giao thức mới (ADR 0009), không chứa luật
-    boom-net/       # [khung, đợt 2] trait transport, framing, session (ADR 0006)
-    boom-sync/      # [khung, đợt 2] adapter SimulationState ↔ DTO wire, dùng chung server/client
-    boom-room/      # [có] máy trạng thái phòng/vòng đời thuần (SCOPE_V1 §3), API ở §5.4
-    boom-client/    # [khung, đợt 2] macroquad (ADR 0010): input, prediction, render/audio/UI; đọc bundle, không đọc pack
-    boom-server/    # [khung, đợt 2] auth, lobby, authority, persistence
+    boom-core/      # [present] match rules: Mode, System, SimulationEvent, state, RNG, hash; pure, no IO
+      src/systems/  #      one module per gameplay mechanism (movement; bomb/item/trap added later)
+    boom-content/   # [present] rules-profile schema + runtime map; load and validate TOML
+    boom-assets/    # [present] read legacy formats (.map) into the content schema; CLI
+    boom-replay/    # [present] CLI to run/check a replay and compare checkpoint hashes
+    boom-scenario/  # [present] shared match-setup format + boundary-scenario harness
+    boom-proto/     # [frame, batch 2] envelope + new-protocol DTOs (ADR 0009); no rules
+    boom-net/       # [frame, batch 2] transport trait, framing, session (ADR 0006)
+    boom-sync/      # [frame, batch 2] SimulationState ↔ wire DTO adapter, shared by server and client
+    boom-room/      # [present] pure room/lifecycle state machine (SCOPE_V1 §3); API in §5.4
+    boom-client/    # [frame, batch 2] macroquad (ADR 0010): input, prediction, render/audio/UI; reads bundles, not packs
+    boom-server/    # [frame, batch 2] auth, lobby, authority, persistence
   xtask/                                # `cargo xtask ci`, golden replay
-  data/rules/                           # rules profile có provenance (TOML)
-  data/assets/                          # mapping presentation/closure có nhãn bằng chứng (TOML)
-  data/overlays/, data/items/, data/events/  # [dự kiến] overlay luật, hiệu ứng item, liveops (ADR 0008)
-  fixtures/replays/                     # replay + hash golden, chạy trên CI ba OS
-  fixtures/scenarios/<system>/          # boundary scenario theo system (active/pending)
-  .github/workflows/ci.yml              # CI ba OS (cần remote để chạy)
+  data/rules/                           # rules profiles with provenance (TOML)
+  data/assets/                          # presentation/closure mappings with evidence labels (TOML)
+  data/overlays/, data/items/, data/events/  # [planned] rule overlays, item effects, liveops (ADR 0008)
+  fixtures/replays/                     # replays + golden hashes, run on three-OS CI
+  fixtures/scenarios/<system>/          # boundary scenarios per system (active/pending)
+  .github/workflows/ci.yml              # three-OS CI (needs a remote to run)
 ```
 
-Crate `[dự kiến]` chỉ được tạo khi task của pha đó mở. Không tách render/audio/UI thành crate riêng
-trước khi có nhu cầu tái dùng hoặc ownership rõ.
+A `[planned]` crate is created only when that phase's task opens. Do not split render/audio/UI into
+their own crates before there is a reuse need or a clear owner.
 
-Dependency (mũi tên = phụ thuộc vào):
+Dependencies (arrow = depends on):
 
 ```text
-boom-content → (serde, toml)              # không phụ thuộc core/client/server
+boom-content → (serde, toml)              # does not depend on core/client/server
 boom-core    → boom-content
 boom-assets  → boom-content
 boom-scenario → boom-core, boom-content
@@ -54,279 +53,279 @@ boom-sync    → boom-core, boom-content, boom-proto
 boom-qa      → boom-client
 boom-room    → boom-content
 boom-client  → boom-core, boom-content, boom-proto, boom-net, boom-sync
-boom-server  → boom-core, boom-content, boom-proto, boom-net, boom-sync, boom-room, boom-scenario (định dạng replay + `apply_authority`, #87)
+boom-server  → boom-core, boom-content, boom-proto, boom-net, boom-sync, boom-room, boom-scenario (replay format + `apply_authority`, #87)
 ```
 
-`boom-proto` không phụ thuộc `SimulationState`: server/client đổi DTO ở adapter để schema mạng
-không khóa layout bộ nhớ core. Runtime tiêu thụ bundle đã validate, client không mang pack decoder.
+`boom-proto` does not depend on `SimulationState`. Server and client convert DTOs in the adapter so the
+network schema does not lock the core memory layout. Runtime consumes a validated bundle. The client
+does not carry a pack decoder.
 
-Dependency nền hiện có: `serde` (derive) và `toml` trong `boom-content` để đọc profile; `postcard` 1.x trong
-`boom-proto` (ADR 0009); `macroquad` =0.4.16 (feature `audio`) trong `boom-client` (ADR 0010); `rusqlite` (bundled), `argon2`, `getrandom`,
-`fs4`, `serde_json`, `sha2`, `base64` (+ `tempfile` cho test) khai trong workspace cho `boom-server` (ADR 0011 §10).
-Thêm dependency mới ghi lý do trong commit; dependency nền ghi vào đây.
+Current foundation dependencies: `serde` (derive) and `toml` in `boom-content` to read profiles; `postcard` 1.x in
+`boom-proto` (ADR 0009); `macroquad` =0.4.16 (feature `audio`) in `boom-client` (ADR 0010); `rusqlite` (bundled), `argon2`, `getrandom`,
+`fs4`, `serde_json`, `sha2`, `base64` (plus `tempfile` for tests) declared in the workspace for `boom-server` (ADR 0011 §10).
+Record the reason for a new dependency in the commit. Record foundation dependencies here.
 
-`miniquad`0.4.11 (dependency của macroquad) dùng bản source ghim trong
-[`vendor/miniquad`](../../vendor/miniquad/Cargo.toml), qua `[patch.crates-io]`; version/API không đổi.
-Issue270 sửa duy nhất `set_fullscreen` của X11: gửi EWMH add/remove cho cùng atom, giữ mapped window
-và các state khác thay vì unmap/remap rồi thay toàn bộ property.
-[Provenance](../../vendor/miniquad/UPSTREAM.json) có SHA crate gốc, commit, hash từng file, license
-MIT/Apache và điều kiện bỏ patch khi upstream có sửa tương đương. Crate vendored nằm ngoài workspace;
-tool đóng gói vẫn đưa dependency path này vào LICENSES. Backend khác giữ nguyên source upstream.
-`.gitattributes` giữ byte vendor trên ba OS và bỏ cảnh báo whitespace chỉ trong tree upstream;
-source dự án vẫn kiểm bình thường.
-Chuẩn tham chiếu: [EWMH §5.7](https://specifications.freedesktop.org/wm/latest/ar01s05.html).
+`miniquad` 0.4.11 (a macroquad dependency) uses the source pin in
+[`vendor/miniquad`](../../vendor/miniquad/Cargo.toml), via `[patch.crates-io]`. Version and API stay the same.
+Issue 270 changes only X11 `set_fullscreen`: send EWMH add/remove for the same atom, keep the mapped window
+and the other states, instead of unmap/remap and replacing the whole property.
+[Provenance](../../vendor/miniquad/UPSTREAM.json) has the original crate SHA, commit, per-file hash, the
+MIT/Apache license, and the condition for dropping the patch once upstream has an equivalent fix. The vendored
+crate sits outside the workspace. The packaging tool still lists this path dependency in LICENSES. Other backends
+keep upstream source.
+`.gitattributes` keeps vendor bytes stable on three OSes and turns off whitespace warnings only in the upstream tree.
+Project source is still checked normally.
+Reference: [EWMH §5.7](https://specifications.freedesktop.org/wm/latest/ar01s05.html).
 
+## 2. Extending features, modes, and events
 
-## 2. Mở rộng tính năng, mode và event
-
-Theo [ADR 0008](../decisions/0008-extensibility-model.md). Tóm tắt luồng một tick:
+Follow [ADR 0008](../decisions/0008-extensibility-model.md). One tick:
 
 ```text
-input đã chấp nhận ─▶ Mode.systems() theo thứ tự ─▶ SimulationState (có kiểu, được hash)
-                              │                              │
-                              ▼                              ▼
-                     EventSink: SimulationEvent{id=(tick,seq), kind}   Mode.outcome() → RoundEnded
-                              │
-          ┌───────────────────┼───────────────────────┐
-          ▼                   ▼                       ▼
-  presentation journal   server: event miền      replay/golden: event_digest
-  (âm thanh, hiệu ứng)   → stats/quest/thưởng
+accepted input ─▶ Mode.systems() in order ─▶ SimulationState (typed, hashed)
+                         │                              │
+                         ▼                              ▼
+                EventSink: SimulationEvent{id=(tick,seq), kind}   Mode.outcome() → RoundEnded
+                         │
+         ┌───────────────┼───────────────────────┐
+         ▼               ▼                       ▼
+ presentation journal   server: domain event   replay/golden: event_digest
+ (audio, effects)       → stats/quest/reward
 ```
 
-| Thêm gì | Ở đâu |
+| Adding | Where |
 |---|---|
-| Cơ chế gameplay | `boom-core/src/systems/<tên>.rs` implement `System`, thêm vào `systems()` của mode cần |
-| Mode | Type implement `Mode`, đăng ký trong `modes()`; ID ghi trong replay/protocol |
-| Thông số | Rule trong `data/rules/*.toml` + claim RULES_V1 |
-| Event/season | `RulesOverlay` (luật) + dữ liệu liveops (lịch, thưởng, cờ) ở server |
-| Phản ứng theo trận | Consumer `SimulationEvent` ngoài core, dedup theo event ID + round ID |
-| Item mới | Dữ liệu item → primitive hiệu ứng có sẵn; primitive mới chỉ khi cần |
-| Tính năng ngoài trận | Module backend theo domain, nhận event miền; ledger idempotent |
+| A gameplay mechanism | `boom-core/src/systems/<name>.rs` implements `System`, then add it to the mode's `systems()` |
+| A mode | A type that implements `Mode`, registered in `modes()`. The ID is stored in replay and protocol |
+| A parameter | A rule in `data/rules/*.toml` plus a RULES_V1 claim |
+| An event or season | `RulesOverlay` (rules) plus liveops data (schedule, rewards, flags) on the server |
+| A per-match reaction | A `SimulationEvent` consumer outside core, deduped by event ID + round ID |
+| A new item | Item data mapped onto an existing effect primitive. A new primitive only when one is required |
+| A feature outside the match | A backend module per domain, consuming domain events. Idempotent ledger |
 
-## 3. Quy tắc code
+## 3. Code rules
 
-- Toolchain ghim trong `rust-toolchain.toml`; edition 2024; `[workspace.lints]` chung.
-- `unsafe` bị cấm ở mọi crate hiện có.
-- `boom-core` ([ADR 0004](../decisions/0004-time-numeric-model.md)): không float
-  (`clippy::float_arithmetic` deny), không `HashMap/HashSet`, `Instant`, `SystemTime`
-  (`crates/boom-core/clippy.toml`), không IO/socket/wall clock/render/audio.
-- Mọi giá trị luật lấy từ rules profile; code core không chứa hằng số luật chơi.
-- `cargo xtask ci` = fmt check + clippy `-D warnings` + test (gồm mọi scenario) + kiểm replay golden + docs check.
-- Mọi thay đổi vào `main` qua pull request theo AGENTS §5 (CI ba OS xanh; reviewer độc lập trừ PR sổ tiến độ).
+- Toolchain pinned in `rust-toolchain.toml`. Edition 2024. Shared `[workspace.lints]`.
+- `unsafe` is forbidden in every current crate.
+- `boom-core` ([ADR 0004](../decisions/0004-time-numeric-model.md)): no floats
+  (`clippy::float_arithmetic` deny), no `HashMap`/`HashSet`, `Instant`, or `SystemTime`
+  (`crates/boom-core/clippy.toml`), no IO, sockets, wall clock, render, or audio.
+- Every rule value comes from the rules profile. Core code does not embed gameplay constants.
+- `cargo xtask ci` = fmt check + clippy `-D warnings` + tests (including every scenario) + golden replay check + oracle check.
+- Every change to `main` goes through a pull request. Three-OS CI must be green. The reviewer is someone other than the author, except a progress-ledger PR.
 
-## 4. Rules profile, content và mô hình thời gian
+## 4. Rules profile, content, and the time model
 
-Profile TOML ở `data/rules/` (overlay ở `RulesOverlay`, ADR 0008) gồm `profile_id`, `schema`, `release` và từng rule
-`{ value, unit, source, status, claims }`. Nhãn `source`/`status` theo AGENTS §4; `claims` trỏ ID trong
-[RULES_V1](../specification/gameplay/RULES_V1.md). `boom-content` từ chối khi nạp nếu:
+TOML profiles in `data/rules/` (overlays in `RulesOverlay`, ADR 0008) have `profile_id`, `schema`, `release`, and one entry per rule:
+`{ value, unit, source, status, claims }`. `source` and `status` use the evidence labels in ADR 0013.
+`claims` point at IDs in [RULES_V1](../specification/gameplay/RULES_V1.md). `boom-content` refuses to load when:
 
-- `status = "unknown"` mà có `value`, hoặc thiếu `value` khi status khác unknown;
-- profile `release = true` còn rule `candidate` hoặc `unknown`;
-- rule thiếu claim (trừ `design` thuần kiến trúc như tick).
+- `status = "unknown"` and a `value` is present, or a `value` is missing when status is not unknown;
+- a profile with `release = true` still has a `candidate` or `unknown` rule;
+- a rule has no claim (except a pure architecture `design` such as the tick).
 
-Định danh profile là hash `fnv1a64-v0` của encoding chuẩn các rule (không phải hash file thô, để CRLF/LF
-không đổi định danh). Replay ghi định danh này và từ chối profile khác.
+The profile identity is an `fnv1a64-v0` hash of the canonical encoding of the rules, not a hash of the raw file, so CRLF versus LF
+does not change the identity. A replay records this identity and rejects a different profile.
 
-Bảng chỉ số nhân vật C00/C01 là **giá trị luật** nên nằm trong profile (`characters.c00_*`,
-`characters.c01_*`; RULES_V1 R-040/R-041), không phải trong file cấu hình server: mọi người chạy
-server phải dùng cùng một nguồn, và chỉ số nằm trong định danh nên `rules_hash` đổi khi chỉ số
-đổi ⇒ handshake bắt được lệch (AGENTS §3). `boom-content` đọc và kiểm bảng chỉ số (đủ hai
-nhân vật, cấp hiện tại ≤ trần); thiếu hoặc sai thì `serve` báo lỗi rõ, không tự đặt mặc định.
+The C00/C01 stat tables are **rule values**, so they live in the profile (`characters.c00_*`,
+`characters.c01_*`; RULES_V1 R-040/R-041), not in a server config file. Everyone running the
+server must use the same source, and the stats are part of the identity, so `rules_hash` changes when the stats
+change and the handshake catches a mismatch. `boom-content` reads and checks the stat table (both
+characters present, current level at or under the cap). If it is missing or wrong, `serve` reports a clear error and does not invent a default.
 
-Map runtime (`boom-content::MapGrid`) gồm kích thước, ô `(tile_id, obj_id)` theo build và spawn.
-Loại ô (đi được, khối cứng, khối mềm) là bảng phân loại riêng theo build; ID chưa có trong bảng là
-`Unknown`, và core **từ chối** dựng thế giới có ô Unknown thay vì đoán. Fixture tự viết dùng bản đồ ASCII
-với loại ô đã biết. Đọc `.map` legacy hỗ trợ cả header VN (spawn +76) và KR (+80) theo R-003.
+The runtime map (`boom-content::MapGrid`) holds size, per-build cells `(tile_id, obj_id)`, and spawns.
+Cell kinds (walkable, hard block, soft block) are a separate classification table per build. An ID missing from the table is
+`Unknown`, and core **refuses** to build a world that contains an Unknown cell instead of guessing. Hand-written fixtures use an ASCII map
+with known cell kinds. The legacy `.map` reader supports both the VN header (spawn at +76) and the KR header (+80), per R-003.
 
-Thời gian: fixed step, `sim.ticks_per_second` từ profile; tọa độ `Mpx` (1/1000 px); ms → tick làm tròn lên
-một lần khi nạp (ADR 0004). Hiệu chuẩn tick gốc và speed-level còn mở (Q-004, Q-005).
+Time: fixed step, `sim.ticks_per_second` from the profile. Coordinates are `Mpx` (1/1000 px). Milliseconds convert to ticks by rounding up
+once at load (ADR 0004). Calibrating the original tick and speed-per-level is still open (Q-004, Q-005).
 
 ## 5. Contracts — `contracts-r4`
 
-Revision **`contracts-r4`**, 2026-10-19 (r3 đã review ở #2; r4 chỉ thêm getter cho snapshot, chờ review ở PR đợt 2). Code là nguồn chuẩn của kiểu dữ liệu;
-mục này giữ quy tắc. Review đổi gì thì integrator ra revision mới và báo các task bị ảnh hưởng.
+Revision **`contracts-r4`**, 2026-10-19 (r3 was reviewed in #2; r4 only adds snapshot getters and waits for review in the batch-2 PR). Code is the canonical source of the data types.
+This section keeps the rules. When a review changes them, the integrator publishes a new revision and tells the affected tasks.
 
-| Revision | Thay đổi | Lý do |
+| Revision | Change | Reason |
 |---|---|---|
-| r1 | Bản đầu: state theo module, event V1, pipeline FFA, quyền ghi, harness scenario | START-C |
-| r2 | `check_invariants(&World)`: ID duy nhất xuyên bom/item; ô, owner, grace, `ItemKind` đối chiếu World/Rules; người chơi trong lưới. `new_round` từ chối chỉ số vượt trần (`CoreError::InvalidStat`) và kiểm bất biến sau `on_round_start` (`CoreError::Contract`) | Review #2: ba lỗi P2 (ID trùng, tham chiếu sai, lượt dựng với chỉ số sai) |
-| r3 | `check_invariants` kiểm độ dài dữ liệu lưới trước mọi truy cập ô; `Field::kind/hidden` không panic khi lệch; `World::new` từ chối địa hình có số ô khác kích thước, lưới rỗng hoặc spawn ngoài lưới (`CoreError::BadTerrain`). System không bị ảnh hưởng | Review #2 lần 2: lưới khai báo 3 ô chứa 2 ô vẫn Ok, chứa 0 ô thì panic |
-| r4 | `Rng::state()`/`Rng::from_state()`, `IdAllocator::peek_next()`/`IdAllocator::from_next()` để snapshot khôi phục RNG và allocator | ADR 0009 §4.4 |
+| r1 | First cut: state by module, V1 events, FFA pipeline, write rights, scenario harness | START-C |
+| r2 | `check_invariants(&World)`: IDs unique across bombs and items; cell, owner, grace, and `ItemKind` checked against World/Rules; players inside the grid. `new_round` rejects stats over the cap (`CoreError::InvalidStat`) and checks invariants after `on_round_start` (`CoreError::Contract`) | Review #2: three P2 bugs (duplicate IDs, bad references, a round built with bad stats) |
+| r3 | `check_invariants` checks grid data length before any cell access. `Field::kind`/`hidden` do not panic on a mismatch. `World::new` rejects terrain whose cell count differs from the size, an empty grid, or a spawn outside the grid (`CoreError::BadTerrain`). Systems are unaffected | Review #2, second pass: a grid declared as 3 cells that held 2 was still Ok; 0 cells panicked |
+| r4 | `Rng::state()`/`Rng::from_state()`, `IdAllocator::peek_next()`/`IdAllocator::from_next()` so a snapshot can restore RNG and the allocator | ADR 0009 §4.4 |
 
-### 5.1 Kiểu trong `boom-core`
+### 5.1 Types in `boom-core`
 
-| Contract | Nơi định nghĩa | Ghi chú |
+| Contract | Defined in | Notes |
 |---|---|---|
-| `PlayerInput { dir, place_bomb }` | `sim.rs` | Input **đã được authority chấp nhận** cho một tick; `place_bomb` là cạnh nhấn, không phải giữ |
-| `PlayerSetup { id, stats: CharacterStats }` | `sim.rs`, `state/player.rs` | `Stat { value, max }` cho speed/bombs/range, lấy từ BomberAttr qua content |
-| `SimulationState` | `state/mod.rs` | `tick, phase, rng, ids, players, field, bombs, flames, items`; mỗi phần tự hash trong file của nó |
-| `TickScratch` | `scratch.rs` | Dữ liệu **của một tick**, truyền giữa các system (kênh blast: ô vừa bị vụ nổ phủ). **Không thuộc state**: không hash, không snapshot, không có trong DTO. Ở đường gameplay `SimulationState::step` tự tạo scratch rỗng mỗi tick, nên kết quả tick luôn suy ra từ state + input |
-| `EntityId`, `IdAllocator` | `state/mod.rs` | ID bom/item cấp tăng dần từ 1 trong lượt; chỉ cấp qua `ids.next_id()` |
-| `Player`, `Life`, `Stat` | `state/player.rs` | `Life::Trapped { since }` vẫn tính là chưa chết |
-| `Field` | `state/field.rs` | Loại ô đổi được trong lượt + item giấu trong khối mềm |
-| `Bomb { id, owner, cell, range, explodes_at, grace }` | `state/bomb.rs` | Tầm chụp lúc đặt (R-032); `grace` = người được phép đi ra khỏi bom |
-| `Flame { cell, until, source, owner }` | `state/flame.rs` | `until` là tick cuối còn lửa (bao gồm); mỗi ô một flame |
-| `FloorItem`, `ItemKind` | `state/item.rs` | `ItemKind(i)` = chỉ số trong `Rules::items` (V1: Bomb, Fire, Roller) |
-| `Rules` | `rules.rs` | Mọi giá trị luật V1, đổi từ profile; thêm rule mới qua integrator |
-| `EventKind` (10 loại V1) | `event.rs` | `name()` + `fields()` là encoding chung cho digest, scenario, log |
-| `Mode`, `System` | `mode.rs`, `system.rs` | `System::on_round_start` cho việc đầu lượt (giấu item); `System::run` nhận thêm `&mut TickScratch` cho dữ liệu trong tick |
+| `PlayerInput { dir, place_bomb }` | `sim.rs` | Input **already accepted by authority** for one tick. `place_bomb` is a press edge, not a hold |
+| `PlayerSetup { id, stats: CharacterStats }` | `sim.rs`, `state/player.rs` | `Stat { value, max }` for speed/bombs/range, taken from BomberAttr through content |
+| `SimulationState` | `state/mod.rs` | `tick, phase, rng, ids, players, field, bombs, flames, items`. Each part hashes itself in its own file |
+| `TickScratch` | `scratch.rs` | Data **for one tick**, passed between systems (blast channel: cells just covered by an explosion). **Not part of state**: not hashed, not snapshotted, not in the DTO. On the gameplay path `SimulationState::step` creates an empty scratch every tick, so the tick result is always a function of state + input |
+| `EntityId`, `IdAllocator` | `state/mod.rs` | Bomb and item IDs increase from 1 within the round. Allocate only through `ids.next_id()` |
+| `Player`, `Life`, `Stat` | `state/player.rs` | `Life::Trapped { since }` still counts as not dead |
+| `Field` | `state/field.rs` | Cell kinds that can change during the round, plus items hidden in soft blocks |
+| `Bomb { id, owner, cell, range, explodes_at, grace }` | `state/bomb.rs` | Range is captured at placement (R-032). `grace` = who may walk off the bomb |
+| `Flame { cell, until, source, owner }` | `state/flame.rs` | `until` is the last tick the flame still exists (inclusive). One flame per cell |
+| `FloorItem`, `ItemKind` | `state/item.rs` | `ItemKind(i)` = index into `Rules::items` (V1: Bomb, Fire, Roller) |
+| `Rules` | `rules.rs` | Every V1 rule value, converted from the profile. New rules go through the integrator |
+| `EventKind` (10 V1 kinds) | `event.rs` | `name()` + `fields()` is the shared encoding for digest, scenario, and log |
+| `Mode`, `System` | `mode.rs`, `system.rs` | `System::on_round_start` for start-of-round work (hide items). `System::run` also takes `&mut TickScratch` for in-tick data |
 
-`SimulationState::check_invariants(&World)` (`state/invariants.rs`) kiểm: danh sách sắp đúng; một bom/item/
-flame mỗi ô; ID entity duy nhất trên mọi loại và do allocator cấp; bom/item trên ô nền, lửa trên nền hoặc
-khối mềm; số ô dữ liệu khớp kích thước lưới (kiểm trước mọi truy cập ô); owner/grace là người chơi có thật; `ItemKind` có trong `Rules::items`; người chơi trong lưới;
-chỉ số không vượt trần; item giấu chỉ trong khối mềm. Hàm không panic với state sai. `new_round` gọi nó
-trước khi trả state; harness scenario và replay gọi sau mỗi tick, nên system vi phạm bị bắt ở tick gây lỗi.
+`SimulationState::check_invariants(&World)` (`state/invariants.rs`) checks: lists are sorted; one bomb, item, or
+flame per cell; entity IDs are unique across kinds and were issued by the allocator; bombs and items sit on floor cells, flames on floor or
+soft block; cell-data count matches the grid size (checked before any cell access); owner and grace are real players; `ItemKind` exists in `Rules::items`; players are inside the grid;
+stats do not exceed the cap; hidden items are only inside soft blocks. The function does not panic on a bad state. `new_round` calls it
+before returning state. The scenario harness and replay call it after every tick, so a system that breaks a contract is caught on the tick that did it.
 
-Kênh blast **không nằm trong state** nên không có ở `check_invariants`: nó được kiểm riêng bằng
-`TickScratch::check(&World)` (`scratch.rs`), và hàm này là nơi kiểm duy nhất cho kênh đó.
+The blast channel **is not in state**, so it is not in `check_invariants`. It is checked separately by
+`TickScratch::check(&World)` (`scratch.rs`), and that function is the only check for the channel.
 
-### 5.2 Thứ tự trong một tick (pipeline FFA)
+### 5.2 Order inside one tick (FFA pipeline)
 
-`movement → bomb_place → explosion → blocks → pickup → life`, rồi `tick += 1`, rồi `Mode::outcome`.
+`movement → bomb_place → explosion → blocks → pickup → life`, then `tick += 1`, then `Mode::outcome`.
 
-Movement: Alive dùng speedlevel; Trapped dùng `Rules::trapped_speed` từ khóa
-`player.trapped_speed_px_per_s` (R-161/R-162), Dead đứngyên. Trapped vẫn không đặtbom/pickup.
-Hai trục/hộp/bámgóc giữ policy V1; native chỉđã đo input ngang. Predictor dùng cùng system.
-Đầu lượt: lưới từ địa hình → hoán vị spawn theo seed → `on_round_start` từng system theo thứ tự trên.
-RNG được dùng đúng theo thứ tự này. Đổi thứ tự là đổi luật: chỉ integrator, kèm scenario và bless golden.
+Movement: Alive uses the speed level. Trapped uses `Rules::trapped_speed` from the key
+`player.trapped_speed_px_per_s` (R-161/R-162). Dead stands still. Trapped still cannot place a bomb or pick up.
+Both axes, the hitbox, and corner assist keep the V1 policy. Native measurement so far only covers horizontal input. The predictor uses the same system.
+Start of round: grid from terrain → spawn permutation by seed → `on_round_start` on each system in the order above.
+RNG is consumed in exactly that order. Changing the order changes the rules: integrator only, with a scenario and a golden bless.
 
-Hệ quả đã chốt: bom đặt trong step N nằm ở ô người chơi **sau khi** di chuyển của step N; bom có
-`explodes_at = N` nổ trong step N; vụ nổ ở step N phá khối (kênh blast của tick, `TickScratch`),
-lửa sinh ở step N nhốt người ngay trong step N; kết quả lượt xét sau khi mọi system đã chạy. Còn mở (quyết
-trong task tương ứng, ghi vào RULES_V1): lửa có phá item đang nằm trên nền không; nhặt item khi đã
-chạm trần thì item mất hay ở lại.
+Consequences already fixed: a bomb placed in step N sits on the cell the player occupies **after** movement in step N. A bomb with
+`explodes_at = N` explodes in step N. An explosion in step N breaks blocks (the tick's blast channel, `TickScratch`).
+Flame spawned in step N traps a player in the same step N. The round result is evaluated after every system has run. Still open (decide
+inside the matching task and record it in RULES_V1): whether flame destroys an item already on the floor; whether a pickup at the cap consumes the item or leaves it.
 
-Kênh blast sống trong `TickScratch` của tick đó: `explosion` ghi, `blocks` đọc rồi xóa. Vì nó nằm ngoài
-state nên **state là nguồn duy nhất của tick** — cùng state + cùng input luôn cho cùng kết quả tick,
-và state khôi phục từ snapshot không thể lệch với state gốc ở tick kế tiếp. Đường fixture
-`SimulationState::step_with_scratch` cho phép dựng sẵn kênh blast để test riêng system `blocks`;
-ở đường đó scratch là **input thêm** của tick và được kiểm bằng `TickScratch::check`.
+The blast channel lives in that tick's `TickScratch`: `explosion` writes it, `blocks` reads it and clears it. Because it is outside
+state, **state is the only source of the tick**. The same state plus the same input always produces the same tick result,
+and state restored from a snapshot cannot diverge from the original state on the next tick. The fixture path
+`SimulationState::step_with_scratch` lets a test prebuild the blast channel to exercise the `blocks` system alone.
+On that path the scratch is an **extra input** of the tick and is checked with `TickScratch::check`.
 
-### 5.3 Ma trận quyền ghi
+### 5.3 Write-rights matrix
 
-Bảng chi tiết ở đầu `crates/boom-core/src/systems/mod.rs`. Tóm tắt: mỗi field công khai chỉ có một
-system được ghi (movement → vị trí/hướng và xóa `grace`; bomb_place → thêm bom; explosion → xóa bom, lửa,
-ghi kênh blast của tick; blocks → lưới, item lộ/bị phá, đọc rồi xóa kênh blast của tick; pickup → xóa item, chỉ số;
-life → `Player.life`). Đọc thì tự do. Cần ghi field của system khác → mở issue cho integrator, không sửa thẳng.
-Kênh blast của tick không phải field công khai của state: nó là dữ liệu tạm trong tick, truyền qua
+The detailed table is at the top of `crates/boom-core/src/systems/mod.rs`. Summary: each public field has one
+system allowed to write it (movement → position/facing and clears `grace`; bomb_place → adds bombs; explosion → removes bombs, writes flames,
+writes the tick's blast channel; blocks → grid, revealed or destroyed items, reads then clears the tick's blast channel; pickup → removes items, writes stats;
+life → `Player.life`). Reads are free. Writing another system's field means opening an issue for the integrator, not editing it directly.
+The tick's blast channel is not a public field of state. It is temporary data inside the tick, passed through
 `TickScratch` (`scratch.rs`).
 
-### 5.4 Contract mạng và replay (chưa có code)
+### 5.4 Network and replay contract (no code yet when this was written)
 
-Revision **`proto-r1`**, 2026-10-19, **Accepted** theo
-[ADR 0009](../decisions/0009-wire-protocol-input-snapshot-codec.md) (PR #24). `boom-proto` chưa được tạo;
-integrator mở task triển khai ở P7. Khi có code, kiểu DTO là nguồn chuẩn; mục này giữ quy tắc và bất biến review.
+Revision **`proto-r1`**, 2026-10-19, **Accepted** under
+[ADR 0009](../decisions/0009-wire-protocol-input-snapshot-codec.md) (PR #24). `boom-proto` had not been created yet.
+The integrator opens the implementation task in P7. Once code exists, the DTO types are canonical. This section keeps the rules and the review invariants.
 
-| Contract | Nội dung tối thiểu | Bất biến cần review |
+| Contract | Minimum contents | Invariant to review |
 |---|---|---|
-| Envelope | 16 byte: magic `BOOM`, `wire_schema=1`, `kind`, `flags`, `payload_len`, reserved; payload postcard | Từ chối magic/schema/kind/flags/len sai trước khi decode; frame tối đa 64 KiB; message lạ không được đoán |
-| Handshake (V1-002) | `wire_schema`, `state_schema`, `rules_profile_id`, `rules_hash`, `content_sha256`, capability | Khớp chính xác ở V1; server so với profile/bundle của mình, không dùng hash client để chọn nội dung; lệch bị từ chối trước sảnh |
-| `InputCommand` / batch | `round_id`, player do server bind, `ack_snapshot`, tối đa 8 lệnh `{seq, target_tick, dir|bomb}` | Seq tăng liên tục **trong batch** (lỗ hổng giữa batch là gap); **payload bất biến theo `seq` sau lần gửi đầu**, chỉ lệnh chưa gửi mới được tính lại `target_tick`; **dedup trước kiểm cửa sổ**, lệnh `seq <= applied_seq` bỏ qua dù `target_tick` cũ; lệnh quá khứ ở đầu hàng được retire + ack (không áp dụng); cửa sổ trễ 100 ms/trước 200 ms; gap timeout 100 ms chỉ retire sequence thiếu, không bỏ lệnh pending; `InputRejected` mang `applied_seq`/`server_tick`/`first_seq`+`command_count` để xác định batch bị reject và resync; rate limit; authority đổi thành `PlayerInput` |
-| `Snapshot` | `snapshot_seq`, round/tick, `state_schema`, `rules_hash`, `content_epoch`, phase, RNG/allocator, ack input, players/field/bombs/flames/items | **Đầy đủ**, khôi phục được `SimulationState`; client dựng lại và gọi `check_invariants`; bỏ snapshot cũ/khác round; chưa có delta |
-| `ReplayHeader` | schema, profile ID + hash, mode, map, seed, roster/spawn, `hash_algo` | Từ chối revision/profile không khớp. Bản file hiện tại: `boom-replay` schema 1 |
-| `ReplayRecord` | tick, `PlayerInput` **sau scheduler** (kể cả neutral/expired), checkpoint hash | Ghi input thực được áp dụng; không ghi raw batch/`target_tick`; không dựa wall clock |
-| Event ra ngoài | `round_id` + `EventId` + `name` + `fields` | Consumer dedup theo `(round_id, EventId)`; snapshot không phát lại event |
+| Envelope | 16 bytes: magic `BOOM`, `wire_schema=1`, `kind`, `flags`, `payload_len`, reserved; postcard payload | Reject bad magic/schema/kind/flags/len before decode. Frame max 64 KiB. An unknown message must not be guessed |
+| Handshake (V1-002) | `wire_schema`, `state_schema`, `rules_profile_id`, `rules_hash`, `content_sha256`, capability | Exact match in V1. The server compares against its own profile and bundle. It does not use the client hash to choose content. A mismatch is rejected before the lobby |
+| `InputCommand` / batch | `round_id`, player bound by the server, `ack_snapshot`, at most 8 commands `{seq, target_tick, dir\|bomb}` | Seq increases continuously **inside a batch** (a hole between batches is a gap). **Payload is immutable for a `seq` after the first send**. Only a command not yet sent may recompute `target_tick`. **Dedup happens before the window check**. A command with `seq <= applied_seq` is dropped even if `target_tick` is old. A past command at the head of the queue is retired and acked (not applied). Late window 100 ms, early window 200 ms. A gap timeout of 100 ms only retires the missing sequence. It does not drop pending commands. `InputRejected` carries `applied_seq`/`server_tick`/`first_seq`+`command_count` so the rejected batch can be identified and resynced. Rate limit. Authority turns this into `PlayerInput` |
+| `Snapshot` | `snapshot_seq`, round/tick, `state_schema`, `rules_hash`, `content_epoch`, phase, RNG/allocator, input ack, players/field/bombs/flames/items | **Complete**. It can restore `SimulationState`. The client rebuilds and calls `check_invariants`. Drop an old snapshot or one from another round. No delta yet |
+| `ReplayHeader` | schema, profile ID + hash, mode, map, seed, roster/spawn, `hash_algo` | Reject a mismatched revision or profile. Current file format: `boom-replay` schema 1 |
+| `ReplayRecord` | tick, `PlayerInput` **after the scheduler** (including neutral/expired), checkpoint hash | Record the input that was actually applied. Do not record the raw batch or `target_tick`. Do not depend on the wall clock |
+| Outbound event | `round_id` + `EventId` + `name` + `fields` | Consumers dedup by `(round_id, EventId)`. A snapshot does not replay events |
 
-Quy tắc kèm theo:
+Accompanying rules:
 
-- Input mạng chỉ là **đề nghị**; server chuyển thành `PlayerInput` sau khi kiểm round, sequence, cửa sổ và
-  rate limit. Client không gửi tọa độ/máu/item/kết quả. Lệnh trùng/đến muộn/ngoài cửa sổ không được làm đổi
-  state; lệnh hết hạn/gap được ghi nhận là neutral trong replay. `applied_seq` là sequence đã **giải quyết**
-  (áp dụng hoặc retire), không phải "đã áp dụng input"; ack dùng giá trị này.
-- **Liveness:** dedup trước kiểm cửa sổ; lệnh quá khứ ở đầu hàng được retire ngay khi batch được chấp nhận
-  + ack; gap timeout chỉ retire sequence thiếu rồi xử lý lệnh pending; `OutOfWindow` chỉ dành cho
-  `target_tick` quá tương lai; `InputRejected` mang `applied_seq`/`server_tick` để client bỏ lệnh cũ, tách
-  lệnh quá tương lai và resend. **Payload bất biến theo `seq` sau lần gửi đầu**: client chỉ tính lại
-  `target_tick` cho lệnh chưa gửi; lệnh có thể đã buffer resend y nguyên (không retarget), còn lệnh chắc
-  chắn chưa buffer được bỏ và thay bằng seq mới, lỗ hổng do gap timeout retire. Không nhánh nào giữ lệnh quá
-  hạn ở đầu hàng mà không tiến ack.
-- `Snapshot` V1 là full state, không delta. Kích thước Village00 4 người ước tính **829 B** điển hình và
-  **5 692 B** trần theo miền V1 được enforce, dưới `MAX_SNAPSHOT_BYTES=16 KiB` (ADR 0009 §4.2); đây là
-  design, chưa đo runtime. Trần dùng varint postcard đúng (u32 5 B, u64 10 B, cell 2 B, Vec prefix) và
-  miền `15×13`/count được enforce. Toạ độ `x`/`y` là `Mpx` (1/1000 px, **không** phải chỉ số ô): domain
-  `0 <= x < width·tile_mpx`, `0 <= y < height·tile_mpx` (V1: `x<600 000`, `y<520 000`) nên zigzag 3 B;
-  nếu decoder không enforce domain, cận `i32` 5 B cho tổng **845/5 708 B**.
-- `snapshot_seq`/`round_id`/`content_epoch`/`rules_hash` phải khớp phiên; `content_sha256` đầy đủ chỉ ở
-  handshake. Client bỏ snapshot cũ/trùng và xin `SnapshotRequest` khi cần resync.
-- Client dự đoán di chuyển của mình từ snapshot confirmed, replay lệnh chưa ack; bom chỉ là bóng chờ, còn
-  nổ/nhốt/chết/item chỉ theo event server (ADR 0005). Snapshot đầy đủ làm resync đơn giản; delta sau này
-  cần baseline/resync và ADR mới.
-- `INPUT_*`/`SNAPSHOT_INTERVAL`/`MAX_*` là **tham số giao thức** trong `ProtocolLimits` có revision, không
-  phải luật chơi và không nằm trong `Rules`; tick/round vẫn đọc từ `Rules`. Không rải hằng số trong code.
-- Snapshot cần getter RNG state và allocator next từ core (contracts-r4, integrator); chưa có thì chưa thể
-  hiện thực snapshot đầy đủ. Không sửa `crates/boom-core` trong task #14.
-- Lệnh phòng tin cậy (`ready/start/leave`, kind dành riêng) tách khỏi input trận tần suất cao; cả hai có
-  identity/dedup, chính sách hết hạn khác nhau. Policy phòng/start/disconnect lấy từ SCOPE_V1.
-- Index ADR và dòng "Codec giao thức" ở §8 do integrator cập nhật khi nhận ADR 0009; task #14 chỉ sửa ADR
-  mới và mục này theo phạm vi issue.
+- Network input is only a **proposal**. The server turns it into `PlayerInput` after checking round, sequence, window, and
+  rate limit. The client does not send coordinates, health, items, or results. A duplicate, late, or out-of-window command must not change
+  state. An expired command or a gap is recorded as neutral in the replay. `applied_seq` is the sequence that has been **resolved**
+  (applied or retired), not "input was applied". Acks use this value.
+- **Liveness:** dedup before the window check. A past command at the head is retired as soon as the batch is accepted,
+  plus an ack. Gap timeout only retires the missing sequence and then processes pending commands. `OutOfWindow` is only for a
+  `target_tick` too far in the future. `InputRejected` carries `applied_seq`/`server_tick` so the client can drop old commands, split
+  commands that are too far ahead, and resend. **Payload is immutable for a `seq` after the first send**: the client only recomputes
+  `target_tick` for a command not yet sent. A command that may already be buffered is resent unchanged (not retargeted). A command that is
+  certainly not buffered is dropped and replaced by a new seq. The hole is retired by gap timeout. No branch keeps an expired command at the
+  head of the queue without advancing the ack.
+- A V1 `Snapshot` is full state, not a delta. A 4-player Village00 snapshot is estimated at **829 B** typical and
+  a **5,692 B** ceiling over the enforced V1 domain, under `MAX_SNAPSHOT_BYTES=16 KiB` (ADR 0009 §4.2). This is
+  design, not a runtime measurement. The ceiling uses real postcard varints (u32 5 B, u64 10 B, cell 2 B, Vec prefix) and
+  the enforced `15×13` domain and counts. Coordinates `x`/`y` are `Mpx` (1/1000 px, **not** a cell index): domain
+  `0 <= x < width·tile_mpx`, `0 <= y < height·tile_mpx` (V1: `x<600_000`, `y<520_000`), so zigzag is 3 B.
+  If the decoder does not enforce the domain, the `i32` bound of 5 B gives a total of **845/5,708 B**.
+- `snapshot_seq`/`round_id`/`content_epoch`/`rules_hash` must match the session. The full `content_sha256` is only in the
+  handshake. The client drops an old or duplicate snapshot and sends `SnapshotRequest` when it needs a resync.
+- The client predicts its own movement from the confirmed snapshot and replays commands that are not yet acked. A bomb is only a waiting ghost.
+  Explosion, trap, death, and items follow server events only (ADR 0005). A full snapshot makes resync simple. A later delta
+  needs a baseline, a resync, and a new ADR.
+- `INPUT_*`/`SNAPSHOT_INTERVAL`/`MAX_*` are **protocol parameters** in a versioned `ProtocolLimits`. They are not
+  gameplay rules and they are not in `Rules`. Tick and round still come from `Rules`. Do not scatter constants through the code.
+- A snapshot needs RNG-state and allocator-next getters from core (contracts-r4, integrator). Without them a full snapshot cannot
+  be implemented. Do not edit `crates/boom-core` inside task #14.
+- Trusted room commands (`ready`/`start`/`leave`, reserved kinds) are separate from high-rate match input. Both have
+  identity and dedup, with different expiry policies. Room, start, and disconnect policy come from SCOPE_V1.
+- The ADR index and the "Protocol codec" row in §8 are updated by the integrator when ADR 0009 is accepted. Task #14 only edits the new
+  ADR and this section, within the issue's scope.
 
-#### API `boom-room` (đề xuất task #13, integrator duyệt)
+#### `boom-room` API (proposed by task #13, integrator approves)
 
-`boom-room` là state machine thuần, không socket/đồng hồ/lưu trữ. Entry point là `Lobby::apply(RoomCommand)`:
+`boom-room` is a pure state machine. No sockets, clock, or storage. The entry point is `Lobby::apply(RoomCommand)`:
 
-- Server bind `PlayerId` và `RequestId` vào lệnh. Cùng request thành công gần nhất trả
-  `Outcome::Duplicate` (không đổi state, không phát event); request cũ hơn trả `StaleRequest`.
-  Lệnh lỗi không đổi state nên không ghi request ID, có thể thử lại cùng ID sau khi sửa điều kiện.
-- `RoomPolicy { max_players, min_players_to_start }` do server truyền vào, không có giá trị mặc định
-  trong crate; task này chưa thêm khóa `room.*` vào `data/rules` vì ngoài phạm vi file. P7 phải nối
-  policy từ rules profile/SCOPE_V1 §3 trước khi dùng thật.
-- `Lobby` bảo đảm một người chỉ ở một phòng, cấp `RoomId`/`RoundId` tăng dần; join chiếm slot thấp nhất;
-  host kế nhiệm là người vào sớm nhất còn lại.
-- Pha `Waiting`/`Started`; start chốt `RoundMember { player, slot, character }` đúng một lần.
-  `Loading`/`Playing`/`Results`, loading barrier, disconnect, chat chờ và spawn thuộc V1-009/010/022/023.
-- Roster hoặc nhân vật đổi khi `Waiting` phát `ReadyReset` và hủy toàn bộ ready; host cũng phải ready
-  (khác client gốc có chủ ý, RULES_V1 R-063). Lệnh start lặp không tạo lượt thứ hai.
+- The server binds `PlayerId` and `RequestId` onto the command. The same request as the most recent success returns
+  `Outcome::Duplicate` (no state change, no event). An older request returns `StaleRequest`.
+  A failed command does not change state, so it does not record the request ID. The same ID may be retried after the condition is fixed.
+- `RoomPolicy { max_players, min_players_to_start }` is passed in by the server. The crate has no default.
+  This task does not add `room.*` keys to `data/rules`, because that is outside the file scope. P7 must connect
+  policy from the rules profile and SCOPE_V1 §3 before real use.
+- `Lobby` guarantees one person is in at most one room, and issues `RoomId`/`RoundId` in increasing order. Join takes the lowest free slot.
+  The next host is the earliest remaining member.
+- Phases `Waiting`/`Started`. Start locks `RoundMember { player, slot, character }` exactly once.
+  `Loading`/`Playing`/`Results`, the loading barrier, disconnect, waiting-room chat, and spawn belong to V1-009/010/022/023.
+- A roster or character change while `Waiting` emits `ReadyReset` and clears every ready. The host must also be ready
+  (an intentional difference from the original client, RULES_V1 R-063). A repeated start command does not create a second round.
 
-### 5.5 Boundary scenario
+### 5.5 Boundary scenarios
 
-Kịch bản nghiệm thu ở `fixtures/scenarios/<system>/*.toml`, chạy bằng `cargo test -p boom-scenario`
-(định dạng ở `crates/boom-scenario/src/scenario.rs`). `active` phải qua; `pending` là acceptance khởi điểm
-cho feature chưa làm. Scenario dựng sẵn được bom/item/lửa/item giấu, nên mỗi system test độc lập với
-system khác. Worker nhận feature chuyển scenario của mình sang `active`, thêm ca biên, và reviewer
-kiểm scenario đối chiếu RULES_V1 chứ không chỉ đối chiếu code.
+Acceptance scenarios live in `fixtures/scenarios/<system>/*.toml` and run with `cargo test -p boom-scenario`
+(format in `crates/boom-scenario/src/scenario.rs`). `active` must pass. `pending` is the starting acceptance
+for a feature that is not built yet. A scenario can prebuild bombs, items, flames, and hidden items, so each system is tested independently of
+the others. The worker who takes a feature moves its scenario to `active`, adds edge cases, and the reviewer
+checks the scenario against RULES_V1, not only against the code.
 
-Kênh blast là dữ liệu **của tick** nên không nằm trong state: scenario dựng sẵn nó bằng khóa
-`[[blast]]`, và harness chạy tick qua `SimulationState::step_with_scratch` (đường gameplay
-`SimulationState::step` dùng scratch rỗng). Fixture này chỉ dùng để test riêng system `blocks`.
+The blast channel is **per-tick** data, so it is not in state. A scenario prebuilds it with the
+`[[blast]]` key, and the harness runs the tick through `SimulationState::step_with_scratch` (the gameplay path
+`SimulationState::step` uses an empty scratch). This fixture exists only to test the `blocks` system by itself.
 
-## 6. Authority, prediction và side effect
+## 6. Authority, prediction, and side effects
 
-Theo [ADR 0005](../decisions/0005-authority-and-prediction.md): server quyết mọi kết quả; client dự đoán
-di chuyển của chính mình, chạy lại input chưa ack khi nhận snapshot; bom chỉ có bóng "chờ" ở presentation;
-người khác được nội suy. Chia sẻ core không tự tạo anti-cheat: rate limit, validation, auth/session vẫn
-là trách nhiệm server.
+Follow [ADR 0005](../decisions/0005-authority-and-prediction.md). The server decides every result. The client predicts
+its own movement and replays unacked input when a snapshot arrives. A bomb is only a "waiting" ghost in presentation.
+Other players are interpolated. Sharing the core does not create anti-cheat by itself. Rate limit, validation, and auth/session remain
+the server's job.
 
-Audio/effect/UI tiêu thụ event qua presentation journal có ID; replay dự đoán không ghi economy, log kết quả
-hoặc gửi thông báo lần hai. Kết quả lượt commit một lần bởi authority; snapshot trễ của lượt cũ bị bỏ
-theo round ID. Nghiệm thu mạng dùng fixture SCOPE_V1 (RTT/jitter/loss/duplicate/reorder, resync,
-loading/disconnect); ngoài hash hội tụ còn đo correction, input latency và không lặp audio/effect.
+Audio, effects, and UI consume events through a presentation journal that has IDs. A prediction replay does not record economy, result logs,
+or send a notification a second time. The round result is committed once by authority. A late snapshot from an old round is dropped
+by round ID. Network acceptance uses the SCOPE_V1 fixture (RTT, jitter, loss, duplicate, reorder, resync,
+loading, disconnect). Besides the convergence hash, measure correction, input latency, and that audio and effects do not repeat.
 
-## 7. Asset pipeline, animation và Việt hóa
+## 7. Asset pipeline, animation, and Vietnamese localization
 
-Pipeline: pack manifest/hash → decode có provenance → resolve dependency closure → schema runtime →
-bundle/version/hash → validation → client. P4 port đọc pack sang `boom-assets` dựa trên định dạng đã RE
-(`boom-re-l10n/tools/idf.py`, `boomkr-re/rust/krpack`), viết lại, không copy code. Byte decode đúng không
-chứng minh frame assembly/timing đúng.
+Pipeline: pack manifest and hash → decode with provenance → resolve the dependency closure → runtime schema →
+bundle, version, and hash → validation → client. P4 ports pack reading into `boom-assets` from the format already reverse-engineered
+(`boom-re-l10n/tools/idf.py`, `boomkr-re/rust/krpack`). Rewrite it. Do not copy the code. Bytes that decode correctly do not
+prove that frame assembly or timing is correct.
 
-Content closure V1 nối Village00 → tile/object/collision, C00/C01 → Attr/animation và mọi state bom,
-lửa, item, nhốt, chết; không bỏ qua field/tài nguyên unknown âm thầm. PNG/atlas cần kiểm pixel chuẩn,
-animation/layout cần scene fixture riêng. Renderer nhận presentation snapshot + metadata animation;
-render cadence tách tick mô phỏng.
+The V1 content closure connects Village00 to tile, object, and collision; C00/C01 to Attr and animation; and every bomb,
+flame, item, trap, and death state. Do not skip an unknown field or asset silently. PNG and atlas need a pixel check.
+Animation and layout need their own scene fixture. The renderer takes a presentation snapshot plus animation metadata.
+Render cadence is separate from the simulation tick.
 
-Chuỗi Việt lấy từ catalog `boom-re-l10n/l10n/`, ánh xạ key rõ; ảnh có chữ chỉ vào bundle V1 khi có quyết định
-review. Font Unicode, fallback, wrap, focus là contract UI. Golden bản Việt hóa tách golden client gốc.
+Vietnamese strings come from the `boom-re-l10n/l10n/` catalog, with an explicit key mapping. An image that contains text enters the V1 bundle only after a
+review decision. Unicode font, fallback, wrap, and focus are the UI contract. The Vietnamese-localization golden is separate from the original-client golden.
 
-## 8. Quyết định còn mở
+## 8. Decisions still open
 
-| Quyết định | Trạng thái | Gate |
+| Decision | Status | Gate |
 |---|---|---|
-| Client stack | **ADR 0010: macroquad, có điều kiện** | Còn: build+run thật 3 OS, input-held/focus, playback audio (P6) |
-| Persistence | **ADR 0011 (Accepted)**: SQLite (`rusqlite`) + Argon2id + session token gắn `instance_id`/`connection_id` (giải phóng khi disconnect/timeout/restart, không khóa tài khoản tới TTL); tùy chọn client lưu phía client; health runtime qua admin listener loopback + offline check tách riêng | Message auth/health: ADR 0009 Addendum A. Còn: TLS (ADR 0006), test backend thật ở P7 |
-| Codec giao thức | **ADR 0009** | Triển khai `boom-proto`/`boom-net` ở P7 |
-| Định dạng bundle content | Mở (P4) | Provenance, validation, asset closure, rebuild tái lập |
-| Thứ tự chi tiết trong tick | Mở (START-C, Q-006) | Boundary scenario pickup/lửa/chain/chết cùng tick |
+| Client stack | **ADR 0010: macroquad, conditional** | Still open: real build and run on 3 OSes, held-input and focus, audio playback (P6) |
+| Persistence | **ADR 0011 (Accepted)**: SQLite (`rusqlite`) + Argon2id + a session token bound to `instance_id`/`connection_id` (released on disconnect, timeout, or restart; the account is not locked until TTL); client options stored on the client; runtime health through a loopback admin listener plus a separate offline check | Auth and health messages: ADR 0009 Addendum A. Still open: TLS (ADR 0006), a real backend test in P7 |
+| Protocol codec | **ADR 0009** | Implement `boom-proto` and `boom-net` in P7 |
+| Content bundle format | Open (P4) | Provenance, validation, asset closure, reproducible rebuild |
+| Detailed order inside a tick | Open (START-C, Q-006) | Boundary scenarios for pickup, flame, chain, and death on the same tick |
 
-Đã quyết: thời gian/số học (ADR 0004), authority/prediction (ADR 0005), transport mặc định (ADR 0006),
-mô hình mở rộng (ADR 0008). Đang chờ review: identity/persistence/log —
+Already decided: time and numerics (ADR 0004), authority and prediction (ADR 0005), default transport (ADR 0006),
+extension model (ADR 0008). Waiting on review when this was written: identity, persistence, and log —
 [ADR 0011](../decisions/0011-identity-persistence-log-v1.md) (Q-011).
-Backend V1 chỉ lưu identity và tùy chọn; room/round là ephemeral theo SCOPE_V1 (xem ADR 0011).
+The V1 backend stores only identity and options. Room and round are ephemeral, per SCOPE_V1 (see ADR 0011).

@@ -1,0 +1,33 @@
+[server]
+admin_addr = "127.0.0.1:17890"
+data_dir = "data"
+listen_addrs = ["0.0.0.0:17889"]
+server_version = "0.0.0"
+heartbeat_interval_ms = 60000
+health_timeout_ms = 3000
+bundle_dir = "data/bundle/village00"
+rules_path = "data/rules/v1-dev.toml"
+map_profile_path = "data/maps/village00-kr.toml"
+replay_checkpoints = []
+
+[identity]
+db_path = "data/boom-server.sqlite3"
+expected_db_schema_version = 1
+auth_deadline_ms = 10000
+session_ttl_ms = 86400000
+session_ping_interval_ms = 15000
+session_liveness_timeout_ms = 30000
+
+[auth]
+registration_open = true
+rate_limit_max_failures = 5
+register_rate_limit_max_attempts = 5
+rate_limit_window_ms = 300000
+rate_limit_max_buckets = 4096
+password_min_chars = 8
+password_max_bytes = 256
+argon2_m_cost = 19456
+argon2_t_cost = 2
+argon2_p_cost = 1
+argon2_output_len = 32
+argon2_salt_len = 16

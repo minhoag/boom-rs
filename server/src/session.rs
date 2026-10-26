@@ -277,6 +277,11 @@ pub async fn handle(sock: TcpStream, port: u16, cfg: Arc<Config>, log: Log, hub:
                 // after 289: enter-shop request (sub_7EFB6A): u8, u8 n, n x (str name, u32 id), u8 -> 20 (CStage__On_20, stage 14)
                 log(format!("[{port}] shop enter 38 -> 20"));
                 let _ = tx.send(pk::shop_data(gold));
+            } else if op == 102 && body.len() >= 3 && proto::get_int(&body[2..], 1, true) == 0 {
+                // CShopStageNew::vf80 waits for On_100 (u16 destination stage) before leaving the shop.
+                let stage = if in_room { 12 } else { 11 };
+                log(format!("[{port}] shop leave 102 -> 100 (stage {stage})"));
+                let _ = tx.send(pk::Packet::new(100).u16(stage).build());
             } else if op == 260 || op == 259 {
                 // cash requests: 260 on shop entry (sub_800DF0), 259 after a purchase; bool -> 221 {u8 slot, u32 cash}
                 log(format!("[{port}] cash {op} -> 221 ({cash})"));
@@ -442,16 +447,9 @@ const SQUARE_Y: u16 = 400;
 fn replies(op: u16, port: u16, cfg: &Config) -> Vec<Vec<u8>> {
     match op {
         0 => pk::login_replies(),
-        1 => vec![pk::login_ok("tester", 1), pk::login_net_info(&std::net::Ipv4Addr::from(cfg.server_ip).to_string(), [0, 0, 0])],
         40 => vec![pk::channel_list(&["Kenh 1", "Kenh 2", "Kenh 3", "Kenh 4"], 100), pk::channel_status(&[10, 20, 30, 40])],
         5 => vec![pk::channel_join_ok(cfg.server_ip, port, 10, 0)],
-        6 => vec![pk::channel_enter_ok(now_utc())],
         77 => vec![pk::create_room_ok(1, cfg.room_type, 0)],
-        337 => vec![
-            pk::room_player(0, 1000, "tester", true, 0, 0),
-            pk::room_slot_state(0, true, false, 0, 0),
-            pk::room_map(cfg.map_index, 0),
-        ],
         395 => vec![
             pk::square_info(1, "LobbySquare01", "Square"), // "Map/%s" = pack entry, no ".map" (else grey square)
             pk::square_users(),

@@ -129,9 +129,7 @@ fn warn_missing_ui_keys<B: UiBackend>(model: &UiModel<B>, bundle: Option<&Bundle
     for element in &bundle.ui {
         if !model.texts().has_key(&element.id) {
             eprintln!(
-                "UI: phần tử `{}` chưa có khóa trong file chuỗi — thêm khóa vào \
-                 docs/specification/localization/UI_STRINGS_V1.md rồi xuất lại \
-                 data/l10n/vi-v1.toml",
+                "UI: element `{}` has no key in data/l10n/vi-v1.toml",
                 element.id
             );
         }

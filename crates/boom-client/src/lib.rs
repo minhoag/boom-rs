@@ -456,10 +456,8 @@ fn load_l10n_file(path: &Path) -> Result<L10n, ContentError> {
     })?;
     L10n::from_bytes(&bytes).map_err(|error| {
         ContentError(format!(
-            "file chuỗi không dùng được: {} ({error})\n  \
-             sửa: file phải là file chuỗi UI V1 hợp lệ \
-             (sinh bằng tools/l10n_export.py, \
-             xem docs/specification/localization/UI_STRINGS_V1.md)",
+            "Cannot use localization file: {} ({error})\n  \
+             Use a valid data/l10n/vi-v1.toml file",
             path.display()
         ))
     })
