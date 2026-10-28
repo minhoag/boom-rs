@@ -1,0 +1,368 @@
+{
+  "schema": 1,
+  "baseline": "KR-00967-V1-scope-1",
+  "plan": "docs/planning/REWRITE_PLAN.md",
+  "updated_at": "2026-10-25",
+  "readiness_phases": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "phases": [
+    {
+      "id": "P0",
+      "title": "Tổ chức docs/scope",
+      "status": "done",
+      "owner": "integrator",
+      "depends_on": [],
+      "deliverable": "Index, rules, registry, scope và migration",
+      "exit_gate": "Nguồn chuẩn/link/tool rõ, giữ bằng chứng",
+      "reviewer": "Codex (review độc lập issue #1, PR #16)",
+      "integration_commit": "62d19b94e7289627061dd3af6f00b89e318b06ee",
+      "evidence": [
+        "docs/README.md",
+        "docs/decisions/0003-engine-repo-and-docs-home.md",
+        "docs/evidence/DOCS_MIGRATION.json",
+        "git:a124eb575220a604077be611db7a27bb4f030014",
+        "git:62d19b94e7289627061dd3af6f00b89e318b06ee"
+      ],
+      "verification": "Review #1: migration 85/85 file khớp byte với boom-re-l10n@9bde2ce; claim RULES_V1 đối chiếu nguồn; 2 finding P2 (policy PR, test tracking) sửa ở PR #16 và review lại đạt. cargo xtask ci + test_kr_tracking 9/9 + CI ba OS xanh.",
+      "blocker": "",
+      "next_action": ""
+    },
+    {
+      "id": "P1",
+      "title": "Tìm thông tin còn thiếu",
+      "status": "in_progress",
+      "owner": "research",
+      "depends_on": [
+        "P0"
+      ],
+      "deliverable": "Claim có nguồn trong RULES_V1, fixture và QUESTIONS cập nhật",
+      "exit_gate": "Câu hỏi chặn kiến trúc có trả lời hoặc phương án kiểm chứng rõ",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "docs/research/QUESTIONS.md",
+        "docs/specification/gameplay/RULES_V1.md"
+      ],
+      "verification": "Đối chiếu nguồn đã tích hợp ngày 2026-10-23; không cấp nghiệm thu mới.",
+      "blocker": "",
+      "next_action": "RE có câu hỏi/consumer mới ở #146–#150/#196; nguồn thiếu giữ candidate/unknown hoặc DESIGN theo ADR0013. Không đợi RE hết client để hoàn thiện V1."
+    },
+    {
+      "id": "P2",
+      "title": "Cấu trúc dự án/interface",
+      "status": "in_review",
+      "owner": "architecture",
+      "depends_on": [
+        "P0"
+      ],
+      "deliverable": "ARCHITECTURE, contracts-r4, ADR protocol/client stack, harness scenario và CI ba OS",
+      "exit_gate": "Boundary/contracts review và giả định quan trọng được ghi nhận",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "docs/planning/ARCHITECTURE.md",
+        "docs/decisions/0009-wire-protocol-input-snapshot-codec.md",
+        "docs/decisions/0010-client-stack-choice.md",
+        "crates/boom-core/src/sim.rs"
+      ],
+      "verification": "Đối chiếu nguồn đã tích hợp ngày 2026-10-23; không cấp nghiệm thu mới.",
+      "blocker": "",
+      "next_action": "Contracts-r4, protocol và client stack đã có code trên main; rà lại mô tả khung/chờ review trong kiến trúc và ghi sign-off pha theo bằng chứng."
+    },
+    {
+      "id": "P3",
+      "title": "Review sẵn sàng",
+      "status": "in_progress",
+      "owner": "integrator",
+      "depends_on": [
+        "P1",
+        "P2"
+      ],
+      "deliverable": "Readiness và task prototype",
+      "exit_gate": "Checklist readiness trong REWRITE_PLAN có kết luận",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "docs/planning/REWRITE_PLAN.md",
+        "docs/planning/SCOPE_V1.md"
+      ],
+      "verification": "Đối chiếu nguồn đã tích hợp ngày 2026-10-23; không cấp nghiệm thu mới.",
+      "blocker": "",
+      "next_action": "Audit readiness/gate PR211 đã merge và G1 đã sign-off riêng. Còn kết luận readiness hồi cứu cho các pha, không đặt done chỉ vì prototype đã chạy."
+    },
+    {
+      "id": "P4",
+      "title": "Nền móng/asset/oracle",
+      "status": "in_review",
+      "owner": "assets/RE",
+      "depends_on": [
+        "P3"
+      ],
+      "deliverable": "Workspace nhỏ, content resolver và oracle fixture",
+      "exit_gate": "Legacy vẫn chạy, content unknown rõ và schema phù hợp",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "docs/specification/assets/BUNDLES.md",
+        "docs/research/ORACLE_REPORT.md",
+        "git:891c7c7d3d76ed4f8e6807d9e32f4611917e3d10"
+      ],
+      "verification": "Đối chiếu nguồn đã tích hợp ngày 2026-10-23; không cấp nghiệm thu mới.",
+      "blocker": "",
+      "next_action": "Asset/bundle/oracle đã có; Village00 0 unknown nội dung theo quyết định V1. Còn sign-off pha/G1 và ghi nhận giới hạn timing/consumer."
+    },
+    {
+      "id": "P5",
+      "title": "Core/offline",
+      "status": "in_review",
+      "owner": "core",
+      "depends_on": [
+        "P4"
+      ],
+      "deliverable": "Simulation/replay V1",
+      "exit_gate": "Rule scenarios/state hash tái lập và giới hạn nguồn rõ",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "crates/boom-core/src/sim.rs",
+        "fixtures/scenarios/round/warmup_freezes_round.toml",
+        "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+      ],
+      "verification": "Đối chiếu nguồn đã tích hợp ngày 2026-10-23; không cấp nghiệm thu mới.",
+      "blocker": "",
+      "next_action": "Core/scenario V1 đã tích hợp và feature tương ứng done; rà G2/G3 theo DESIGN/confirmed hiện hành, không coi regression là fidelity KR."
+    },
+    {
+      "id": "P6",
+      "title": "Client hình/tiếng/input",
+      "status": "in_progress",
+      "owner": "client",
+      "depends_on": [
+        "P4"
+      ],
+      "deliverable": "Scene/animation/render/audio/input",
+      "exit_gate": "Content/presentation contract và acceptance tương ứng",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "git:eff7f94c258e154c60a7c36a60ceaefdf7f5deba",
+        "git:82033ce560ab4649cdd57a3d228dd1a0669129a8",
+        "git:6ad3e062f096d902e0109ac76c764ec7f6b24b43",
+        "git:2b86a87fb4f4244ba35c7ac173bd2a7d099ddeb7",
+        "git:0407546acaeb2df43bb3ee0b9eaf7a82b4f6909f",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/package-current-qa.json"
+      ],
+      "verification": "Theo nghiệm thu G5 độc lập PR279: actual functional UX Linux/text/font/audio digital có evidence; không ký pha hoặc GUI đa OS/hardware. Dependency pha vẫn giữ.",
+      "blocker": "",
+      "next_action": "V1-035/126text/6sprites đã nghiệm thu PR241; G5 functional UX đã nghiệm thu PR279/0407546. Không giao lại font/text/ảnh/focus/window/volume trên Linux đã kiểm. Còn review pha theo dependency P4; GUI Windows/macOS/platform/minimum hardware và fidelity presentation giữ ở V1-036/G6, không tự nâng P6done từ G5."
+    },
+    {
+      "id": "P7",
+      "title": "Authority/mạng/phòng",
+      "status": "in_progress",
+      "owner": "net/backend",
+      "depends_on": [
+        "P5",
+        "P6"
+      ],
+      "deliverable": "Server/client round lifecycle",
+      "exit_gate": "Authority/convergence, lifecycle và mạng có fixture",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "docs/specification/QA_NETWORK.md",
+        "git:42bf8be9e5ae4ffac05c010d72c47c727f8b35b0",
+        "git:743e8ea9cdf0b975eb55d814f84bfe75ad746ffc"
+      ],
+      "verification": "Regression trước đây có hội tụ; sau sửa quan sát phải kiểm lại thực thi input. Chưa sign-off pha.",
+      "blocker": "",
+      "next_action": "G4 và V1-027 đã sign-off sau PR230 + ma trận kiểm lại. P7 vẫn đang làm do dependency P6 và nghiệm thu pha riêng; không suy gate passed thành cả pha done."
+    },
+    {
+      "id": "P8",
+      "title": "Tích hợp/QA/phát hành V1",
+      "status": "in_progress",
+      "owner": "integrator/QA",
+      "depends_on": [
+        "P7"
+      ],
+      "deliverable": "V1 end-to-end trên3OS",
+      "exit_gate": "Tất cả37feature V1done và6gate releasepassed",
+      "reviewer": "Codex (rà bằng chứng, chưa sign-off pha)",
+      "integration_commit": "",
+      "evidence": [
+        "docs/planning/PROGRESS.md",
+        "git:303ab49a07c2fb1310c53dca50e3ba2d10eabab9",
+        "git:43739e2fa6abe09f28457f218648141113cd2fb4",
+        "git:b69ca8b9de2f15aac6cf3d58edeb024736c3db2d",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/README.md",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/package-qa.json",
+        "git:0407546acaeb2df43bb3ee0b9eaf7a82b4f6909f",
+        "git:1af523ef5a75a83c70e19fb7a666ac3b11d22f6d",
+        "git:af5184d84de37ee5898f825ca8c834fcc3612a82"
+      ],
+      "verification": "Registry36/37; G1/G2/G3/G4/G5passed5/6 theo nghiệm thu độc lập G2issue294 và G3/G5issue280/278. Không kýG6/phaP8. QA40107097457 giữ bằng chứng trên source95985fe; finalgói phải theo rulesidentity mới R182.",
+      "blocker": "",
+      "next_action": "36/37V1done,5/6gatepassed; G2logicalstats/trace+DESIGN đãnghiệmthu294, khônglặp12candidate/Attrloop. Tiếp G6/V1-036 minimumhardware/platformvalidation/GUIđaOS và finalprofile/packageversion/fingerprints; R182 đổi metadatarulesidentity nên không coiQA95985fe là góihiện hành cho rulesmới. Đợi luậtnumericổnđịnh trướcbuildgóicuối; khôngrerun networkmatrix/khôngđòi sáuRErootđóng."
+    },
+    {
+      "id": "P9",
+      "title": "Mở rộng full feature",
+      "status": "not_started",
+      "owner": "integrator",
+      "depends_on": [
+        "P8"
+      ],
+      "deliverable": "Các đợt W1–W4 theo registry",
+      "exit_gate": "Toàn bộ112mục trong baseline hiện hành done; scope mới phải revision riêng",
+      "reviewer": "",
+      "integration_commit": "",
+      "evidence": [],
+      "verification": "",
+      "blocker": "",
+      "next_action": ""
+    }
+  ],
+  "release_gates": [
+    {
+      "id": "G1",
+      "title": "Content/map",
+      "status": "passed",
+      "owner": "assets/RE",
+      "reviewer": "Codex — review độc lập PR126 và sign-off G1 tại issue208 ngày2026-10-23",
+      "evidence": [
+        "docs/specification/assets/BUNDLES.md",
+        "data/maps/village00-kr.toml",
+        "git:891c7c7d3d76ed4f8e6807d9e32f4611917e3d10"
+      ],
+      "verification": "PR126: cargo xtask ci có pack KR thật + CI3OS xanh, Codex APPROVE head00b13a9. Rà lại23/10: BOOM_KR_PACK_DIR=/home/admin/boomkr-full cargo test -p boom-assets --lib:55/55 PASS; closure0 unknown nội dung, 4 spawn floor/distinct/BFS≥2, atlas/hash/reload đạt. Timing/consumer native còn unknown/design theo BUNDLES, không nâng fidelity.",
+      "integration_commit": "891c7c7d3d76ed4f8e6807d9e32f4611917e3d10",
+      "blocker": ""
+    },
+    {
+      "id": "G2",
+      "title": "Movement/stats",
+      "status": "passed",
+      "owner": "RE/core",
+      "reviewer": "DSH1 — G2 calibration33 acceptance issue296/comment6397520529; final exact-head approval required before merge",
+      "evidence": [
+        "docs/decisions/0013-rule-source-precedence.md",
+        "docs/specification/gameplay/RULES_V1.md",
+        "data/rules/v1-dev.toml",
+        "docs/evidence/measurements/vn-player-grace-2026-10-24/README.md",
+        "git:b69ca8b9de2f15aac6cf3d58edeb024736c3db2d",
+        "docs/evidence/measurements/vn-trapped-input-2026-10-24/README.md",
+        "git:d8f1ba9b7f9aed73a6676b74c3ab104b6ca55244",
+        "docs/evidence/measurements/vn-item-effects-2026-10-24/movement-producer.json",
+        "docs/evidence/measurements/vn-item-effects-2026-10-24/movement-amount.json",
+        "git:2977b0e0f9cf7d9ae2ab521bb32273660877f91e",
+        "git:fd5b46c41914bd95b2a2efec7b5856b553436dcb",
+        "docs/evidence/measurements/vn-item-effects-2026-10-24/roller-cap.json",
+        "docs/evidence/measurements/vn-item-effects-2026-10-24/roller-writer.json",
+        "git:e40eb7aff2eed5a16c251ee72967acbc9715f0f2",
+        "docs/evidence/measurements/vn-item-effects-2026-10-24/attr-identity.json",
+        "docs/evidence/measurements/vn-player-movement-2026-10-25/README.md",
+        "git:12fdf7f377a0907a8bfd4230f5d0ae885fef9a99",
+        "git:af5184d84de37ee5898f825ca8c834fcc3612a82",
+        "docs/evidence/measurements/vn-player-movement-2026-10-25/speed-curve.json",
+        "docs/evidence/measurements/vn-player-movement-2026-10-25/speed-curve.csv",
+        "git:87fadfe419ac300f8a58a8abe488f6c5157a0cec"
+      ],
+      "verification": "G2 trace+DESIGN nghiệm thu lại calibration33 theo SCOPE6/10.7: DSH1 issue296/comment6397520529 accepts source87fadfe (R183 observed native rate, R184 DESIGN33, R185 +1logicalpoint). R18212statvalues unchanged. R2 sameactor449284224/900rows0invalid/40hash/9stops/4ACK/12windows; R1differentactor incomplete34hash retained separately. Native mean4..8=133.698888/166.077857/200.698866/233.232185/267.052717pxs; mean normalized33.358116. Integer33 nearest calibration, not native literal/FPS/33vs34 statisticalclaim; otheractors/modes/points1..3 DESIGN extrapolation. Old24 actualdevmovement red96000vs132000; new33 green4..8 and trapped16980mpx/30ticks independently. Full localcargoxtaskci PASS,37precedence tests, docs/catalog/diff PASS; finalexacthead independent approval/all12CI3OS/safeMerge required before integration. Source commit is ancestor of finalPRhead; no algorithm/golden changes. G2 previous24 acceptance not inherited; newcalibration explicitly accepted. G6/minHW/GUIWinMac/currentfinalpackage/releasefalse/V1-036 separate; hurtbox13/assist12/30Hz and nativefidelity backlog remain.",
+      "integration_commit": "87fadfe419ac300f8a58a8abe488f6c5157a0cec",
+      "blocker": ""
+    },
+    {
+      "id": "G3",
+      "title": "Bomb/damage/items",
+      "status": "passed",
+      "owner": "RE/core",
+      "reviewer": "DSH2 — nghiệm thu độc lập cơ chế/boundary G3 tại issue280 và PR exact-head; không ký G2 hoặc profile phát hành",
+      "evidence": [
+        "docs/specification/gameplay/RULES_V1.md",
+        "data/rules/v1-dev.toml",
+        "fixtures/scenarios/round/warmup_freezes_round.toml",
+        "git:bcd6362b64ff2145d85706aadb14e1e3ff3b99e5",
+        "docs/evidence/measurements/vn-flame-window-2026-10-24/README.md",
+        "git:b69ca8b9de2f15aac6cf3d58edeb024736c3db2d",
+        "docs/evidence/measurements/vn-trap-timer-2026-10-24/README.md",
+        "docs/evidence/measurements/vn-item-effects-2026-10-24/README.md",
+        "git:f5ffb03e80ef28dce3fb946af60391d42b7edae9",
+        "git:4fa158895d1753190986f2b48ef309c5a5aaa210",
+        "docs/specification/RELEASE.md",
+        "fixtures/scenarios/pickup/at_cap.toml",
+        "fixtures/scenarios/blocks/flame_burns_old_item_new_drop_lives.toml",
+        "fixtures/scenarios/explosion/chain_rolls_once.toml"
+      ],
+      "verification": "Nghiệm thu cơ chế G3 theo SCOPE6: fuse2500/chain/ray/created-tick flame540(tròn17tick), trap6350(191tick)/slow17, warmup3000/clock, dropchance350/weight3650-2800-2000/flame-item/pickup-at-cap có lựa chọn claim/version và boundary scenarios/tests đã tích hợp. PR249/258/260 review độc lập+12CI3OS; currentpackage cùng6350/17/540. R112 là áp dụng trọng số V1 có chủ ý, không xác nhận vai trò native R052; R158/R160 là calibrationDESIGN, không literal native. Cơ chế cap consume/clamp được nghiệm thu; 12giá trị C00/C01 là candidate tại nghiệm thu G3; nay R182/sourcePR293 và G2issue294 giải logical source, không nâng nhãn hoặc dùng actorVN thành capmọiKR. Reviewer G3 độc lập issue280/PR exacthead; không ký G2/G6/V1-036/release.",
+      "integration_commit": "d8f1ba9b7f9aed73a6676b74c3ab104b6ca55244",
+      "blocker": ""
+    },
+    {
+      "id": "G4",
+      "title": "Protocol/state",
+      "status": "passed",
+      "owner": "core/net",
+      "reviewer": "dsh2 — sign-off độc lập issue226; Codex review code PR230",
+      "evidence": [
+        "docs/specification/QA_NETWORK.md",
+        "git:743e8ea9cdf0b975eb55d814f84bfe75ad746ffc",
+        "git:4c17d85d0b660a9da2db30ab055e96bc6bd6ce15",
+        "git:e0dcdfc31e8eb49d0163bbb230eedb100db270df",
+        "git:ed16335c889e87fe23bf7a467f70524d11b03746",
+        "docs/decisions/0009-wire-protocol-input-snapshot-codec.md",
+        "crates/boom-client/src/net/tests.rs"
+      ],
+      "verification": "PR #230 r3 được Codex review độc lập; 12 job CI/smoke trên ba OS xanh. Sáu run scope-v1: 2/4 bot × seed 1/2/3, đủ hai lượt, hash và ack; 13.837 sequence resolved, 0 retire, không timeout, latency có mẫu áp dụng. dsh2 kiểm SHA, JSON, contract và sign-off V1-027/G4: https://github.com/aquaplatinumberlitz/boom-rs/issues/226#issuecomment-6371735581. Không đặt SLA hoặc nghiệm thu fidelity; chưa sign-off các gate khác.",
+      "integration_commit": "e0dcdfc31e8eb49d0163bbb230eedb100db270df",
+      "blocker": ""
+    },
+    {
+      "id": "G5",
+      "title": "UX/localization",
+      "status": "passed",
+      "owner": "client/QA",
+      "reviewer": "DSH2 — nghiệm thu độc lập tiêu chí G5 tại issue278 và review exact head PR nghiệm thu; không ký G6 hoặc GUI Windows/macOS",
+      "evidence": [
+        "docs/specification/localization/UI_STRINGS_V1.md",
+        "tools/l10n_review_v1.py",
+        "docs/specification/assets/AUDIO_V1.md",
+        "git:2b86a87fb4f4244ba35c7ac173bd2a7d099ddeb7",
+        "data/assets/ui-vi-v1.toml",
+        "git:43739e2fa6abe09f28457f218648141113cd2fb4",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/README.md",
+        "git:796284d422baf14f2c0ab0c27a78100bc335c2f1",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/window-restore.json",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/package-current-qa.json",
+        "git:0886f81ca8702e5dcbe9aabab1c6e212c0fa4816",
+        "docs/planning/SCOPE_V1.md"
+      ],
+      "verification": "Nghiệm thu G5 theo SCOPE6/7.9 và V1-032/033/034/035: 126text/6sprite đã duyệt, font/glyph/wrap/NFC/placeholder/golden; scale1x/2x RGBA; actualLinux focus/movement/rebind; BGM/SFX/volume/mute đường phát số và regression reconcile không phát trùng. PR271/274 sửa và kiểm KWin normal/max2cycles/rebind từ actualarchive bc3a1aef. Các bằng chứng đã merge/review, 3OS CI/golden/package không thay GUI. Quyết định G5 có reviewer độc lập issue278/PR exacthead; phạm vi functional V1, không nghiệm thu GUIWinMac, minimumHW, physicalDAC hoặc fidelityKR. Giữ failure pulse ngắn và giới hạn raw. G6/V1-036 vẫn chưa nghiệm thu; G2/G3 được ký riêng, không nâng fidelity.",
+      "integration_commit": "0886f81ca8702e5dcbe9aabab1c6e212c0fa4816",
+      "blocker": ""
+    },
+    {
+      "id": "G6",
+      "title": "Release toàn bộ V1",
+      "status": "blocked",
+      "owner": "QA/integrator",
+      "reviewer": "Codex (chưa sign-off gate)",
+      "evidence": [
+        "docs/planning/PROGRESS.md",
+        "git:303ab49a07c2fb1310c53dca50e3ba2d10eabab9",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/README.md",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/package-qa.json",
+        "docs/evidence/measurements/rust-client-ux-2026-10-24/package-current-qa.json",
+        "git:0886f81ca8702e5dcbe9aabab1c6e212c0fa4816"
+      ],
+      "verification": "36/37V1done; task273 QA40107097457 exactreviewedcode95985fe941be5199568b012482c8eac88b33629f success4/4jobs:3archive tải/mở/check,27filehash/10smokeOS/135crate+notice miniquad đủ, rules6350/17/540/L10N cùngbyte. PR274finalmetadatae066d4a independentDSH2APPROVE+12CI3OS. ActualLinuxarchiveKWinnormal/max2cycles+rebind4case; failedshortpulse preserved/causeunknown. OldQA400916 vàprefixed401059 giữhistory. Tại QA snapshot95985fe, G2 còn in_review; G3/G5 nghiệm thu chức năng V1 ở issue280/278; G6blocked, chưasign-off036/minHW/GUIWinMac/physicalaudio/release. SauPR293/G2issue294: G1/G2/G3/G4/G5passed5/6; sourceprofilemetadata đãđổi theoR182 dù32sốkhôngđổi, package40107097457 vẫn là QAhead95985fe lịch sử. Trướcfinalrelease cần gói/version/fingerprint đúng profilehead mới; không gán QAoldhash cho R182. Chỉđạo mới25/10 ưu tiên Linux; haiOSkhác đểsau. QA40193995532 kiểm package33 baarchive/27hash/30CLIcase, Linuxframebuffer1x2xPASS, WinMacGUIFAILgiữ riêng; record/sourceQA cần integrationreview cùngtask298, không G6signoff. Ownerbổsung25/10 cấu hình làmnhanhgọn; không mở benchmarkCPU/RAM/GPU dài, giữ minimum/FPSchưađo và dànhnguồnlực146/149/Linuxstability.",
+      "integration_commit": "",
+      "blocker": "Linuxruntime/góiLinux cần acceptance đúng phạmvi; cấu hình chỉ ghi gọn libs/API/máy thamchiếu/giớihạn theoowner25/10, không campaignminHW/FPS hoặc chặn iterationLinux. Windows/macOSdeferred; G6full/V1-036/releasefalse chưa nghiệmthu."
+    }
+  ],
+  "baseline_scope_sha256": "e9b705c9aeae15f705bcdd452be00040a893cdb11494867e41bebe635b87b693"
+}

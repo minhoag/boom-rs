@@ -1,27 +1,8 @@
-# Game binaries / copyrighted data: regenerate locally (see README "Thiết lập lại từ đầu")
-unpacked_ca.exe
-unpacked_ca.exe.*
-*.i64
-*.id0
-*.id1
-*.id2
-*.nam
-*.til
-assets/
-boomKR/
-tools/unlicense.exe
-
-# Logs / scratch
-*.log
-unpack.done
+/target/
 __pycache__/
-wine/
-ca_patched.exe
-logs/
-*.exe
-!tools/launcher/*.c
-ca_fixed*.exe
-ca_devirt.exe
-tools/inject.exe
-thirdparty/
-win/snap_run.bat
+# Bản cào web thô, chỉ giữ local (xem docs/research/sources/README.md)
+docs/research/sources/raw-namu/
+# Dữ liệu game có bản quyền: không commit pack/map/ảnh trích xuất
+/local/
+*.idx
+*.idd

@@ -1,0 +1,621 @@
+# Chuỗi và ảnh UI cho luồng V1 (Q-012)
+
+Cập nhật: 2026-10-24 (issue #237: chủ dự án duyệt ảnh, Codex chốt mapping và chuỗi DESIGN; bundle Việt hóa).
+Trước đó: 2026-10-22 (V1-035 phần code, issue #179: placeholder `«khóa»` có glyph trong font đã
+bundle; §2.9 khóa theo ID phần tử UI của bundle; §5.2.1 quy tắc layout dùng chung cho vẽ và test).
+Trước đó: 2026-10-20 (sửa docs stale: bundle **schema 4** ở §3; golden wrap đã có ở §6).
+Trước đó: 2026-10-20 (V1-035 phần 2: chốt font Be Vietnam Pro 1.002 + bundle `assets/fonts/`;
+§5.1.1 nguồn/giấy phép/SHA-256, §5.2.1 quy tắc layout của `boom-client::text`).
+Trước đó: 2026-10-20 (V1-035 phần 1: xuất chuỗi V1 → `data/l10n/vi-v1.toml` bằng
+`tools/l10n_export.py`, loader `boom-content::l10n`; §6.1 có báo cáo khóa thiếu do tool sinh).
+Trước đó: 2026-10-20 (V1-032: cột "Trạng thái dùng" ở §3 và mục §3.1). Phục vụ **V1-032**
+(UI luồng V1 bằng asset KR) và **V1-035** (Việt hóa UI V1), câu hỏi
+[Q-012](../../research/QUESTIONS.md). Baseline khi lập: `main` @ `fefd5c0`, contract `contracts-r3`;
+kiểm lại nguồn trên `main` @ `5845f15`, worktree `issue-15`; phần trạng thái dùng kiểm trên
+`main` @ `5242e48`, worktree `issue-84` (bundle schema 3). Nguồn chuẩn về scope là
+[SCOPE_V1](../../planning/SCOPE_V1.md), về luật trận là [RULES_V1](../gameplay/RULES_V1.md).
+
+Tài liệu này là **danh mục chọn/tham chiếu**, không phải nguồn bản dịch. `catalog.csv` ở
+`/home/admin/boom-re-l10n/l10n/` là nguồn chuẩn duy nhất của chuỗi đã Việt hóa; spec này chỉ ghi khóa V1,
+locator catalog/ảnh, trạng thái nguồn và yêu cầu hiển thị. Không lưu bản VI độc lập, không viết lại/rút gọn
+bản catalog. Chuỗi mới cho luồng Rust được thêm vào catalog với nguồn DESIGN rõ ràng theo ủy quyền 2026-10-24. Mục thiếu nguồn legacy dùng dòng DESIGN đã duyệt, không giả là bản dịch KR.
+
+Luồng được xét: **đăng nhập → sảnh → phòng chờ → trận → kết quả → về phòng**. Chỉ liệt kê phần V1 dùng;
+mọi thứ ngoài scope V1 (shop, túi đồ, nhiệm vụ, hội, bạn bè, kênh xếp hạng, mode khác, phòng kín, đội,
+spectator, quảng trường đi bộ) bị loại, kể cả khi catalog có chuỗi/ảnh cho chúng.
+
+## 1. Nguồn và cách đọc
+
+| Nguồn | Vị trí | Đã dùng để làm gì |
+|---|---|---|
+| Catalog chuỗi KR | `/home/admin/boom-re-l10n/l10n/catalog.csv` | 25.321 dòng: `translated` 21.485, `reused` 3.813, `review` 23; gồm 64 dòng DESIGN mới cho UI Rust. Mỗi dòng có `id, source, ko, vi_base, vi, status, notes`; `vi` là bản chuẩn, `source` là file/entry gốc. |
+| Danh sách review đang mở | `/home/admin/boom-re-l10n/l10n/review_pending.csv` | 23 dòng `review`; không dùng làm text đã chốt. |
+| Khóa UI VN cũ (chỉ locator) | `/home/admin/boom-re/server/src/strings.rs` | 148 khóa; 146 khóa khớp `id` catalog, 2 khóa không có (`CannotConnectToShop`, `CheckRentedItem`). Đây là text nhóm dự án VN tự viết, **không phải** nguồn dịch KR và không thay thế catalog. |
+| Ảnh có chữ | `/home/admin/boom-re-l10n/l10n/images_todo.csv` | 3.038 ứng viên I16/JPEG; đã duyệt 8 tài nguyên thuộc nhóm image-pending của V1. |
+| Trạng thái duyệt ảnh | `/home/admin/boom-re-l10n/l10n/.cache/image-review/images_review.csv` | Mẫu trong cache giữ nguyên; kết quả thật tại `l10n/images_review.csv`: 8 translated, 3.030 pending. |
+| Ảnh giải mã | `/home/admin/boom-re-l10n/l10n/.cache/image-review/` | PNG giải mã cục bộ, không commit; dùng để đọc chữ và kích thước. |
+| Asset UI V1 đã chọn | [kr_v1_content.json](../../evidence/inventory/kr_v1_content.json) | Chỉ 4 entry UI được chọn: `room_create`, `room_create_dialog`, `ready`, `start`; map/theme/nhân vật/item là asset khác. SHA-256 của các entry UI còn lại nằm ở `[[sprites]].source_sha256` của bundle (`kr_v1_content.json` là output của tool `boom-re/tools/kr_v1_content.py`, không sửa tay ở task này). |
+| Bảng asset UI của closure V1 | `crates/boom-assets/src/closure.rs` (`UI_ASSETS`) và mục `[[ui]]` của bundle ([BUNDLES §3.3](../assets/BUNDLES.md)) | Trạng thái dùng của từng phần tử UI của luồng V1 (xem §3); nguồn chuẩn cho cột "Trạng thái dùng". |
+| Quy trình duyệt ảnh | [IMAGE_REVIEW](IMAGE_REVIEW.md) | Trạng thái `pending/translated/needs_translation/no_text/check`; không tự đánh dấu đã dịch. |
+| Tool xuất chuỗi V1 | `tools/l10n_export.py` | Đọc §2 của tài liệu này + `catalog.csv` → `data/l10n/vi-v1.toml`. `--check` kiểm file đã xuất mà **không cần** repo `boom-re-l10n` (chỉ kiểm schema + đối chiếu §2); có catalog thì so từng byte `text` với `catalog.vi`. |
+| File chuỗi đã xuất (V1-035) | `data/l10n/vi-v1.toml` | **Output của tool**, không sửa tay: mỗi khóa V1 có `status`; khóa có text thêm `text` (= `catalog.vi` nguyên văn, chỉ trim biên) và `catalog_id`; khóa chưa có text có `reason` (không có `text`) và `note` (yêu cầu hiển thị của §2). Loader: `boom-content::l10n`. |
+
+Đối chiếu **tên khóa** legacy (chỉ là locator, không lấy text làm bản dịch). Một số khóa V1 trùng tên
+khóa trong `strings.rs`, ví dụ: `app.connecting` → `strings.rs:32` (`ConnectingToSvr`), `app.auth_failed`
+→ `strings.rs:35` (`ForbiddenAuthenForOnePlayer`), `lobby.chat_tab_all` → `strings.rs:44`
+(`LobbySquare_ChatTab_All`), `room.stats_bomb` → `strings.rs:89` (`PREEA`), `room.stats_fire` →
+`strings.rs:90` (`PREPOW`), `room.stats_speed` → `strings.rs:91` (`PRESPD`). Danh sách này không đầy đủ;
+text chuẩn vẫn lấy từ catalog. Hai khóa không có trong catalog là `CannotConnectToShop` và
+`CheckRentedItem`, không thuộc luồng V1.
+
+Cột **Locator** chỉ dùng một trong các dạng:
+
+- `catalog:<id>` — dòng tương ứng trong `catalog.csv`; text hiển thị lấy từ `catalog.vi`.
+- `ảnh <pack:entry>` — chữ nằm trong ảnh; phải duyệt ảnh trước khi dùng, hoặc render text từ key catalog.
+- `—` — chưa có locator phù hợp; ghi `unknown`, không render cho tới khi bổ sung nguồn.
+
+Cột **Trạng thái nguồn**:
+
+| Nhãn | Nghĩa |
+|---|---|
+| `catalog-translated` | Có `id` catalog status `translated`; dùng `catalog.vi` nguyên văn; khi render chỉ bỏ khoảng trắng/xuống dòng thừa ở biên, không đổi chữ. |
+| `catalog-reused` | Có `id` catalog status `reused`; dùng `catalog.vi` nguyên văn, đọc lại ngữ cảnh. |
+| `review` | Có `id` catalog nhưng ngữ cảnh/format cần reviewer chọn; **không** viết lại text, chỉ chọn key hoặc đánh dấu chưa dùng. |
+| `image-pending` | Chữ nằm trong ảnh; ảnh đang `pending` trong `images_review.csv`, chưa được dùng làm bản dịch. |
+| `unknown` | Chưa có locator catalog/ảnh phù hợp; không render tới khi bổ sung key/asset và duyệt. |
+
+Tổng hợp 126 khóa: **126 dòng có locator catalog** (115 `catalog-translated` + 11 `catalog-reused`),
+**0 dòng `review`**, **0 dòng `image-pending`** và **0 dòng `unknown`** trong tập UI V1.
+Ngày 2026-10-24 chủ dự án giao Codex xử lý ngữ cảnh và bổ sung chuỗi còn thiếu; đã thêm
+64 dòng có ID `boom_rs_v1.*`, nguồn `design:boom-rs/KR-00967-V1-scope-1` ở catalog chuẩn.
+Với riêng các dòng DESIGN, cột `ko` giữ câu nguồn tiếng Anh do dự án soạn (`design_source_en`
+trong notes), không phải chuỗi tiếng Hàn trích từ client. Placeholder nguồn/VI vẫn kiểm khớp.
+23 dòng review legacy được giữ nguyên và nằm ngoài tập này. Nguồn đã commit tại
+[catalog và quyết định ảnh V1](https://github.com/aquaplatinumberlitz/boom-re/commit/308dc28);
+chỉ thêm 64 dòng DESIGN, giữ nguyên toàn bộ byte prefix của 25.257 dòng cũ.
+
+Các khóa trước nằm trong ảnh có text catalog dự phòng đã chốt; quyết định ảnh được ghi riêng
+trong `l10n/images_review.csv` và manifest [UI Việt hóa](../../../data/assets/ui-vi-v1.toml).
+Hai nhãn nhân vật là DESIGN “Nhân vật 1/2” gắn đúng C00/C01; tên gốc vẫn chưa xác định ở
+issue #150, không coi nhãn DESIGN là kết quả RE.
+
+## 2. Khóa V1 theo màn hình
+
+### 2.1 Khung ứng dụng, kết nối và lỗi
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `app.loading` | Dòng trạng thái tải | `catalog:Loading` | `catalog-reused` | Lấy `catalog.vi`; giữ dấu `...`. |
+| `app.connecting` | Dòng đang kết nối | `catalog:ConnectingToSvr` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `app.network_error` | Hộp thoại mất mạng | `catalog:NetworkError` | `catalog-translated` | Lấy `catalog.vi`; wrap tối đa 3 dòng. |
+| `app.session_replaced` | Phiên bị thay | `catalog:szConnCloseMsg` | `catalog-translated` | Lấy `catalog.vi`; tối đa 2 dòng. |
+| `app.auth_failed` | Đăng nhập thất bại | `catalog:ErrLoginNotRegistered` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `app.version_mismatch` | Handshake phiên bản | `catalog:ErrVersionMisMatch` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `app.content_mismatch` | Handshake rules/content | `catalog:boom_rs_v1.app.content_mismatch` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `app.quit_confirm` | Hộp thoại thoát | `catalog:WannaExitGame` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `app.invalid_map` | Map không hợp lệ | `catalog:InvalidMapReturnToLobby` | `catalog-translated` | Lấy `catalog.vi`. |
+
+### 2.2 Đăng nhập
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `login.title` | Tiêu đề màn hình | `catalog:boom_rs_v1.login.title` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `login.account` | Nhãn ô tài khoản | `catalog:NewUserDlgID` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `login.password` | Nhãn ô mật khẩu | `catalog:Password` | `catalog-translated` | Lấy `catalog.vi`. |
+| `login.submit` | Nút đăng nhập | `catalog:DailyMission_Mission_Login` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `login.register` | Nút tạo tài khoản | `catalog:Register` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `login.failed` | Sai tài khoản/mật khẩu | `catalog:ErrLoginNotRegistered` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `login.account_exists` | Tài khoản đã tồn tại khi đăng ký | `catalog:boom_rs_v1.login.account_exists` | `catalog-translated` | Chuỗi DESIGN cho lỗi đăng ký Rust; phân biệt sai mật khẩu. |
+| `login.empty` | Thiếu trường bắt buộc | `catalog:boom_rs_v1.login.empty` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `login.account_rule` | Quy tắc tên tài khoản | `catalog:boom_rs_v1.login.account_rule` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+
+### 2.3 Sảnh
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `lobby.title` | Tiêu đề sảnh | `catalog:boom_rs_v1.lobby.title` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.channel` | Tên kênh | `catalog:boom_rs_v1.lobby.channel` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.channel_desc` | Tooltip kênh | `catalog:ChannelExplain1` | `catalog-translated` | Lấy `catalog.vi`; tooltip. |
+| `lobby.room_name` | Cột tên phòng | `catalog:CreateDlgTitle` | `catalog-reused` | Lấy `catalog.vi`. |
+| `lobby.room_host` | Cột chủ phòng | `catalog:boom_rs_v1.lobby.room_host` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.room_count` | Cột số người | `catalog:boom_rs_v1.lobby.room_count` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.room_status` | Cột trạng thái | `catalog:RoomInfoDlgStatus` | `catalog-translated` | Lấy `catalog.vi`. |
+| `lobby.state_waiting` | Trạng thái chờ | `catalog:boom_rs_v1.lobby.state_waiting` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.state_playing` | Trạng thái đang chơi | `catalog:boom_rs_v1.lobby.state_playing` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.empty` | Danh sách rỗng | `catalog:boom_rs_v1.lobby.empty` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.create` | Nút tạo phòng | `catalog:boom_rs_v1.lobby.create` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.join` | Nút vào phòng | `catalog:boom_rs_v1.lobby.join` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.refresh` | Nút làm mới | `catalog:boom_rs_v1.lobby.refresh` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.back` | Nút quay lại | `catalog:BackButton` | `catalog-reused` | Lấy `catalog.vi`. |
+| `lobby.options` | Nút tùy chọn | `catalog:GBOption` | `catalog-reused` | Lấy `catalog.vi`. |
+| `lobby.help` | Nút trợ giúp | `catalog:GBHelp` | `catalog-reused` | Lấy `catalog.vi`; có thể ẩn nếu chưa có nội dung. |
+| `lobby.exit` | Nút thoát game | `catalog:GBExit` | `catalog-reused` | Lấy `catalog.vi`. |
+| `lobby.chat_tab_all` | Tab chat chung | `catalog:LobbySquare_ChatTab_All` | `catalog-reused` | Lấy `catalog.vi`. |
+| `lobby.chat_tab_notice` | Tab thông báo | `catalog:LobbySquare_ChatTab_Notice` | `catalog-reused` | Lấy `catalog.vi`. |
+| `lobby.chat_hint` | Gợi ý ô chat | `catalog:boom_rs_v1.lobby.chat_hint` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.chat_send` | Nút gửi chat | `catalog:boom_rs_v1.lobby.chat_send` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.chat_too_long` | Chat quá dài | `catalog:150CharLimit` | `catalog-translated` | Dùng giới hạn 150; đếm grapheme cluster, giữ `%`/`[...]` nếu có. |
+| `lobby.join_failed` | Vào phòng thất bại | `catalog:CantJoinRoom` | `catalog-translated` | Lấy `catalog.vi`. |
+| `lobby.room_full` | Phòng đã đủ | `catalog:boom_rs_v1.lobby.room_full` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.room_removed` | Phòng đã bị xóa | `catalog:RoomDestroyed` | `catalog-translated` | Lấy `catalog.vi`. |
+| `lobby.room_info_changed` | Thông tin phòng đổi | `catalog:RoomInfoChanged` | `catalog-translated` | Lấy `catalog.vi`. |
+| `lobby.join_session` | Chat hệ thống có người vào | `catalog:JoinSession` | `catalog-translated` | Giữ `%s`; lấy `catalog.vi`. |
+| `lobby.leave_session` | Chat hệ thống có người rời | `catalog:LeaveSession` | `catalog-translated` | Giữ `%s`; lấy `catalog.vi`. |
+
+### 2.4 Phòng chờ
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `room.title_label` | Nhãn tên phòng trong dialog tạo | `catalog:CreateDlgTitle` | `catalog-reused` | Lấy `catalog.vi`. |
+| `room.create_title` | Tiêu đề dialog tạo phòng | `catalog:boom_rs_v1.room.create_title` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.create_submit` | Nút tạo | `catalog:boom_rs_v1.room.create_submit` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `common.cancel` | Nút hủy | `catalog:boom_rs_v1.common.cancel` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `common.confirm` | Nút đồng ý | `catalog:OptionDlgYes` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `common.close` | Nút đóng | `catalog:boom_rs_v1.common.close` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.info_title` | Tiêu đề thông tin phòng | `catalog:boom_rs_v1.room.info_title` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.host` | Nhãn chủ phòng | `catalog:boom_rs_v1.room.host` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.players` | Nhãn danh sách người chơi | `catalog:User` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `room.status` | Nhãn trạng thái | `catalog:RoomInfoDlgStatus` | `catalog-translated` | Lấy `catalog.vi`. |
+| `room.id` | Nhãn ID phòng | `catalog:RoomInfoDlgID` | `catalog-translated` | Lấy `catalog.vi`. |
+| `room.map` | Nhãn bản đồ | `catalog:boom_rs_v1.room.map` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.map_name` | Tên map V1 | `catalog:map:Village00` | `catalog-translated` | Lấy `catalog.vi`; muốn dùng tên khác phải ghi **cần sửa ở boom-re-l10n** kèm id. |
+| `room.character` | Nhãn chọn nhân vật | `catalog:boom_rs_v1.room.character` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.character_c00` | Tên hiển thị C00 | `catalog:boom_rs_v1.room.character_c00` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. Nhãn tạm theo C00/C01; tên gốc còn unknown ở #150. |
+| `room.character_c01` | Tên hiển thị C01 | `catalog:boom_rs_v1.room.character_c01` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. Nhãn tạm theo C00/C01; tên gốc còn unknown ở #150. |
+| `room.ready` | Trạng thái/nút sẵn sàng | `catalog:boom_rs_v1.room.ready` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.ready_cancel` | Hủy sẵn sàng | `catalog:boom_rs_v1.room.ready_cancel` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.start` | Nút bắt đầu | `catalog:boom_rs_v1.room.start` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.waiting_players` | Chờ người chơi | `catalog:BigBattle_Lobby_Desc_Line0` | `catalog-translated` | Lấy `catalog.vi`. |
+| `room.min_players` | Chưa đủ người để bắt đầu | `catalog:SmallPlayerNo` | `catalog-translated` | Lấy `catalog.vi`. |
+| `room.all_ready` | Chưa ready hết | `catalog:AllMustReady` | `catalog-translated` | Lấy `catalog.vi`. |
+| `room.loading` | Loading barrier | `catalog:Loading` | `catalog-reused` | Lấy `catalog.vi`; nhắc 15 giây theo SCOPE_V1 §3 nếu hiển thị đếm ngược. |
+| `room.kick` | Nút mời ra | `catalog:ForceQuit` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `room.kick_confirm` | Xác nhận mời ra | `catalog:SureToBan` | `catalog-translated` | Giữ `%s`; lấy `catalog.vi`. |
+| `room.kicked` | Bị chủ phòng mời ra | `catalog:BannedByLeader` | `catalog-translated` | Lấy `catalog.vi`; bỏ khoảng trắng đầu khi render, không đổi chữ. |
+| `room.non_host_denied` | Non-host start/kick | `catalog:RoomLeaderOnly` | `catalog-translated` | Lấy `catalog.vi`. |
+| `room.name_changed` | Đổi tên phòng | `catalog:RoomNameChanged` | `catalog-translated` | Lấy `catalog.vi`. |
+| `room.host_changed` | Chuyển chủ phòng | `catalog:boom_rs_v1.room.host_changed` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.slot_empty` | Slot trống | `catalog:Empty` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `room.chat_to_all` | Phạm vi chat | `catalog:ChatToAll` | `catalog-translated` | Lấy `catalog.vi`; V1 FFA không có `<Đồng đội>`. |
+| `room.stats_bomb` | Nhãn số bom | `catalog:PREEA` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `room.stats_fire` | Nhãn tầm nổ | `catalog:PREPOW` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `room.stats_speed` | Nhãn tốc độ | `catalog:PRESPD` | `catalog-reused` | Lấy `catalog.vi`. |
+| `room.leave` | Nút rời phòng | `catalog:boom_rs_v1.room.leave` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.leave_ready_confirm` | Xác nhận rời khi đang ready | `catalog:WannaExitToLobby` | `catalog-translated` | Lấy `catalog.vi`; reviewer chốt ngữ cảnh V1. |
+
+### 2.5 Trong trận
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `match.timer` | Nhãn đồng hồ | `catalog:boom_rs_v1.match.timer` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.timer_format` | Định dạng mm:ss | `catalog:boom_rs_v1.match.timer_format` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.go` | Hiệu lệnh bắt đầu | `catalog:QuestStart` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `match.trapped` | Trạng thái bị nhốt | `catalog:boom_rs_v1.match.trapped` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.eliminated` | Trạng thái bị loại | `catalog:boom_rs_v1.match.eliminated` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.disconnect_warning` | Cảnh báo mất kết nối | `catalog:boom_rs_v1.match.disconnect_warning` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.disconnect_eliminated` | Bị loại do mất kết nối | `catalog:boom_rs_v1.match.disconnect_eliminated` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.item_bomb` | Tên item Bomb | `catalog:NewShop_CategoryBomb` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `match.item_fire` | Tên item Fire | `catalog:PREPOW` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `match.item_roller` | Tên item Roller | `catalog:boom_rs_v1.match.item_roller` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.pickup` | Thông báo nhặt item | `catalog:boom_rs_v1.match.pickup` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.result_pending` | Chờ server chốt kết quả | `catalog:boom_rs_v1.match.result_pending` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+
+### 2.6 Kết quả
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `result.title` | Tiêu đề | `catalog:Olympic_TitleResult` | `catalog-translated` | Lấy `catalog.vi`. |
+| `result.win` | Nhãn thắng | `catalog:StateWin` | `catalog-translated` | Lấy `catalog.vi`; ảnh `Win` cần duyệt nếu dùng. |
+| `result.lose` | Nhãn thua | `catalog:StateLose` | `catalog-translated` | Lấy `catalog.vi`; ảnh `Lose` cần duyệt nếu dùng. |
+| `result.draw` | Nhãn hòa | `catalog:boom_rs_v1.result.draw` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `result.rank` | Cột hạng | `catalog:Olympic_TitleRank` | `catalog-translated` | Lấy `catalog.vi`. |
+| `result.player` | Cột người chơi | `catalog:User` | `catalog-translated` | Codex chốt ngữ cảnh UI V1 ngày 2026-10-24; lấy catalog.vi nguyên văn. |
+| `result.continue` | Nút tiếp tục | `catalog:boom_rs_v1.result.continue` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `result.auto_return` | Đếm ngược về phòng | `catalog:boom_rs_v1.result.auto_return` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `result.winner` | Người thắng | `catalog:boom_rs_v1.result.winner` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `result.draw_all` | Hòa khi không còn ai | `catalog:TournamentNoWinner` | `catalog-translated` | Lấy `catalog.vi`; reviewer chốt ngữ cảnh giải đấu. |
+| `result.waiting` | Chờ ack người khác | `catalog:boom_rs_v1.result.waiting` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+
+### 2.7 Tùy chọn
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `options.fullscreen` | Chế độ toàn màn hình | `catalog:OptionDlgFullScreen` | `catalog-translated` | Lấy `catalog.vi`. |
+| `options.windowed` | Chế độ cửa sổ | `catalog:OptionDlgWindowMode` | `catalog-translated` | Lấy `catalog.vi`. |
+| `options.volume` | Âm lượng chung | `catalog:boom_rs_v1.options.volume` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `options.music` | Nhạc nền | `catalog:OptionDlgBGM` | `catalog-translated` | Lấy `catalog.vi`. |
+| `options.sfx` | Hiệu ứng âm | `catalog:OptionDlgEffect` | `catalog-translated` | Lấy `catalog.vi`. |
+| `options.apply` | Áp dụng | `catalog:boom_rs_v1.options.apply` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+
+### 2.8 Chuỗi không dùng trong V1
+
+Các nhóm sau có trong catalog nhưng **không** thuộc luồng V1; client phải ẩn, không render, không dịch thêm:
+shop/ví (`GoToShop`, `UserMarket`, `MyItem`, `Cash`, `Lucci`…), nhiệm vụ (`Quest`, `BnbNavi_*`), hội/bạn bè
+(`GuildTab`, `Messenger`), kênh xếp hạng/giải đấu (`ChannelDesc50…82`, `Tournament*`), mode khác
+(`CreateDlgRenew*`, `CreateDlgGameType*`, `GameMode*`), phòng kín/mật khẩu (`CreateDlgPrivate`,
+`CreateDlgPassword`, `WrongPassword`), đội/spectator (`ChatToOurTeam`, `EnterObserver`), quảng trường đi bộ
+(`LobbySquare_*`), auto-ready (`OptionDlgAutoReady`, `TurnOnAutoReady`, `TurnOffAutoReady`), premium/super
+host (`PremiumSlotRoomTicket`, `BannedBySuper`, `ChiefBanned`).
+
+### 2.9 Phần tử UI của bundle (khóa theo ID phần tử)
+
+Client vẽ nhãn của **phần tử UI trong bundle** (bảng `[[ui]]`, `data/assets/ui-v1.toml`) bằng
+chính **ID của phần tử** — nên mỗi ID phải là một khóa có trong file chuỗi. Mỗi phần tử
+đều có trạng thái dùng ở [§3](#3-ảnh-có-chữ-trong-luồng-v1) (`selected` / `needs_review_text` /
+`excluded`); phần tử `needs_review_text`/`excluded` được vẽ bằng **khung màu + text catalog**
+nên nhãn của nó là chữ cho người chơi.
+
+Phần tử **chưa có chữ catalog** (nền, nút chưa dùng, hộp thoại, HUD…) ghi `unknown`: client
+hiện placeholder `«khóa»` (xem [§5.2.1](#521-quy-tắc-layout-đã-hiện-thực-task-112)) chứ không
+tự soạn chữ. Cần key/asset thật thì sửa ở `boom-re-l10n` — repo này không tự viết bản dịch.
+
+| Khóa V1 | Phần tử / ngữ cảnh | Locator nguồn | Trạng thái nguồn | Yêu cầu hiển thị |
+|---|---|---|---|---|
+| `login.background` | Nền màn đăng nhập | `catalog:boom_rs_v1.login.background` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.background` | Nền màn sảnh | `catalog:boom_rs_v1.lobby.background` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.create_dialog` | Dialog tạo phòng (tiêu đề trong ảnh) | `catalog:boom_rs_v1.lobby.create_dialog` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.show_all` | Nút xem mọi phòng (V1 không dùng) | `catalog:boom_rs_v1.lobby.show_all` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `lobby.wait_room` | Nút xem phòng chờ (V1 không dùng) | `catalog:boom_rs_v1.lobby.wait_room` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.background` | Nền màn phòng chờ | `catalog:boom_rs_v1.room.background` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.info_dialog` | Dialog thông tin phòng (tiêu đề trong ảnh) | `catalog:boom_rs_v1.room.info_dialog` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.info_label` | Nhãn thông tin phòng | `catalog:boom_rs_v1.room.info_label` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `room.ready_indicator` | Ô trạng thái đang sẵn sàng | `catalog:boom_rs_v1.room.ready_indicator` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.background` | Nền màn trận | `catalog:boom_rs_v1.match.background` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.hud` | HUD trận (đồng hồ, trạng thái, tên item) | `catalog:boom_rs_v1.match.hud` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `match.navigation` | Nút điều hướng trong trận (V1 không có) | `catalog:boom_rs_v1.match.navigation` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `result.background` | Nền màn kết quả | `catalog:boom_rs_v1.result.background` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `result.info_bar` | Thanh thông tin kết quả (V1 không dùng) | `catalog:boom_rs_v1.result.info_bar` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+| `result.info_good` | Icon bàn tay (ảnh đã duyệt, không có chữ) | `catalog:boom_rs_v1.result.info_good` | `catalog-translated` | Chuỗi DESIGN của UI Rust mới, đã chốt tại catalog; không phải claim/bản dịch KR. |
+
+## 3. Ảnh có chữ trong luồng V1
+
+Cột **Trạng thái dùng** là quyết định của dự án cho V1-032, lấy từ bảng asset UI của
+closure (`crates/boom-assets/src/closure.rs`) và được ghi vào mục `[[ui]]` của bundle
+(schema 4, xem [BUNDLES §3.3](../assets/BUNDLES.md)). Bằng chứng phần client gốc (ảnh có
+chữ nằm trong ảnh) và quyết định V1 (vẽ text từ catalog tới khi ảnh được duyệt) ở
+[RULES_V1 §12](../gameplay/RULES_V1.md#12-nền-và-ảnh-ui-của-client-v1) (R-090…R-093). Ba trạng thái:
+
+| Trạng thái | Nghĩa | Ảnh trong atlas | Hiển thị được |
+|---|---|---|---|
+| `selected` | Có trong closure V1 và **không có chữ** cần duyệt | có | có |
+| `needs_review_text` | Có trong closure V1 nhưng **có chữ** | có | chỉ khi ảnh được duyệt; chưa duyệt thì client vẽ text từ catalog |
+| `excluded` | Không dùng asset này | không | thay bằng text/màu theo cột "Ghi chú review" |
+
+Tên trong ngoặc là **ID phần tử UI** trong bundle (`lobby.create`, `result.win`, …), để
+client tra cùng một ID ở bảng `[[ui]]`. Trước V1-032, cột này ghi trạng thái chọn trong
+`kr_v1_content.json` (`required`/`selected_resources`): `—` nghĩa là chưa nằm trong
+closure V1. Cột **Chữ trên ảnh** là đọc trực tiếp PNG giải mã ngày 2026-10-19 (UI) và
+2026-10-20 (các ảnh đọc thêm cho V1-032; bản PNG nằm ở cache review ảnh của
+`boom-re-l10n`: `l10n/.cache/image-review/`), chỉ là bằng chứng mô tả, **không phải** bản
+dịch do spec này đặt. Số frame trong cột **Kích thước** đếm từ blob sprite I16 trong
+bundle, khớp với `frame_count` của cache review ảnh. Bảng này mô tả nguồn KR gốc. Ngày 2026-10-24 đã nhập 8 quyết định duyệt nguồn VN/PNG vào
+`l10n/images_review.csv`; bundle Việt hóa dùng manifest §3.2 theo quy trình
+[IMAGE_REVIEW](IMAGE_REVIEW.md).
+
+Chữ ghi trong cột **Chữ trên ảnh** là chữ **đã đọc trực tiếp** trên PNG của build đó (cache
+review ảnh có cả `kr` và `vn`); phần chưa đọc rõ thì ghi rõ là chưa xác nhận. Cột **VN cùng
+tên** ghi `diff_bytes` là phép so **byte** của hai build — byte khác **không** chứng minh chữ
+khác, nên không dùng phép này để suy ra ngôn ngữ hay nghĩa của chữ.
+
+Ảnh nền đọc ở §3 nằm trong cache review ảnh nhưng là **JPEG** (không phải sprite I16), nên
+đã đối chiếu thêm: PNG cache **giống hệt pixel** blob trích từ pack (đo 2026-10-20, đối chiếu
+lại 2026-10-21: 6/6 ảnh khớp từng pixel, RGB 800×600, cả KR lẫn VN —
+`boom-assets pack-extract /home/admin/boomkr-full <stem> <entry> <out>`
+với `/home/admin/boom-re/assets/fx/{LoginStage,Lobby,Prepare}/CAStage.bin`; ảnh lấy theo
+`l10n/.cache/image-review/manifest.json`). Vì vậy chữ đọc trên ảnh cache là bằng chứng cho
+blob trong pack, không phải cho ảnh của cache.
+
+| Asset (pack:entry) | Kích thước | Trạng thái dùng | Chữ trên ảnh (bằng chứng) | VN cùng tên | Ghi chú review |
+|---|---|---|---|---|---|
+| `FxDesktop:LoginStage/CAStage` | 800×600 JPEG | `excluded` (`login.background`) | KR: lời thoại tiếng Hàn + biểu tượng "ALL"/"전체이용가" (góc trên phải); VN: logo Boom + dòng bản quyền tiếng Anh ở góc dưới phải (ghi "NexonKorea Corporation"; **không** có chữ Việt) | `diff_bytes` | **Không dùng nguyên trạng**: nền là JPEG nên bộ giải mã bundle không đọc được, và ảnh có bản quyền/lời thoại → V1 dựng nền bằng màu, chữ lấy từ catalog |
+| `FxStage:Lobby/CAStage` | 800×600 JPEG | `excluded` (`lobby.background`) | KR: hai tab "대전 모드" / "몬스터 모드" + nhãn "레벨"; VN: "ĐẠI CHIẾN" / "NHIỆM VỤ" + "NGƯỜI CHƠI" | `diff_bytes` | Chữ nằm trong ảnh nền; tab chế độ ngoài scope V1 → V1 dựng nền bằng màu, chữ lấy từ catalog |
+| `FxMap:Prepare/CAStage` | 800×600 JPEG | `excluded` (`room.background`) | KR: nhãn "캐릭터선택" (chọn nhân vật), "팀선택" (chọn đội), "맵" (bản đồ) và nút "자동 준비" (auto-ready); VN: "NHÂN VẬT", "CHỌN ĐỔI", "BẢN ĐỒ" và nút "TỰ ĐỒNG" | `diff_bytes` | Auto-ready ngoài scope FFA V1 → V1 dựng nền bằng màu, chữ lấy từ catalog |
+| `FxStage:Lobby/LB_Bt_T_Create-NM` | 92×495 (9 frame) | `needs_review_text` (`lobby.create`) | Có chữ Hàn (방만들기); VN: "TẠO PHÒNG" | `diff_bytes` | Ảnh nút có chữ; nếu dùng phải duyệt `translated`, nếu không thì render text từ catalog |
+| `FxStage:Lobby/Dlg_LB-NMCreate` | 414×455 | `needs_review_text` (`lobby.create_dialog`) | Tiêu đề "방만들기" nằm trong ảnh; VN: "TẠO PHÒNG" | `diff_bytes` | Tiêu đề dialog nằm trong ảnh; phần thân là ô trống, nhãn do client vẽ |
+| `FxMap:Prepare/PRE_Bt_Ready` | 193×342 (6 frame) | `needs_review_text` (`room.ready`) | Có chữ Hàn (준비); VN: "SẴN SÀNG" | `diff_bytes` | Nút ready có chữ; cần duyệt ảnh hoặc render text từ catalog |
+| `FxMap:Prepare/PRE_Bt_Start` | 193×342 (6 frame) | `needs_review_text` (`room.start`) | Có chữ Hàn (시작); VN: "BẮT ĐẦU" | `diff_bytes` | Nút start có chữ; cần duyệt ảnh hoặc render text từ catalog |
+| `FxMap:Prepare/PRE_Bt_Roominfo` | 100×110 (5 frame) | `excluded` (`room.info_label`) | KR: "방정보변경" (đổi thông tin phòng); VN: "THÔNG TIN" (thông tin) | `diff_bytes` | Ảnh KR/VN khác nghĩa; V1 vẽ nhãn từ catalog, không tự chọn/sửa nhãn |
+| `FxMap:Prepare/Dlg_PRE-NMRoominfo` | 414×455 | `needs_review_text` (`room.info_dialog`) | Tiêu đề KR "방정보변경" còn VN "THÔNG TIN" — khác nghĩa | `diff_bytes` | Như trên; nếu dùng thì lấy nhãn từ catalog, không tự chọn/sửa nhãn trong ảnh |
+| `FxStage:Lobby/LB_Bt_T_ShowAllRenew` | 99×423 (9 frame) | `excluded` (`lobby.show_all`) | KR: "모든방보기" (xem mọi phòng); VN: "TOÀN BỘ" (tất cả) | `diff_bytes` | VN ngắn hơn nên có thể mất nghĩa "xem mọi phòng"; V1 không cần filter, vẽ nút bằng text từ catalog |
+| `FxStage:Lobby/LB_Bt_T_WaitRoomRenew` | 99×423 (9 frame) | `excluded` (`lobby.wait_room`) | KR: "대기방보기" (xem phòng chờ); VN: "PHÒNG CHỜ" (danh từ) | `diff_bytes` | VN không phải hành động "xem phòng chờ"; V1 vẽ nút bằng text từ catalog |
+| `FxStage:Lobby/ReadyBox` | 127×176 | `excluded` (`room.ready_indicator`) | KR: "준비중" (đang chuẩn bị); VN: "ĐẠI CHIẾN" | `diff_bytes` | **Sai nghĩa**: không dùng làm indicator ready; V1 vẽ trạng thái ready bằng text và màu, cần asset/key khác ở boom-re-l10n |
+| `FxStage:Game/Win` | 243×59 (4 frame) | `excluded` (`result.win`) | Chữ Latin "WIN!!" ghép trong ảnh; VN frame 0 chỉ đọc được "THN", chuỗi frame chưa ghép đủ ⇒ **chưa xác nhận** | `diff_bytes` | V1 dùng text Thắng/Thua đã chốt; ảnh này không nằm trong tập image-pending chủ dự án duyệt ngày 2026-10-24. |
+| `FxStage:Game/Lose` | 317×59 (5 frame) | `excluded` (`result.lose`) | Chữ Latin "LOSE!!" ghép trong ảnh; VN frame 0 chỉ đọc được "SC" ⇒ **chưa đọc rõ** | `diff_bytes` | V1 dùng text Thắng/Thua đã chốt; ảnh này không nằm trong tập image-pending chủ dự án duyệt ngày 2026-10-24. |
+| `FxStage:Game/Draw` | 366×59 (5 frame) | `needs_review_text` (`result.draw`) | Chữ Latin "DRAW!!" ghép trong ảnh; VN frame 0 chỉ đọc được "HO" ⇒ **chưa đọc rõ** | `diff_bytes` | Dấu có thể nằm ở frame khác; duyệt cả frame và kiểm dấu |
+| `FxStage:Game/ResultInfoBar` | 356×288 (6 ảnh) | `excluded` (`result.info_bar`) | Spritesheet trộn nhãn KR/EN và cột EXP/LUCCI; VN có bản tương ứng | `diff_bytes` | Không dùng cả sheet: V1 không có tiền/EXP và chỉ cần cột `Hạng/Người chơi/Kết quả` → vẽ bằng text từ catalog |
+| `FxStage:Game/ResultInfoGood` | 98×144 (4 frame) | `selected` (`result.info_good`) | Chỉ icon bàn tay (ngón cái), không thấy chữ | `no` | Đã đọc trực tiếp PNG giải mã (pack KR 00967, 2026-10-20): chỉ có icon ngón cái, không thấy chữ nên không cần duyệt text |
+
+Các asset đã chọn khác trong `kr_v1_content.json` (`FxMap/Map/Village00`, preview, theme, BGM, Attr, sprite
+C00/C01, Bomb/Fire/Roller, Bomb00/BombExplosion001) không nằm trong `images_todo.csv` như ứng viên chữ,
+hoặc là sprite không chữ; không cần duyệt text. Nếu màn kết quả dùng art khác `Win/Lose/Draw`, phải bổ sung
+asset vào evidence trước khi dùng.
+
+### 3.1 Phần tử UI chưa có asset
+
+Bảng UI của closure còn ghi các phần tử mà V1 **không dùng asset nào**; chúng vẫn có
+trạng thái `excluded` kèm lý do, để client không im lặng thiếu ảnh:
+
+| ID | Màn hình | Vai trò | Vì sao không có asset |
+|---|---|---|---|
+| `login.submit` | login | button | `login.submit` ở §2.2 đã chốt lấy key catalog → V1 vẽ nút bằng text |
+| `match.background` | match | background | Nền trận là bản đồ V1: lưới ô và sprite nền đã ở closure (role `map`/`tile`) |
+| `match.hud` | match | info | HUD trận (đồng hồ, trạng thái nhốt/chết, tên item) chưa có asset; §2.5 ghi `unknown` → V1 vẽ bằng text |
+| `match.navigation` | match | button | Trong trận không có nút điều hướng; đường về phòng mở ở màn kết quả |
+| `result.background` | result | background | Chưa có asset nền riêng cho màn kết quả → V1 dùng nền màu, chữ lấy từ catalog |
+| `result.continue` | result | button | `result.continue` ở §2.6 là `unknown` → V1 vẽ nút bằng text |
+
+### 3.2 Bundle UI Việt hóa đã duyệt (2026-10-24)
+
+Manifest nguồn chuẩn: [ui-vi-v1.toml](../../../data/assets/ui-vi-v1.toml), chỉ chứa ID, nguồn, SHA-256
+và quyết định duyệt của chủ dự án. Không commit pack/PNG/atlas. Có 6 sprite thực dùng:
+lobby.create, lobby.create_dialog, room.ready, room.start, room.info_dialog lấy sprite VN;
+result.draw lấy PNG ghép do chủ dự án cung cấp. Hai tài nguyên được duyệt khác là nền Prepare/CAStage
+và nút PRE_Bt_Roominfo vẫn không nằm trong closure hiển thị vì quyết định scope ở §3.
+
+Đặt PNG đã duyệt vào `local/l10n-assets/FxStage/Game/Draw.png`. Hash nguồn bắt buộc:
+`0e97b144e486e9bad424e009d5e1a5f6e15c3a57b70fd427ad9ee25d06dca543`.
+Dựng bundle bằng:
+
+```sh
+cargo run -p boom-assets --bin boom-assets -- bundle --map Village00 \
+  --pack-dir /home/admin/boomkr-full --out local/bundle-vi-v1 \
+  --ui-localization data/assets/ui-vi-v1.toml \
+  --vn-pack-dir /home/admin/Downloads/Boom --l10n-assets-dir local/l10n-assets
+```
+
+Builder kiểm ID/hash/nguồn trước khi ghi output; thiếu nguồn hoặc hash khác thì lỗi, không âm thầm
+dùng ảnh KR thay thế. Sprite VN giữ toàn bộ frame VN; PNG mới có một frame phủ toàn ảnh, không mượn
+tọa độ KR. Source UI trong bundle là vn_static hoặc design, các frame/pixel/hash mới nằm trong
+content_hash. Trạng thái selected khi đã nạp đúng nguồn đã duyệt; bundle KR mặc định vẫn giữ
+needs_review_text để không vô tình hiện chữ Hàn. Art Hòa chỉ xuất hiện khi kết quả người chơi là hòa.
+Ảnh quá rộng được thu nhỏ giữ tỷ lệ để vừa vùng 156 px; không cắt chữ.
+
+## 4. Đối chiếu 23 mục REVIEW đang mở
+
+`review_pending.csv` có đúng **23** dòng `review`; **không dòng nào** thuộc tập khóa V1 ở §2. Vì vậy V1
+không được dùng bất kỳ dòng nào dưới đây làm text đã chốt:
+
+`AIBattleEventNpcRewardDateCount`, `BigMonsterEventNpcRewardDateCount`, `mons2fire01default28`,
+`MonSnowBear12default07`, `MonSnowBear13default07`, `MonSnowBear19default06`, `MonSnowBear25default06`,
+`MonSnowBear27default07`, `Pet_Say_InGame_046_00_00`, `Pet_Say_InGame_046_00_01`,
+`Pet_Say_InGame_046_00_02`, `Pet_Say_Prepare_046_00_00`, `Pet_Say_Prepare_046_01_00`,
+`PremiumSlotRoomTicket`, `StageClearEventNpcRewardDateCount`, `NPpen06MonIceA5`,
+`q:CAMarbleLarva_UseMsg_ExchangeDeco`, `q:LoginReward_Mon2_Reward09`,
+`FxMap:Map/MonS2Fire01:say02#196`, `FxDesktop:NoticeImg/Contract`, `FxDesktop:NoticeImg/Notice2PW`,
+`exe:kr-full.exe:0x15e67bc`, `exe:kr-full.exe:0x15e69b4`.
+
+Hai mục gần phòng/đăng nhập là `PremiumSlotRoomTicket` (phòng premium, ngoài V1) và
+`q:LoginReward_Mon2_Reward09` (quà đăng nhập event, ngoài V1); không được kéo vào V1 chỉ vì tên gần.
+
+## 5. Font, wrap, scale và focus
+
+### 5.1 Font
+
+| Yêu cầu | Quyết định/đề xuất | Nguồn/trạng thái |
+|---|---|---|
+| Font chính | **Be Vietnam Pro 1.002** (OFL 1.1), thiết kế cho tiếng Việt; file `assets/fonts/BeVietnamPro-Regular.ttf` | `design` — task #112 (chọn + bundle); nguồn/giấy phép ở §5.1.1 |
+| Font đậm | **Be Vietnam Pro 1.002 Bold**, file `assets/fonts/BeVietnamPro-Bold.ttf` | `design` — task #112; cùng nguồn với font chính |
+| Fallback Latin | **Noto Sans** phủ Latin Extended Additional | `candidate`; chưa bundle (xem §6) |
+| Fallback Hàn | **Noto Sans KR** cho tên riêng/credit giữ chữ Hàn | `candidate`; chưa bundle (xem §6) |
+| Không dùng font bitmap cũ | Không dùng `CxUni*.fft`, `CxDefault.fft` | `/home/admin/boom-re-l10n/l10n/README.md` §4 |
+| Chuẩn hóa chuỗi | **NFC** trước khi shape; dữ liệu VN cũ có dấu tổ hợp cp1258 | Như trên; bắt buộc về kỹ thuật |
+| License | Đã kèm `assets/fonts/OFL.txt` (SIL OFL 1.1) + version + nguồn tải + SHA-256 | `design` — task #112; xem §5.1.1 |
+| Fallback chain | `[Be Vietnam Pro, Noto Sans, Noto Sans KR]` | Yêu cầu kỹ thuật; **mới bundle phần đầu** (task #112) |
+
+Font phải phủ tối thiểu: Latin cơ bản, Latin Extended Additional cho `ă â đ ê ô ơ ư` và đủ tổ hợp dấu
+(ví dụ `ắ ộ ữ ợ ỹ ặ ễ ỗ`), cùng Hangul cho tên riêng. Không cần emoji trong V1.
+
+#### 5.1.1 Font đã bundle (task #112)
+
+Font OFL **không phải asset game** nên được commit kèm license. Client nạp bằng
+`include_bytes!` → không cần file font lúc chạy.
+
+| File | Phiên bản | SHA-256 | Nguồn |
+|---|---|---|---|
+| `assets/fonts/BeVietnamPro-Regular.ttf` | 1.002 | `cd1ef6e9d7db28ad5cdb88a65ccbe693870e60d340b791f349d248342b4fe4c3` | google/fonts `ofl/bevietnampro/BeVietnamPro-Regular.ttf` @ `1cfe4cb468a703a247ca2d02410f80841b496218` |
+| `assets/fonts/BeVietnamPro-Bold.ttf` | 1.002 | `7f738fe5c43c8872807b20e2d30d42163618de8a4daf7f48a939adac32c16847` | google/fonts `ofl/bevietnampro/BeVietnamPro-Bold.ttf` @ `1cfe4cb468a703a247ca2d02410f80841b496218` |
+| `assets/fonts/OFL.txt` | OFL 1.1 | `6b7f8f73609a25ea78c891e34cf37b06f8a676b7ea986e941e43b009110f2a85` | google/fonts `ofl/bevietnampro/OFL.txt` @ `1cfe4cb468a703a247ca2d02410f80841b496218` |
+
+Nguồn: <https://github.com/google/fonts/tree/1cfe4cb468a703a247ca2d02410f80841b496218/ofl/bevietnampro>
+(commit 2021-08-27 — "Be Vietnam Pro: Version 1.002; ttfautohint (v1.8.3) added (#3771)"); dự án font
+gốc: <https://github.com/bettergui/BeVietnamPro>. Bảng đầy đủ ở
+[`assets/fonts/README.md`](../../../assets/fonts/README.md).
+
+Giới hạn đã biết của font đã bundle:
+
+- Font **không có** `U+27E8`/`U+27E9` (`⟨`/`⟩`) nên placeholder dùng dấu ngoặc này sẽ hiện
+  **hộp báo thiếu** ở hai dấu ngoặc (client không bỏ qua âm thầm). Vì vậy placeholder của
+  client là `«khóa»` (`U+00AB`/`U+00BB`, **có** glyph trong font đã bundle) — chốt ở
+  task #179; không cần bundle font fallback chỉ để vẽ placeholder.
+- Font không có Hangul ⇒ tên riêng/credit giữ chữ Hàn cần font fallback.
+
+### 5.2 Wrap, kích thước và placeholder
+
+- Xuống dòng theo **ranh giới từ** (khoảng trắng); không bẻ giữa một âm tiết/tổ hợp dấu; không hyphenation.
+- Nhãn nút/label ưu tiên 1 dòng; hộp thoại/tooltip tối đa 2–3 dòng. Nếu text vượt khung, **chỉ điều chỉnh
+  hiển thị**: tăng chiều cao/chiều rộng, xuống dòng theo từ, hoặc giảm cỡ font đến ngưỡng tối thiểu đọc được
+  (chốt bằng golden, không nhỏ hơn cỡ chữ phụ của profile). **Không rút, cắt, viết lại hay thay đổi nội dung
+  catalog.** Nếu text vẫn không vừa sau các điều chỉnh hiển thị, ghi **“cần sửa ở boom-re-l10n”** kèm
+  `catalog:<id>` và không render bản tự sửa.
+- Chiều cao dòng ≥ 1,4× cỡ chữ để dấu chồng không chạm dòng trên/dưới; kiểm bằng ảnh.
+- Giữ nguyên mọi placeholder: `%s`, `%d`, `%u`, `%.1f%%`, `%02d`, `{ComponentType|N}`, `<font …>`, `\r\n`,
+  `|`. Không dịch/xóa placeholder; lệch phải hiện cảnh báo ở test.
+- Chat: dùng giới hạn `150CharLimit` (`[150자 이내]`) làm nguồn; V1 đếm **150 ký tự Unicode theo grapheme
+  cluster** (không cắt dấu), chốt ở spec auth/chat.
+- Tên người chơi: chưa chốt độ dài. Phải hiển thị được trong danh sách phòng, slot phòng, HUD và kết quả;
+  nếu vượt khung thì tăng chiều rộng/xuống dòng hoặc ghi **“cần sửa ở boom-re-l10n”** cho giới hạn tên; không
+  ellipsis/cắt tên và không làm vỡ layout. `unknown` cho tới khi có validation.
+- Số (thời gian, số người, thứ hạng) dùng chữ số tabular/không cắt số 0.
+- Scale: asset gốc 800×600. V1 phải chạy cửa sổ/toàn màn hình; golden tối thiểu 800×600, 1280×720,
+  1920×1080 ở 100%/150%/200% UI scale (nếu có), không clipping.
+- Focus/IME: tab order rõ, focus ring thấy được; Enter gửi/submit, Escape đóng dialog; phím WASD không bị
+  IME/ô chat nuốt khi ngoài ô chat; gõ Telex/VNI trong ô chat/tên phòng không làm mất dấu.
+
+#### 5.2.1 Quy tắc layout đã hiện thực (task #112)
+
+Client hiện thực phần layout ở `crates/boom-client/src/text.rs` (lớp thuần, đo bằng metric
+của file TTF nên test được không cần GPU). Quy tắc đã chốt:
+
+- `\r\n` và `\r` được chuẩn hóa thành `\n` **trước** khi đo; `\n` trong chuỗi là xuống dòng
+  cứng, không phải chỗ trắng để wrap.
+- Xuống dòng theo ranh giới từ; khoảng trắng cuối dòng bị bỏ (không tính vào bề rộng).
+- Từ dài hơn khung thì **cắt theo cụm chữ (grapheme cluster)**, không cắt giữa cụm chữ; không
+  rút, không ellipsis, không viết lại nội dung catalog.
+- Chiều cao dòng = max(metric font, 1,4× cỡ chữ) theo mục “Chiều cao dòng” ở trên.
+- Bề rộng đo bằng metric font; vị trí từng ký tự làm tròn về số nguyên (glyph không bị mờ khi
+  phóng) nên mép chữ có thể vượt khung dưới 0,5 px.
+- Placeholder `{0}`, `{1}`… được thay bằng tham số khi có; `{N}` không có tham số thì giữ
+  nguyên văn. Placeholder khác (`%s`, `{ComponentType|N}`, `<font …>`, `|`) giữ nguyên.
+- Khóa chưa có text hiện `«khóa»` (`boom_content::l10n::placeholder`); client không tự viết chữ.
+  Dấu ngoặc đã chọn theo **glyph có trong font đã bundle** (`«`/`»` có, `⟨`/`⟩` không — §5.1.1).
+- Ký tự không có glyph trong font được vẽ thành **hộp báo thiếu**, không bỏ qua âm thầm.
+
+Phần **vẽ** dùng đúng bộ đo trên: `ui::draw` vẽ bằng font đã bundle và `ui::layout` tính
+**hộp chữ** (`TextBox`) cho từng phần tử — cùng một hàm cho phần vẽ và test, nên test
+"chữ không tràn hộp" kiểm đúng thứ người chơi thấy (task #179).
+
+#### 5.2.2 Hộp chữ là giới hạn (chiều cao) — task #179
+
+Hộp chữ giới hạn chữ **cả hai chiều**: xuống dòng theo bề rộng hộp (§5.2.1) và **cắt
+theo chiều cao hộp**. Chữ vừa hộp thì giữ nguyên; chữ dài hơn thì chỉ giữ phần vừa
+hộp — **không** vẽ ra ngoài hộp, không rút/viết lại nội dung catalog. Quy tắc cắt
+(giữ đầu hay giữ cuối) theo vai trò:
+
+| Nội dung | Quy tắc |
+|---|---|
+| Chữ catalog trong ô cố định (tiêu đề, thông báo, nhãn nút) | giữ **đầu** (dòng trên cùng) |
+| Ô nhập | giữ **cuối**: con trỏ nằm ở cuối nên người chơi phải thấy phần vừa gõ |
+| Khung chat | mỗi tin cao theo **chiều cao thật** sau khi xuống dòng; tin mới nhất sát đáy khung, tin cũ hơn bị **cuộn** ra; tin cao hơn cả khung thì giữ phần **cuối** của tin |
+| Bảng | bề rộng cột giới hạn cho vừa khung; dòng cao theo nội dung thật nên tên dài **được xuống dòng** chứ không bị cắt; dòng không vừa khung thì không vẽ |
+
+Đây là quyết định **design** cho nội dung **động** (chat, ô nhập, tên phòng/tên người):
+mục "Chat" và "Tên người chơi" ở §5.2 yêu cầu không làm vỡ layout; giới hạn độ dài tên
+vẫn `unknown` nên client không cắt tên ở giữa — tên dài được xuống dòng trong ô
+cột, và nếu cả dòng không vừa khung thì dòng đó không vẽ (cuộn), không phải cắt tên.
+
+Chữ **cho người chơi** ở màn trận (đường chơi thật vẽ **scene**, không phải layout `ui`)
+lấy từ cùng nguồn: `ui::layout::match_status_texts` → khóa `room.map_name`,
+`room.loading`, `match.result_pending`, `app.loading`. HUD **chẩn đoán** (số đo tick/âm
+thanh/phím) là việc QA, không phải chữ cho người chơi: chỉ vẽ khi bật cờ `--debug-hud`
+(mặc định **tắt**), và vùng đó được đánh dấu bằng marker `l10n:allow-debug:` trong mã.
+
+Golden layout (số dòng + bề rộng của 44 chuỗi V1 có text ở 1× và 2×) nằm ở test
+`text::tests::golden_layout_matches`; ảnh layout local sinh bằng
+`cargo test -p boom-client -- --ignored write_golden_images --nocapture`.
+
+### 5.3 Acceptance cho V1-035
+
+1. Mọi chuỗi hiển thị trong luồng V1 có một dòng ở §2; dòng `unknown` không được render tới khi có
+   locator catalog/ảnh được duyệt. Không render chuỗi server gửi dạng free text.
+2. Mọi dòng `catalog-translated`/`catalog-reused`/`review` dẫn `id` tồn tại; client lấy text từ
+   `catalog.vi`. Spec này không lưu bản dịch riêng và không yêu cầu sửa bản dịch đã có.
+3. Ảnh dùng trong luồng có quyết định `translated`/`no_text` trong `images_review.csv` (không còn
+   `pending`), hoặc client render text từ key catalog đã chốt.
+4. Text không vừa: chỉ tăng chiều cao/chiều rộng, wrap hoặc giảm cỡ font (có ngưỡng tối thiểu đọc được);
+   không rút/cắt/ellipsis/viết lại text. Nếu vẫn không vừa, phải có dòng **“cần sửa ở boom-re-l10n”** kèm
+   `catalog:<id>`.
+5. Golden font/wrap: tối thiểu các cặp dấu `ắ ộ ữ ợ ỹ`, tên người chơi dài, chat 150 ký tự, tooltip 3 dòng,
+   800×600 và 1920×1080; không clipping.
+6. `cargo xtask ci` xanh; `python3 tools/docs_check.py` xanh.
+7. **Phần code (issue #179)**: mọi chữ người chơi thấy ở màn V1 lấy từ file chuỗi (không có
+   câu chữ viết tay trong mã đường chạy); khóa chưa có text hiện placeholder `«khóa»` **có glyph**
+   trong font đã bundle; mọi chữ trong layout V1 **vừa hộp** của nó (wrap theo §5.2.1, không mất chữ).
+   Hộp chữ giới hạn **cả chiều cao** theo §5.2.2: chữ catalog của V1 đều vừa nên **không** bị cắt;
+   nội dung **động** (chat, ô nhập, tên phòng/tên người) được cuộn/cắt theo hộp chứ không tràn ra ngoài.
+
+## 6. Kết quả review và việc còn lại
+
+Ngày 2026-10-24, chủ dự án duyệt 9 mục image-pending (8 tài nguyên khác nhau), giao Codex xử lý
+25 mapping review và 47 mục unknown. 126 khóa hiện có text, gồm khóa mới cho lỗi tài khoản đã tồn tại.
+Nội dung từ catalog legacy giữ nguyên; câu mới có nguồn DESIGN rõ trong catalog (không giả chuỗi KR).
+
+- Đã tách các ngữ cảnh sai: tên cột số người khỏi format BigBattle; “Bắt đầu” khỏi “Nút Bắt đầu”;
+  người chơi bị loại khỏi lời NPC “Đối thủ bị loại”; thông báo loại do mất kết nối khỏi mã lỗi mạng.
+- PNG Hòa do chủ dự án ghép được nạp toàn bộ ở một frame 216×71; frame KR không được tái sử dụng.
+  Ảnh được thu nhỏ giữ tỷ lệ để vừa cột UI; chỉ hiện art đúng kết quả của người chơi.
+- C00/C01 dùng nhãn DESIGN “Nhân vật 1/2”; tên gốc còn ở issue #150. Không dùng nhãn này làm bằng chứng RE.
+- 23 dòng review legacy ngoài V1 giữ nguyên. 3.030 ảnh ngoài nhóm đã duyệt chưa được tự duyệt.
+- Nền JPEG và các phần tử ngoài scope vẫn không dùng ảnh; V1 dùng màu/text. Win/Lose dùng nhãn
+  Thắng/Thua đã chốt; không coi chúng là ảnh đã được chủ dự án duyệt.
+- Nghiệm thu/tiến độ V1-035 chỉ cập nhật sau PR, kiểm bundle/luồng UI và reviewer độc lập;
+  gói phát hành V1-036 vẫn cần smoke cuối trên ba OS.
+
+### 6.1 Báo cáo khóa V1 đã chốt
+
+`tools/l10n_export.py` đọc §2 của tài liệu này và `catalog.csv`, xuất
+`data/l10n/vi-v1.toml` rồi in số đếm. Chạy lại khi §2 hoặc catalog đổi:
+
+```sh
+python3 tools/l10n_export.py            # xuất lại file
+python3 tools/l10n_export.py --check    # kiểm file đã xuất (không cần repo boom-re-l10n)
+```
+
+| Trạng thái §2 | Số khóa | Có `text`? | Mã `reason` khi thiếu |
+|---|---:|---|---|
+| `catalog-translated` | 115 | có (`catalog.vi` nguyên văn) | — |
+| `catalog-reused` | 11 | có (`catalog.vi` nguyên văn) | — |
+| `review` | 0 | không | `needs-review` |
+| `image-pending` | 0 | không | `image-pending-review` |
+| `unknown` | 0 | không | `no-locator` |
+| **Tổng** | **126** | **126 có text / 0 thiếu** | — |
+
+Quy tắc của file xuất (nguồn chuẩn vẫn là `catalog.csv`, không lưu bản VI riêng):
+
+- `text` lấy **nguyên văn** `catalog.vi`, chỉ trim biên; giữ nguyên `%s`, `{0}`,
+  `<font …>`, CRLF và `|`.
+- Tool **không xuất** nếu placeholder của bản dịch lệch số lượng với cột nguồn `ko` (KR hoặc DESIGN EN được ghi rõ), hoặc
+  text chưa ở dạng NFC.
+- Khóa chưa có text **không có** trường `text`: client hiện placeholder rõ ràng `«khóa»`
+  (`boom_content::l10n::placeholder`), không tự viết chữ.
+- `catalog_sha256` trong file là SHA-256 của `catalog.csv` lúc xuất — dùng để biết file
+  xuất từ catalog phiên bản nào (giá trị nằm trong file, không lặp ở tài liệu này).
+- Loader `boom-content::l10n` từ chối file sai: khóa trùng, `text` có/không có không
+  khớp `status`, thiếu `reason`/`catalog_id`/`image`, placeholder lệch giữa hai khóa dùng
+  chung một `catalog_id`, và text có dấu tổ hợp (chưa chuẩn hóa NFC). Kiểm tra NFC **đầy
+  đủ** nằm ở tool (`unicodedata`), loader chỉ chặn dấu tổ hợp.
+
+Khi catalog được sửa ở worktree riêng, đặt BOOM_L10N_CATALOG trỏ tới catalog.csv của worktree đó
+trước khi chạy cargo xtask ci hoặc hook pre-push. Mặc định vẫn dùng đường dẫn catalog chuẩn;
+biến này chỉ chọn nguồn để kiểm nguyên văn/SHA, không bỏ kiểm tra. Điều này giữ CI của nhánh RE
+độc lập với phiên bản catalog đang được review trên nhánh Việt hóa.
+
+### 6.2 Trang review cục bộ (V1-035, issue #207)
+
+`tools/l10n_review_v1.py` dựng trang HTML **chỉ đọc** cho đúng 126 khóa §2, để chủ dự án
+duyệt tập khóa dùng trong V1. Mỗi dòng hiện khóa, ngữ cảnh, trạng thái/lý do chưa dùng,
+locator, text `ko`/`vi` lấy nguyên văn từ catalog nếu tra được, placeholder và ghi chú §2.
+Trang có lọc theo trạng thái và tìm khóa/ngữ cảnh; dòng `image-pending` liên kết tới công cụ
+duyệt ảnh cục bộ và ảnh KR/VN trong manifest, kèm trạng thái `images_review.csv` hiện có.
+Trang **không** ghi quyết định duyệt, không tạo nguồn text thứ hai và không thay
+`catalog.csv`/`data/l10n/vi-v1.toml`.
+
+Chạy từ root repo:
+
+```sh
+python3 tools/l10n_review_v1.py
+xdg-open local/l10n-review-v1.html
+```
+
+Mặc định đọc `/home/admin/boom-re-l10n/l10n/catalog.csv` và thư mục
+`/home/admin/boom-re-l10n/l10n/.cache/image-review/`; đổi bằng `--catalog`, `--images`,
+`--out`. Output nằm trong `local/` (đã Git bỏ qua), không commit HTML hay ảnh. Nếu thiếu
+catalog/manifest/ảnh, tool in cảnh báo dễ đọc và trang ghi rõ phần thiếu; không tự chọn ảnh
+thay thế. Đây là bản xem, không phải danh sách quyết định duyệt: nguồn chuẩn vẫn là §2,
+`catalog.csv` và file `vi-v1.toml` do tool xuất.
+
+## 7. RE trace UI V1 (2026-10-23, R-152)
+
+Lượt [#150](https://github.com/aquaplatinumberlitz/boom-rs/issues/150) / Q-021; build KR `00967`
+bản sao SHA-256 `cf72da11…e63b`. Chi tiết/evidence ở
+[KR_RE_UI](../../research/findings/KR_RE_UI.md). Không đổi trạng thái dịch/ảnh ở các bảng trên.
+
+- **Hitbox room list**: `sub_549180` (VA `0x00549180`) dùng 6 cặp `(left,top)` từ bảng
+  `0x19D8A58` = `(20,90)`, `(194,90)`, `(20,160)`, `(194,160)`, `(20,230)`, `(194,230)`;
+  `width/height` từ control vtable `+36`/`+40`; điểm click `sub_1504A5C` (`+136`/`+140`) trừ
+  origin container `sub_149BBA0`/`sub_149BEF0`. Công thức:
+  `left ≤ x < left+width`, `top ≤ y < top+height`; đơn vị **UI/input px**, không scale trong hàm.
+- **Ready (PrepareStage)**: `sub_6F47C0` (VA `0x006F47C0`) gọi
+  `sub_54BEF0(..., 512, 494, 0x10000000, 0x10000000)` và `sub_6F8790(..., "PRE_Bt_Ready")`;
+  key join `"%s/%s"` base object `+267088`, key pack `Prepare/PRE_Bt_Ready`.
+- **Chưa chứng minh**: native framebuffer/scale/focus path; ý nghĩa 4-int placement; các màn
+  login/result; `room.character_c00`/`c01` vẫn `unknown` (không tự đặt tên/dịch).

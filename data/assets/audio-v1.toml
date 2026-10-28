@@ -1,0 +1,118 @@
+# Mapping audio KR 00967 theo R-191 (candidate); entry/nhãn là nguồn chuẩn.
+# player_trapped giữ confirmed R-204; BGM loop và voice/priority/dedup vẫn design R-083.
+# Nổ: id7/8, không dùng471. Ready/Start: id18/21, không suy tiếng Count1..3.
+# Remap có guard, biến thể tuyết/couple/help và runtime audio còn Q-015.
+
+schema = 1
+
+[[cues]]
+event = "bgm_loop"
+entry = "MP3/Village"
+source = "kr_static"
+claims = ["R-081", "R-083"]
+status = "design"
+note = "entry/mapping confirmed R-081; loop một voice là design R-083"
+
+[[cues]]
+event = "bomb_placed"
+entry = "Wave/Cha_BombIgnite"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id9; biến thể tuyết344 ngoài V1; R-191 candidate"
+
+[[cues]]
+event = "bomb_exploded"
+entry = "Wave/Cha_BombExplode"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id7; xen kẽ với id8 trong200ms theo dispatcher R-191; lần đầu/sau khoảng nghỉ dùng8"
+
+[[cues]]
+event = "bomb_exploded_multi"
+entry = "Wave/Cha_BombExplodeMulti"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id8; lần đầu/sau200ms và xen kẽ7→8 trong200ms, R-191 candidate"
+
+[[cues]]
+event = "item_revealed"
+entry = "Wave/Itm_ItemPop"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id69, consumer0xB8B680; R-191 candidate"
+
+[[cues]]
+event = "item_picked"
+entry = "Wave/Itm_ItemEaten"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id68 dùng chung Bomb/Fire/Roller, consumer0xB4B410; R-191 candidate"
+
+[[cues]]
+event = "player_trapped"
+entry = "Wave/Cha_LockedIn"
+source = "kr_static"
+claims = ["R-203", "R-204"]
+status = "confirmed"
+note = "consumer solo 0xB42D60 phát id 77 Cha_LockedIn (R-204); nhánh couple 37 ngoài scope FFA; không phát 444 help + voice/priority/dedup/loop là policy/design V1 R-083, không phải kết luận KR/FFA không có help"
+
+[[cues]]
+event = "player_died"
+entry = "Wave/Cha_Die"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id42, consumer0xB53C80; R-191 candidate"
+
+[[cues]]
+event = "round_ended_win"
+entry = "Wave/Ntc_Win"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id175; giữ entry đã khớp; remap có guard chưa áp trong V1"
+
+[[cues]]
+event = "round_ended_lose"
+entry = "Wave/Ntc_Lose"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id78; giữ entry đã khớp; remap có guard chưa áp trong V1"
+
+[[cues]]
+event = "round_ended_draw"
+entry = "Wave/Ntc_Draw"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id43; giữ entry đã khớp; remap có guard chưa áp trong V1"
+
+[[cues]]
+event = "round_start"
+entry = "Wave/Ntc_GameStart"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id21 GameStart, R-191 candidate; remap có guard chưa áp"
+
+[[cues]]
+event = "round_ready"
+entry = "Wave/Ntc_GameReady"
+source = "kr_static"
+claims = ["R-191"]
+status = "candidate"
+note = "id18 GameReady, R-191 candidate; phát một lần đầu warmup, không phát Count3/2/1"
+
+[[cues]]
+event = "ui_click"
+entry = "Wave/Bt_p_Default"
+source = "kr_static"
+claims = ["R-082"]
+status = "design"
+note = "click UI mặc định; chưa có trace consumer gốc"

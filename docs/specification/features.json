@@ -1,0 +1,4247 @@
+{
+  "schema": 2,
+  "baseline": "KR-00967-V1-scope-1",
+  "date": "2026-10-19",
+  "status": "scope_decided_execution_tracked",
+  "caveat": "Phạm vi sản phẩm được chốt; asset_signal không xác nhận runtime KR hoặc completeness RE.",
+  "features": [
+    {
+      "id": "V1-001",
+      "group_id": "KR-F001",
+      "title": "Auth tài khoản dự án",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [],
+      "server_responsibility": "Lưu identity/password hash; xác thực session; phiên thứ hai bị từ chối.",
+      "acceptance": "Tạo/đăng nhập tài khoản test; thông tin sai bị từ chối; một phiên hoạt động mỗi tài khoản.",
+      "open_questions": "Thiết kế mới, không tái tạo auth Nexon/NGM.",
+      "tracking": {
+        "assignee": "opencode-1/dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "docs/decisions/0011-identity-persistence-log-v1.md",
+          "git:06058297ddd97285354a428069ff539c24671301",
+          "crates/boom-server/src/auth.rs",
+          "git:14e359ce795466e95d8fcd736adf554de820c4ba",
+          "git:c8b14a81e1e5ff4bd17ab1d9614f6a39f6f5ebff",
+          "git:8759e037c64778b0a231f166b78acf0ead567dbe",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #85, #107, #117, #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Không thiếu acceptance tạo/login, sai thông tin, một phiên. Claude ghi integration commit/proof/review hiện hành; không cần chờ UI V1-032 để nghiệm thu logic auth này."
+      }
+    },
+    {
+      "id": "V1-002",
+      "group_id": "KR-F001",
+      "title": "Handshake phiên bản/rules/content",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "net",
+      "depends_on": [
+        "V1-001"
+      ],
+      "server_responsibility": "Kiểm phiên bản và manifest; không tin hash client khai để quyết nội dung server.",
+      "acceptance": "Client khác protocol hoặc rules/content hash bị từ chối trước khi vào sảnh.",
+      "open_questions": "Chốt schema và cách phân phối manifest.",
+      "tracking": {
+        "assignee": "dsh-a/dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-proto/src/dto/handshake.rs",
+          "git:e627112e5fe52dd69fa1903b6d6fefe004ac41d9",
+          "crates/boom-server/src/server.rs",
+          "git:ab4eb5a148a1c186fefada8854d728660bc62c94",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #60, #107, #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Acceptance mismatch protocol/rules/content có code và test; chưa cần thêm code để đóng mục này. Chờ ghi V1-001 done; cập nhật proof #117/#136 thay next_action cũ."
+      }
+    },
+    {
+      "id": "V1-003",
+      "group_id": "KR-F002",
+      "title": "Một kênh và sảnh danh sách phòng",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-001",
+        "V1-002"
+      ],
+      "server_responsibility": "Quản lý presence và room list.",
+      "acceptance": "Đăng nhập tới một kênh; thấy phòng và số người cập nhật khi tạo/vào/rời.",
+      "open_questions": "Không yêu cầu quảng trường đi bộ/NPC.",
+      "tracking": {
+        "assignee": "dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-server/src/server.rs",
+          "crates/boom-sync/src/room.rs",
+          "git:3d34d7fdf99bdeb3ddc0c90bb635d9dcc24eaeb7",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #136, #155; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Luồng auth→một sảnh và danh sách/số người tạo/vào/rời có bằng chứng ở server + NetClient/NetBackend. Chờ dependency. Việc gọi UI mạng từ binary còn thiếu thuộc V1-032, không suy rằng test NetBackend chứng minh màn hình t"
+      }
+    },
+    {
+      "id": "V1-004",
+      "group_id": "KR-F003",
+      "title": "Tạo phòng công khai",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-003"
+      ],
+      "server_responsibility": "Tạo room, chống tạo trùng khi command lặp.",
+      "acceptance": "Một tài khoản chỉ ở một phòng; phòng có ID duy nhất và tối đa 4 slot.",
+      "open_questions": "Tên phòng/giới hạn ký tự theo spec dự án.",
+      "tracking": {
+        "assignee": "dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-room/src/lib.rs",
+          "git:d0a8571a229cc34c610706b4ac25d22c467bbf6c",
+          "crates/boom-server/src/server.rs",
+          "crates/boom-sync/src/room.rs",
+          "git:3d34d7fdf99bdeb3ddc0c90bb635d9dcc24eaeb7",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #23, #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: ID phòng duy nhất, một phòng/account và 4 slot đã có regression. Chờ V1-003 done; không thiếu code riêng theo acceptance này."
+      }
+    },
+    {
+      "id": "V1-005",
+      "group_id": "KR-F003",
+      "title": "Vào/rời phòng",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-004"
+      ],
+      "server_responsibility": "Admission/roster atomic; chặn command sai trạng thái.",
+      "acceptance": "Join đồng thời không vượt 4 người; không late-join khi đang đấu; rời dọn đúng slot.",
+      "open_questions": "Không có password/private/spectator trong V1.",
+      "tracking": {
+        "assignee": "dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-room/src/lib.rs",
+          "git:d0a8571a229cc34c610706b4ac25d22c467bbf6c",
+          "crates/boom-server/src/server.rs",
+          "crates/boom-sync/src/room.rs",
+          "git:3d34d7fdf99bdeb3ddc0c90bb635d9dcc24eaeb7",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #23, #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Đủ guard capacity/Playing + leave dọn slot; chờ V1-004 done. Test join được serialize qua authority, không diễn giải thành phép đo stress nhiều thread."
+      }
+    },
+    {
+      "id": "V1-006",
+      "group_id": "KR-F003",
+      "title": "Chủ phòng và kick",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-005"
+      ],
+      "server_responsibility": "Quyền chủ và thứ tự thành viên; kick chỉ khi chờ.",
+      "acceptance": "Chủ rời phòng thì người vào sớm nhất còn lại làm chủ; non-host không kick/start.",
+      "open_questions": "Host rời giữa trận không dừng mô phỏng server.",
+      "tracking": {
+        "assignee": "dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-room/src/lib.rs",
+          "git:d0a8571a229cc34c610706b4ac25d22c467bbf6c",
+          "crates/boom-server/src/server.rs",
+          "crates/boom-sync/src/room.rs",
+          "git:3d34d7fdf99bdeb3ddc0c90bb635d9dcc24eaeb7",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #23, #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Host transfer theo thứ tự join; non-host kick/start bị chặn. Chờ V1-005 done."
+      }
+    },
+    {
+      "id": "V1-007",
+      "group_id": "KR-F005",
+      "title": "Chọn C00/C01",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "client",
+      "depends_on": [
+        "V1-005"
+      ],
+      "server_responsibility": "Lưu selection từ allowlist, chặn ID lạ.",
+      "acceptance": "Mỗi người chọn một trong hai template; đổi lựa chọn được đồng bộ và hủy ready.",
+      "open_questions": "Tên hiển thị và chỉ số nối với BomberAttr; chưa suy từ tên VN.",
+      "tracking": {
+        "assignee": "dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-room/src/lib.rs",
+          "git:d0a8571a229cc34c610706b4ac25d22c467bbf6c",
+          "crates/boom-server/src/server.rs",
+          "crates/boom-sync/src/room.rs",
+          "git:3d34d7fdf99bdeb3ddc0c90bb635d9dcc24eaeb7",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #23, #136, #155; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Selection/đồng bộ/hủy ready đã có; không cần đợi RE #149 nâng mapping thành confirmed. Chờ V1-005 done."
+      }
+    },
+    {
+      "id": "V1-008",
+      "group_id": "KR-F003",
+      "title": "Ready/cancel/start",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-007"
+      ],
+      "server_responsibility": "Room state machine waiting/loading/playing/results.",
+      "acceptance": "2–4 người, mọi người ready mới start; đổi roster/selection hủy toàn bộ ready; command lặp chỉ start một lần.",
+      "open_questions": "Host cũng phải ready; đây là policy V1.",
+      "tracking": {
+        "assignee": "dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-room/src/lib.rs",
+          "git:d0a8571a229cc34c610706b4ac25d22c467bbf6c",
+          "crates/boom-server/src/server.rs",
+          "crates/boom-sync/src/room.rs",
+          "git:3d34d7fdf99bdeb3ddc0c90bb635d9dcc24eaeb7",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #23, #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Acceptance 2–4/all-ready, hủy ready khi roster/selection đổi, start lặp một lần đạt trong test. Chờ V1-007 done."
+      }
+    },
+    {
+      "id": "V1-009",
+      "group_id": "KR-F008",
+      "title": "Chat trong phòng chờ",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-005"
+      ],
+      "server_responsibility": "Membership check, rate limit, broadcast.",
+      "acceptance": "Chỉ thành viên phòng nhận chat; giới hạn chiều dài/tần suất; chữ Việt đúng; không thực thi slash command.",
+      "open_questions": "Không chat trận/kênh/whisper trong V1.",
+      "tracking": {
+        "assignee": "dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-server/src/server.rs",
+          "crates/boom-sync/src/room.rs",
+          "git:d0a8571a229cc34c610706b4ac25d22c467bbf6c",
+          "git:3d34d7fdf99bdeb3ddc0c90bb635d9dcc24eaeb7",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Logic chat UTF-8/phạm vi/rate có bằng chứng; font/wrap sản phẩm theo V1-035. Chờ V1-005 done."
+      }
+    },
+    {
+      "id": "V1-010",
+      "group_id": "KR-F004",
+      "title": "Start barrier và spawn",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "net",
+      "depends_on": [
+        "V1-008",
+        "V1-030"
+      ],
+      "server_responsibility": "Chọn spawn không trùng, snapshot ban đầu, đồng hồ authoritative.",
+      "acceptance": "Server gửi cùng seed/rules/map/roster; chỉ bắt đầu khi tất cả ack loaded trong 15s; timeout hủy về phòng.",
+      "open_questions": "Village00 có 4 tọa độ; thứ tự gán slot là DESIGN.",
+      "tracking": {
+        "assignee": "dsh-a/dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-server/src/lib.rs",
+          "git:fb4ed043822a3132cbbd7be76047c5f604df4d4e",
+          "crates/boom-server/src/authority.rs",
+          "crates/boom-server/src/server.rs",
+          "git:ab4eb5a148a1c186fefada8854d728660bc62c94",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #136, #153; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Barrier/15s/cancel có test, snapshot loading đã sửa #153. Chờ V1-008 (V1-030 đã done)."
+      }
+    },
+    {
+      "id": "V1-011",
+      "group_id": "KR-F004",
+      "title": "Di chuyển và ưu tiên input",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-030",
+        "V1-033"
+      ],
+      "server_responsibility": "Chỉ nhận input, tự tính vị trí.",
+      "acceptance": "Trace đi thẳng/rẽ/giữ nhiều hướng/mất focus có kết quả theo spec; không kẹt phím.",
+      "open_questions": "BLOCKER: tốc độ/hitbox/cornering theo C00/C01 và mô hình thời gian.",
+      "tracking": {
+        "assignee": "opencode-4",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/movement.rs",
+          "git:fefd5c0d810c4e3d494c5a064272be29fa5c39c9",
+          "git:b26c88c6c852786b9281c5aea0e2939e40247739",
+          "docs/decisions/0012-v1-rules-from-bnb.md",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #140; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Trace movement/rẽ/ưu tiên nhiều hướng và release focus đối chiếu R-107/R-114/R-116; design BnB hợp lệ theo ADR 0013. V1-030/V1-033 đều đã done; không còn blocker acceptance hiện hành. Không gọi đây là hiệu chuẩn KR."
+      }
+    },
+    {
+      "id": "V1-012",
+      "group_id": "KR-F004",
+      "title": "Va chạm tường/gạch/bom",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-011"
+      ],
+      "server_responsibility": "Collision grid và quy tắc own-bomb grace.",
+      "acceptance": "Không xuyên vật cản; bước khỏi bom vừa đặt được, không bước lại khi chưa nổ.",
+      "open_questions": "BLOCKER: tile/object semantics và biên collision; own-bomb policy phải đối chiếu nguồn.",
+      "tracking": {
+        "assignee": "opencode-4",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/movement.rs",
+          "fixtures/scenarios/movement/bomb_grace_one_way.toml",
+          "git:fefd5c0d810c4e3d494c5a064272be29fa5c39c9",
+          "git:b26c88c6c852786b9281c5aea0e2939e40247739",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #140; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Không xuyên tường/gạch/bom, ra bom và mất pass sau hết overlap đạt. Chờ V1-011 được ghi done."
+      }
+    },
+    {
+      "id": "V1-013",
+      "group_id": "KR-F004",
+      "title": "Đặt bom và hạn mức",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-012"
+      ],
+      "server_responsibility": "Tạo bomb ID, kiểm capacity/position/state.",
+      "acceptance": "Không đặt hai bom cùng ô; giới hạn theo stat; command trùng không tạo thêm bom.",
+      "open_questions": "BLOCKER: stats template và timing đặt bom.",
+      "tracking": {
+        "assignee": "opencode-1",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/bomb_place.rs",
+          "fixtures/scenarios/bomb_place/place_one.toml",
+          "git:4600810eacb611354677aa1074282e5ddb2b0e75",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #19, #140; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Bom cùng ô/cap/command lặp đã được kiểm; grace bản mới theo #140. Chờ V1-012 done."
+      }
+    },
+    {
+      "id": "V1-014",
+      "group_id": "KR-F004",
+      "title": "Fuse/nổ/lan/chặn",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-013"
+      ],
+      "server_responsibility": "Lập lịch fuse, thứ tự flame và hết hạn.",
+      "acceptance": "Nổ ở tick đã đặc tả; ray dừng đúng tường/gạch; thời gian tồn tại vùng nổ có nguồn.",
+      "open_questions": "BLOCKER: fuse gốc unknown (RULES_V1 R-021), chọn design ở hạn P1; 2.5s emu chỉ là candidate; propagation/chain cần boundary scenario.",
+      "tracking": {
+        "assignee": "opencode-2",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/explosion.rs",
+          "fixtures/scenarios/explosion/rays_stop_at_solid.toml",
+          "git:0c9207c4b67bfa96bad39dcd65f4ec6722032f1e",
+          "git:8bc88e1a38d755d786045096fa4d03ad910f0295",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #143; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Acceptance fuse/ray/block/TTL có nguồn design hiện hành và test; không đợi #148. Chờ V1-013 done; dùng integration #143 thay proof #21 cũ."
+      }
+    },
+    {
+      "id": "V1-015",
+      "group_id": "KR-F004",
+      "title": "Nổ dây chuyền",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-014"
+      ],
+      "server_responsibility": "Queue sự kiện có thứ tự và dedup.",
+      "acceptance": "Bom bị flame kích hoạt một lần; thứ tự xử lý ổn định; không double kill/drop.",
+      "open_questions": "BLOCKER: chain delay và block-stop behavior.",
+      "tracking": {
+        "assignee": "opencode-2",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/explosion.rs",
+          "fixtures/scenarios/explosion/chain.toml",
+          "git:0c9207c4b67bfa96bad39dcd65f4ec6722032f1e",
+          "git:8bc88e1a38d755d786045096fa4d03ad910f0295",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #143, #160; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Chain một lần/thứ tự/double drop đạt theo R-109; không coi test sinh từ implementation là oracle gốc. Chờ V1-014 done; proof phải gồm #143/#160."
+      }
+    },
+    {
+      "id": "V1-016",
+      "group_id": "KR-F004",
+      "title": "Phá gạch và drop giới hạn",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-015"
+      ],
+      "server_responsibility": "Server quyết drop; không cấp tiền/inventory.",
+      "acceptance": "Gạch phá một lần; item spawn từ profile V1 có seed; client thống nhất vật phẩm.",
+      "open_questions": "DESIGN override coin-only: rules profile cần drop_probability, weights Bomb/Fire/Roller, spawn timing, flame-item, caps và pickup-at-cap có revision; không tái dùng coin weights.",
+      "tracking": {
+        "assignee": "opencode-1",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/blocks.rs",
+          "fixtures/scenarios/blocks/destroy_and_reveal.toml",
+          "git:c0323b13fb39902bd8f0ad67decf158773ec3bdb",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #160; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Đã thay pre-roll #30 bằng roll khi vỡ #160: RNG/ô ổn định, ba item V1, 350‰, trọng số 3650:2800:2000. Chờ V1-015 done và cập nhật evidence mới; không còn để next_action trỏ duy nhất implementation cũ."
+      }
+    },
+    {
+      "id": "V1-017",
+      "group_id": "KR-F004",
+      "title": "Item Bomb tăng capacity",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-016"
+      ],
+      "server_responsibility": "Atomic pickup và cập nhật stat.",
+      "acceptance": "Một pickup tăng capacity theo rule, không vượt cap; hai người chạm chỉ một người nhận.",
+      "open_questions": "KR ItemAttr consumer/cap còn cần xác minh.",
+      "tracking": {
+        "assignee": "opencode-2",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/pickup.rs",
+          "fixtures/scenarios/pickup/bomb.toml",
+          "git:5845f1541242f13d4effc8d703630d26f1f10e63",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #29, #160; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Capacity +1, cap hiệu ứng và một người nhận có test; cap vẫn mất item theo R-109 đã đổi #160. Chờ V1-016 done; approval #29 cũ một mình không đủ cho hành vi mới."
+      }
+    },
+    {
+      "id": "V1-018",
+      "group_id": "KR-F004",
+      "title": "Item Fire tăng tầm",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-016"
+      ],
+      "server_responsibility": "Lưu power của từng bom; kiểm cap.",
+      "acceptance": "Tăng đúng một cấp theo rule; bom đã đặt giữ power chụp tại lúc đặt.",
+      "open_questions": "Power capture policy và cap cần spec nguồn hoặc DESIGN.",
+      "tracking": {
+        "assignee": "opencode-2",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/pickup.rs",
+          "fixtures/scenarios/pickup/bomb.toml",
+          "git:5845f1541242f13d4effc8d703630d26f1f10e63",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #29, #160; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Fire +1 và bom đã đặt giữ tầm chụp có code/test. Chờ V1-016 done; dùng proof mới cho cap/pickup."
+      }
+    },
+    {
+      "id": "V1-019",
+      "group_id": "KR-F004",
+      "title": "Item Roller tăng tốc",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-011",
+        "V1-016"
+      ],
+      "server_responsibility": "Kiểm pickup, speed tier và cap.",
+      "acceptance": "Tăng đúng cấp speed đã hiệu chuẩn; không đổi tốc độ frame-dependent.",
+      "open_questions": "Không coi speed level là px/s; không dùng Shoe thay Roller.",
+      "tracking": {
+        "assignee": "opencode-2",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/pickup.rs",
+          "fixtures/scenarios/pickup/bomb.toml",
+          "git:5845f1541242f13d4effc8d703630d26f1f10e63",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #29, #140, #160; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Theo spec được duyệt: +1 level, 24px/s/level R-114 (oss/design), không phụ thuộc render FPS. Không tuyên bố đã đo KR; ADR 0013 cho phép design này. Chờ V1-011 và V1-016 done."
+      }
+    },
+    {
+      "id": "V1-020",
+      "group_id": "KR-F004",
+      "title": "Bẫy/bong bóng/chết",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-014"
+      ],
+      "server_responsibility": "State và timer authoritative.",
+      "acceptance": "Trúng flame sang trapped; hết hạn hoặc địch chạm thì chết; mỗi người chết chỉ một lần.",
+      "open_questions": "BLOCKER: trapped timeout, contact rule và miễn nhiễm chuyển trạng thái.",
+      "tracking": {
+        "assignee": "opencode-3",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/systems/life.rs",
+          "fixtures/scenarios/life/trap_timeout.toml",
+          "git:5b42a6a899a62cd72995ea16e2d5708a4c7c6cac",
+          "git:8bc88e1a38d755d786045096fa4d03ad910f0295",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #143; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Acceptance trap→death/touch/một lần đạt theo R-108/R-115/R-116. Chờ V1-014 done; proof #20 cũ đã khác cơ chế, cần #143."
+      }
+    },
+    {
+      "id": "V1-021",
+      "group_id": "KR-F004",
+      "title": "Thắng/hòa/hết giờ",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-020"
+      ],
+      "server_responsibility": "Một kết quả duy nhất; xử lý mọi event trong tick rồi xét kết thúc.",
+      "acceptance": "Còn một người sống thì thắng; không còn người sống hoặc hết giờ nhiều người sống thì hòa; trapped chưa tính chết.",
+      "open_questions": "BLOCKER: match_duration, clock start tại barrier hoàn tất; gameplay trước timeout cùng tick; DESIGN ordering phải version hóa.",
+      "tracking": {
+        "assignee": "Claude",
+        "reviewer": "Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r3",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-core/src/mode.rs",
+          "fixtures/scenarios/round/time_limit_draw.toml",
+          "git:5b42a6a899a62cd72995ea16e2d5708a4c7c6cac",
+          "git:8bc88e1a38d755d786045096fa4d03ad910f0295",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #143; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Winner/draw/trapped còn sống đạt; duration 120s theo R-110, warmup 3s theo R-113. Chờ V1-020 done; không lấy contracts review #2 làm PR approval hiện hành (#2 là issue, không phải PR)."
+      }
+    },
+    {
+      "id": "V1-022",
+      "group_id": "KR-F044",
+      "title": "Kết quả và chơi vòng tiếp",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-021"
+      ],
+      "server_responsibility": "Reset state, tăng round ID; command cũ bị bỏ.",
+      "acceptance": "Mọi client cùng kết quả; ack hoặc sau5s về phòng; vòng sau reset ready/bom/item; packet kết quả/snapshot round cũ bị bỏ, không auto-ready.",
+      "open_questions": "Không exp/rank/tiền thưởng V1.",
+      "tracking": {
+        "assignee": "dsh-a/dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-server/src/lib.rs",
+          "git:fb4ed043822a3132cbbd7be76047c5f604df4d4e",
+          "crates/boom-server/src/authority.rs",
+          "crates/boom-server/src/server.rs",
+          "git:ab4eb5a148a1c186fefada8854d728660bc62c94",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Kết quả/ack hoặc 5s/reset round/không auto-ready có bằng chứng trên transport hoạt động. Chờ V1-021 done. Mất application-frame RoundResult chưa recover là giới hạn đã có regression, cần xử lý ở QA loss V1-027 trước phát"
+      }
+    },
+    {
+      "id": "V1-023",
+      "group_id": "KR-F003",
+      "title": "Disconnect/timeout",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "net",
+      "depends_on": [
+        "V1-022"
+      ],
+      "server_responsibility": "State/session/timeout theo round; dọn room rỗng; không chờ host để mô phỏng; auth mới về sảnh.",
+      "acceptance": "Rời trận chủ động loại ngay; disconnect chơi neutral rồi quá10s bị loại một lần; loading mất thành viên hủy start; không mid-round rejoin; room rỗng bị xóa và round bị hủy không tạo winner vắng mặt.",
+      "open_questions": "DESIGN thời hạn 10s, không phải luật KR.",
+      "tracking": {
+        "assignee": "dsh-a/dsh-b",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-server/src/lib.rs",
+          "git:fb4ed043822a3132cbbd7be76047c5f604df4d4e",
+          "crates/boom-server/src/authority.rs",
+          "crates/boom-server/src/server.rs",
+          "git:ab4eb5a148a1c186fefada8854d728660bc62c94",
+          "git:ae70eaec72bc9f11e308d352d96b6240bdf683ec",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #136; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Server leave ngay/neutral→10s/loại một lần/loading cancel/không rejoin/room rỗng hủy có code/test. Chờ V1-022 done. UX báo mất kết nối còn thuộc tích hợp UI, không lấy core server test chứng minh UX."
+      }
+    },
+    {
+      "id": "V1-024",
+      "group_id": "",
+      "title": "Input/snapshot authoritative",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "done",
+      "owner": "net",
+      "depends_on": [
+        "V1-002"
+      ],
+      "server_responsibility": "Tick/sequence/window/rate-limit và snapshot.",
+      "acceptance": "Client tự khai tọa độ/kill/item/win không thay đổi state; command lặp/quá hạn bị xử lý đúng spec.",
+      "open_questions": "BLOCKER: wire/input contract có revision trước triển khai.",
+      "tracking": {
+        "assignee": "dsh-a/opencode-2",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "docs/decisions/0009-wire-protocol-input-snapshot-codec.md",
+          "git:743a38af2a27065b7786409ae8504493ec89b1c9",
+          "crates/boom-proto/src/envelope.rs",
+          "crates/boom-net/src/lib.rs",
+          "crates/boom-sync/src/lib.rs",
+          "git:2af995d8def92e80eb18f15199feaed99129544e",
+          "git:e627112e5fe52dd69fa1903b6d6fefe004ac41d9",
+          "git:fb4ed043822a3132cbbd7be76047c5f604df4d4e",
+          "git:ab4eb5a148a1c186fefada8854d728660bc62c94",
+          "git:c8fbd31b7c8aef204be1a3d3cd619a94c4b395d9",
+          "git:501f292e81082f26885adc1f757f0d46fb776638",
+          "git:4ed41a4155facea770169fbddf5822e4e4f9f0ec",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #117, #136, #153, #158; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Authority/bind slot/dedup/window có evidence thực; không còn blocker server-loading #137. Chờ V1-002 done; cập nhật integration/evidence từ #117/#136/#153/#158."
+      }
+    },
+    {
+      "id": "V1-025",
+      "group_id": "",
+      "title": "Prediction/reconciliation",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "done",
+      "owner": "net",
+      "depends_on": [
+        "V1-024"
+      ],
+      "server_responsibility": "Authoritative snapshots và ack.",
+      "acceptance": "State hội tụ sau correction; không nhân đôi effect/audio/pickup khi replay.",
+      "open_questions": "Chiến lược reconcile/rollback quyết sau prototype.",
+      "tracking": {
+        "assignee": "opencode",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "eff7f94c258e154c60a7c36a60ceaefdf7f5deba",
+        "evidence": [
+          "git:eff7f94c258e154c60a7c36a60ceaefdf7f5deba"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS",
+          "result": "xanh trên merge commit"
+        },
+        "review": {
+          "status": "approved",
+          "result": "Claude APPROVE PR #170 (head 3b6c2be)"
+        },
+        "blocker": "",
+        "next_action": "Xong: một consumer event theo (round_id, EventId) cho offline + mạng, cue gộp theo tick, không phát trùng khi reconcile (PR #170, đóng #163)."
+      }
+    },
+    {
+      "id": "V1-026",
+      "group_id": "",
+      "title": "Replay và state hash",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "done",
+      "owner": "core",
+      "depends_on": [
+        "V1-024"
+      ],
+      "server_responsibility": "Ghi accepted input, seed, manifest, checkpoint.",
+      "acceptance": "Cùng initial state/seed/input cho cùng hash trên 3 OS; khác rules/content bị từ chối replay.",
+      "open_questions": "Đây là tính tất định của engine mới, chưa chứng minh parity KR.",
+      "tracking": {
+        "assignee": "dsh-b/dsh-a",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "crates/boom-replay/src/main.rs",
+          "crates/boom-server/src/replay_log.rs",
+          "git:5bcafa0f35471a9a6ce9f5584fbb11efc72ba1d2",
+          "git:956d54b37fb4ec42c7c63a73661850b17ec186d2",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #72, #88, #160; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Determinism/hash/schema và reject rules/content đã có; replay golden là baseline V1 mới, không phải oracle KR. Chờ V1-024 done; ghi proof hash sau #160, không chỉ golden trước đổi luật."
+      }
+    },
+    {
+      "id": "V1-027",
+      "group_id": "",
+      "title": "QA mạng 4 client",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "done",
+      "owner": "qa",
+      "depends_on": [
+        "V1-025",
+        "V1-026"
+      ],
+      "server_responsibility": "Khôi phục state khi transport mất packet/snapshot.",
+      "acceptance": "Chạy 4 client qua RTT100ms, jitter0–30ms, loss1%, duplicate/reorder có kiểm soát; không diverge vĩnh viễn.",
+      "open_questions": "Transport chưa chốt; loss/reorder có thể nằm lớp dưới nếu dùng TCP.",
+      "tracking": {
+        "assignee": "opencode-1/dsh1 (fix); Codex (QA)",
+        "reviewer": "Codex (code); dsh2 (nghiệm thu)",
+        "updated_at": "2026-10-24",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "e0dcdfc31e8eb49d0163bbb230eedb100db270df",
+        "evidence": [
+          "git:ea7c0070fbb06b4c7dc87ae5150d3195fd70851a",
+          "docs/specification/QA_NETWORK.md",
+          "git:26435d0cbb232a2e2657dd9aa01346ed71570172",
+          "git:b9c94279db27e52fe7c211e6298688c8bbf73db0",
+          "git:42bf8be9e5ae4ffac05c010d72c47c727f8b35b0",
+          "git:e6a1b27ceff28afe58221d87417a5abae9ed44df",
+          "git:fa1291baa638bd07f5c3b21c753378acca7b44c7",
+          "git:e0dcdfc31e8eb49d0163bbb230eedb100db270df",
+          "git:ed16335c889e87fe23bf7a467f70524d11b03746"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo test -p boom-client net::tests::; cargo test -p boom-client net::prediction::tests::; cargo xtask ci; for c in 2 4; do for s in 1 2 3; do cargo run -p boom-qa -- --profile scope-v1 --clients \"$c\" --seed \"$s\"; done; done",
+          "result": "PR #230 r3: 12 job CI/smoke trên ba OS xanh; Codex kiểm 31 test mạng r3, 16 test predictor r2 và đối chứng clock đỏ/xanh. Sáu run, một lần mỗi tổ hợp, hai lượt mỗi bot: đủ hash 2/2 hoặc 4/4, ack hai bảng, hội tụ/drain, không timeout. Tổng 13.837 sequence resolved, 0 retire; latency.count = resolved − retired. SHA từng JSON, 286 input reject, 9 room reject và correction được giữ trong QA_NETWORK. dsh2 kiểm độc lập JSON và sign-off ở issue #226."
+        },
+        "review": {
+          "status": "approved",
+          "result": "Codex approve code ed16335 tại PR230 sau red/green scheduler control; dsh2 sign-off độc lập báo cáo SHA 319ed73a8f392f79193deff542e70e02037807e05d5bc03c493926bb0ffd46b8 và V1-027/G4: https://github.com/aquaplatinumberlitz/boom-rs/issues/226#issuecomment-6371735581"
+        },
+        "blocker": "",
+        "next_action": "Đạt nghiệm thu V1-027 sau PR #230 và ma trận sáu tổ hợp 2/4 bot × seed 1/2/3. Giữ giới hạn Linux fixture, correction và reject trong QA_NETWORK; không coi đây là SLA hoặc fidelity KR."
+      }
+    },
+    {
+      "id": "V1-028",
+      "group_id": "",
+      "title": "Lưu tài khoản và tùy chọn",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [
+        "V1-001"
+      ],
+      "server_responsibility": "Lưu account/session policy; không lưu economy.",
+      "acceptance": "Restart server giữ identity; restart client giữ volume/keybind; room/trận đang chạy không cần phục hồi.",
+      "open_questions": "Chọn DB tối thiểu qua ADR, không ép Postgres/SQLite hai engine.",
+      "tracking": {
+        "assignee": "opencode-1/opencode-2",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "ee779e43c9bc870e5b07060264334cea479c6f14",
+        "evidence": [
+          "docs/decisions/0011-identity-persistence-log-v1.md",
+          "git:06058297ddd97285354a428069ff539c24671301",
+          "crates/boom-server/src/identity/sqlite.rs",
+          "crates/boom-client/src/options.rs",
+          "git:53aabbfb9023992d3e4af9d5d2d108ac78762634",
+          "git:c8b14a81e1e5ff4bd17ab1d9614f6a39f6f5ebff",
+          "git:bf5ca50b338fb36447108633b7712441bb6cb8de",
+          "git:a3a78b0ec85b4a3608f7ad62ccb9f34ea6c709df",
+          "git:ee779e43c9bc870e5b07060264334cea479c6f14"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS; scenario/test trong bằng chứng",
+          "result": "xanh trên main ee779e43c9bc; rà nghiệm thu Codex #161"
+        },
+        "review": {
+          "status": "approved",
+          "result": "APPROVE trên PR #68, #69, #85; rà nghiệm thu độc lập Codex issue #161"
+        },
+        "blocker": "",
+        "next_action": "Done theo spec V1 hiện hành (rà #161). Ghi chú: Identity/tùy chọn bền đã có code/test; room/trận không cần phục hồi đúng scope. Chờ V1-001 done; giữ proof options #69/#77 và server identity/auth."
+      }
+    },
+    {
+      "id": "V1-029",
+      "group_id": "",
+      "title": "Log/health và vận hành test",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "done",
+      "owner": "backend",
+      "depends_on": [],
+      "server_responsibility": "Config endpoint, health và log cấu trúc.",
+      "acceptance": "Có version/rules hash, round ID, lý do disconnect, lỗi load; không log password/session token.",
+      "open_questions": "V1 là bản chơi thử không thương mại; chưa liveops/economy.",
+      "tracking": {
+        "assignee": "dsh-a/opencode-1",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "f9c482861e336cbd5e55af456a7f8ddc7fa697b0",
+        "evidence": [
+          "docs/decisions/0011-identity-persistence-log-v1.md",
+          "git:06058297ddd97285354a428069ff539c24671301",
+          "crates/boom-server/src/admin.rs",
+          "crates/boom-server/src/observability.rs",
+          "git:8ffc64ed242194989542e86a6605b099388c1f45",
+          "git:8759e037c64778b0a231f166b78acf0ead567dbe",
+          "git:f9c482861e336cbd5e55af456a7f8ddc7fa697b0"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS",
+          "result": "xanh trên merge commit"
+        },
+        "review": {
+          "status": "approved",
+          "result": "Claude APPROVE PR #169 (head c2c533d)"
+        },
+        "blocker": "",
+        "next_action": "Xong: log JSON vòng đời round có round_id, lý do disconnect, logger trước load_content (PR #169, đóng #165)."
+      }
+    },
+    {
+      "id": "V1-030",
+      "group_id": "KR-F004",
+      "title": "Map Village00 + dependency closure",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "assets",
+      "depends_on": [],
+      "server_responsibility": "Dùng allowlist content manifest.",
+      "acceptance": "Resolve map/theme/tile/object/preview và mọi state dùng; 4spawn không trùng, không blocked, có đường thoát; không skip unknown object/script.",
+      "open_questions": "BLOCKER: giải object/tile semantics; fixture mới xác nhận header, chưa runtime.",
+      "tracking": {
+        "assignee": "opencode-4",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-24",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "891c7c7d3d76ed4f8e6807d9e32f4611917e3d10",
+        "evidence": [
+          "docs/specification/gameplay/RULES_V1.md",
+          "git:243d230fd7f04524b7dc7794f597237cf4d4454d",
+          "crates/boom-assets/src/closure.rs",
+          "crates/boom-assets/src/sprite.rs",
+          "git:9372f2074939e6cd6d4d2699f28026020a0a84c3",
+          "git:fd2e5d21725157ddb420ebe5ccdf0bbb3851f456",
+          "git:282a051a5ce754a689d7e95ef4dccac446b80a3c",
+          "crates/boom-client/src/scene.rs",
+          "git:abae61bba75252fcea83bf9b6da80e322722dfe3",
+          "git:b3d4d068a3a78a4c4b40a0bb76e28bc410893f7a",
+          "git:4ec8acf9e133e45d351b589d2089bae446248e8f",
+          "git:891c7c7d3d76ed4f8e6807d9e32f4611917e3d10",
+          "docs/specification/assets/BUNDLES.md",
+          "git:2b86a87fb4f4244ba35c7ac173bd2a7d099ddeb7"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "BOOM_KR_PACK_DIR=… cargo xtask ci + CI GitHub ba OS",
+          "result": "PR126 bundle thật0 unknown nội dung/spawn/BFS/hash đạt. Sau PR213 thay cue audio, hash hiện hành dea731aa… được kiểm real-pack; không dùng hash80838d62… cũ làm hash hiện tại."
+        },
+        "review": {
+          "status": "approved",
+          "result": "Codex APPROVE PR #126 vòng 2 (head 00b13a9)"
+        },
+        "blocker": "",
+        "next_action": "Xong: 0 unknown trong bundle Village00, test 4 spawn (PR #126, đóng #121)."
+      }
+    },
+    {
+      "id": "V1-031",
+      "group_id": "KR-F005",
+      "title": "Animation C00/C01 và bomb",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "client",
+      "depends_on": [
+        "V1-030"
+      ],
+      "server_responsibility": "Không áp dụng.",
+      "acceptance": "Walk4 hướng, idle/blink/start/trapped/dead và bomb/flame đúng frame/pivot theo spec.",
+      "open_questions": "BLOCKER: resolve mọi state/pivot/timing còn thiếu.",
+      "tracking": {
+        "assignee": "opencode-3/opencode-4",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "eff7f94c258e154c60a7c36a60ceaefdf7f5deba",
+        "evidence": [
+          "crates/boom-assets/src/animation.rs",
+          "git:389b6ce78fc1b00d6857a25f144981c73e559567",
+          "crates/boom-client/src/anim.rs",
+          "git:5242e48f61272d2c6ce5c1b3386d123e5e6688f4",
+          "git:40fb031334dd70caa7d13ee725f8c7890fd85505",
+          "git:93288f1f300a249da7b723f91acfa4d8a1f1325b",
+          "git:f545f24d6570617814763609ce4cfc1c7ffecfc3",
+          "git:eff7f94c258e154c60a7c36a60ceaefdf7f5deba"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS",
+          "result": "xanh trên merge commit"
+        },
+        "review": {
+          "status": "approved",
+          "result": "Claude APPROVE PR #170 (head 3b6c2be)"
+        },
+        "blocker": "",
+        "next_action": "Xong: event mạng (trap/dead/explosion/start) vào journal trình diễn, reset khi sang round (PR #170); frame/pivot theo R-085…R-089 (#100/#122)."
+      }
+    },
+    {
+      "id": "V1-032",
+      "group_id": "KR-F043",
+      "title": "UI luồng V1 bằng asset KR",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "client",
+      "depends_on": [
+        "V1-022"
+      ],
+      "server_responsibility": "Đồng bộ state cần hiển thị.",
+      "acceptance": "Login→sảnh→phòng→trận→kết quả→phòng không dead end; ngoài scope ẩn, không mở màn hỏng.",
+      "open_questions": "Không cần quảng trường đi bộ hoặc sao chép auth Nexon.",
+      "tracking": {
+        "assignee": "opencode-3",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "395a7bcc14d6556fb9a95ef9994c38ce0a70a425",
+        "evidence": [
+          "crates/boom-assets/src/closure.rs",
+          "git:4ec8acf9e133e45d351b589d2089bae446248e8f",
+          "git:c129a21815b860529b2cf614548daebc903ba261",
+          "git:395a7bcc14d6556fb9a95ef9994c38ce0a70a425"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS",
+          "result": "xanh trên merge commit"
+        },
+        "review": {
+          "status": "approved",
+          "result": "Claude APPROVE PR #171 (head de9b5e3)"
+        },
+        "blocker": "",
+        "next_action": "Xong: --connect chạy UiModel<NetBackend>, Playing → ResultsAck → Room → trận 2, test tích hợp hai trận (PR #171, đóng #164). Layout KR (#150) là fidelity, không chặn luồng."
+      }
+    },
+    {
+      "id": "V1-033",
+      "group_id": "KR-F043",
+      "title": "Input/scale/focus",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "client",
+      "depends_on": [],
+      "server_responsibility": "Từ chối input movement mới khi session chưa in-match.",
+      "acceptance": "Keybind mặc định mũi tên+Space; rebind được; native framebuffer integer scale; mất focus release tất cả phím.",
+      "open_questions": "Native resolution phải đo, không lấy size cửa sổ làm chuẩn.",
+      "tracking": {
+        "assignee": "dsh-b/opencode-2",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-20",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "a3a78b0ec85b4a3608f7ad62ccb9f34ea6c709df",
+        "evidence": [
+          "crates/boom-client/src/input.rs",
+          "git:0c5df165ffabfab961876538b43c8b1842990d8b",
+          "crates/boom-client/src/options.rs",
+          "git:bf5ca50b338fb36447108633b7712441bb6cb8de",
+          "git:a3a78b0ec85b4a3608f7ad62ccb9f34ea6c709df"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS",
+          "result": "xanh ở PR #51, #69, #77 và trên main sau merge"
+        },
+        "review": {
+          "status": "approved",
+          "result": "Comment APPROVE trên PR #51, #69, #77"
+        },
+        "blocker": "",
+        "next_action": "Done: mặc định mũi tên+Space (#51), rebind qua options.toml (#69, #77), integer scale + nhả phím khi mất focus (#51); reviewer độc lập Codex; không có dependency."
+      }
+    },
+    {
+      "id": "V1-034",
+      "group_id": "KR-F043",
+      "title": "Audio/volume",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "client",
+      "depends_on": [
+        "V1-025",
+        "V1-031"
+      ],
+      "server_responsibility": "Không áp dụng.",
+      "acceptance": "Village BGM và SFX theo event; mute/volume hoạt động; reconcile không phát trùng.",
+      "open_questions": "BLOCKER: event→SFX và chính sách chồng tiếng.",
+      "tracking": {
+        "assignee": "dsh-b/dsh-a",
+        "reviewer": "Claude",
+        "updated_at": "2026-10-24",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "2b86a87fb4f4244ba35c7ac173bd2a7d099ddeb7",
+        "evidence": [
+          "crates/boom-client/src/audio.rs",
+          "docs/specification/assets/AUDIO_V1.md",
+          "git:6dfdac10040cd124fc1558140ef6f3d591f0afb6",
+          "git:aace7988256b384bf2f8d6a4d4454dcbe54401bf",
+          "git:eff7f94c258e154c60a7c36a60ceaefdf7f5deba",
+          "git:2b86a87fb4f4244ba35c7ac173bd2a7d099ddeb7",
+          "data/assets/audio-v1.toml"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS",
+          "result": "PR170 và PR213 đã merge, CI3OS xanh; Codex kiểm real-pack boom-assets55/55 và hash bundle r2. Chỉ mapping trapped77 confirmed; policy R083 và mapping khác giữ DESIGN."
+        },
+        "review": {
+          "status": "approved",
+          "result": "Claude APPROVE PR #170 (head 3b6c2be); Codex APPROVE PR #213 r2 head64b5620 (trapped→Cha_LockedIn, canonical R082 đồng bộ)"
+        },
+        "blocker": "",
+        "next_action": "Done theo scope V1; cue trapped sửa theo R204 ở PR213. Q015/issue196 còn phần RE khác, không nâng cả audio policy KR."
+      }
+    },
+    {
+      "id": "V1-035",
+      "group_id": "KR-F043",
+      "title": "Việt hóa UI V1",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "done",
+      "owner": "client",
+      "depends_on": [
+        "V1-032"
+      ],
+      "server_responsibility": "Validation tên/chat Unicode.",
+      "acceptance": "Mọi chuỗi đường đi V1 có dấu/placeholder/wrap đúng; không dùng 23 pending review làm text đã chốt.",
+      "open_questions": "Ảnh có chữ phải có quyết định review trước dùng; font Unicode dùng golden riêng.",
+      "tracking": {
+        "assignee": "Codex (nội dung/code); chủ dự án (duyệt ảnh)",
+        "reviewer": "dsh2 (độc lập)",
+        "updated_at": "2026-10-24",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "43739e2fa6abe09f28457f218648141113cd2fb4",
+        "evidence": [
+          "data/l10n/vi-v1.toml",
+          "crates/boom-content/src/l10n.rs",
+          "git:71d36a66cd644832dc9ce014cfed21d3c4641e31",
+          "git:82033ce560ab4649cdd57a3d228dd1a0669129a8",
+          "tools/l10n_review_v1.py",
+          "docs/specification/localization/UI_STRINGS_V1.md",
+          "git:6ad3e062f096d902e0109ac76c764ec7f6b24b43",
+          "data/assets/ui-vi-v1.toml",
+          "crates/boom-content/src/ui_localization.rs",
+          "git:43739e2fa6abe09f28457f218648141113cd2fb4"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci; CI/smoke ba OS PR241; dựng bundle VN/PNG thật; render 5 màn; NFC/placeholder/glyph/wrap + sidebar regression",
+          "result": "126/126 khóa có text; 23 review legacy giữ nguyên. 8 quyết định ảnh của chủ dự án, 6 sprite dùng đúng nguồn/hash; Draw pixel/fullframe khớp PNG216x71. Bundle0unknown; sidebar red/green và renderer sau sửa đã kiểm. Source boom-re308dc28, catalogSHA c054a113…; CI tất cả12job xanh."
+        },
+        "review": {
+          "status": "approved",
+          "result": "dsh2 APPROVE exacthead f1fc8085c15d1923fad3e379def5b7574e4116e9 tại PR241 comment6378272242; ACCEPT V1-035 độc lập tại issue237 comment6378320356. User duyệt ảnh và giao Codex chốt review/unknown. G5 không được tự sign-off cùng feature."
+        },
+        "blocker": "",
+        "next_action": "Đã nghiệm thu V1-035. Theo dõi G5/runtime UX riêng; tên gốc C00/C01 tiếp tục RE #150, hiện dùng nhãn DESIGN theo scope."
+      }
+    },
+    {
+      "id": "V1-036",
+      "group_id": "",
+      "title": "Build Windows/Linux/macOS",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "in_review",
+      "owner": "release",
+      "depends_on": [
+        "V1-027",
+        "V1-035"
+      ],
+      "server_responsibility": "Cùng protocol/rules/content trên server triển khai.",
+      "acceptance": "Build/cài và chạy trên3OS; thiếu pack/rules báo rõ; build xanh không đồng nghĩa V1done, release gate đòi toàn bộ37mục.",
+      "open_questions": "Chưa xác định cấu hình máy tối thiểu; phải đo trước phát hành.",
+      "tracking": {
+        "assignee": "integrator/QA",
+        "reviewer": "Claude/Codex",
+        "updated_at": "2026-10-26",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "",
+        "evidence": [
+          "git:942045876f2a2bb1dca5a7cbd133b0e0db26bf22",
+          "git:d6ca5799c8c9dbae00a56d774049d8da88e1102f",
+          "git:303ab49a07c2fb1310c53dca50e3ba2d10eabab9",
+          "docs/evidence/measurements/rust-client-ux-2026-10-24/package-qa.json",
+          "git:796284d422baf14f2c0ab0c27a78100bc335c2f1",
+          "docs/evidence/measurements/rust-client-ux-2026-10-24/package-current-qa.json",
+          "git:0886f81ca8702e5dcbe9aabab1c6e212c0fa4816",
+          "git:af5184d84de37ee5898f825ca8c834fcc3612a82",
+          "docs/evidence/measurements/linux-qa-2026-10-26/README.md",
+          "git:9085a0c8ce385674b260f86207f52554a9caeb93"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "QA40193995532 exactc488 + unpack/check3archives +27filehash +30CLIcases +LinuxnativeGUI1x2x",
+          "result": "Đã kiểm boundedpackageCLI/rules33/17/6350/540/R182VNlogicalstats/R185Roller/135crateFedor; LinuxXvfbsoftwarePNG800600/16001200nonuniformPASS. GUIWinMacFAILcảhai giữraw, workflowfailurekhônggiấu; LinuxALSAbackgroundaudio-threadpanic khôngaudioPASS. KhôngminHW/FPS/focus/fullplatform/G6 acceptance. Theoowner25/10 ưu tiênLinux, WinMacđểsau; oldQA95985fe/KWinrecord giữgitlinkbấtbiến."
+        },
+        "review": {
+          "status": "pending",
+          "result": "Task273/packageQA đã nghiệm thu hẹp qua PR274, DSH2 finalheadAPPROVE; tại PR274, toànfeatureV1-036 vàG2/G3/G5/G6 chưa sign-off. G5 được nghiệm thu riêng theo issue278; không nghiệm thu thay V1-036/G6. Cơ chế G3 được nghiệm thu riêng theo issue280, không ký profile/G2 hoặc toàn V1-036. G2 được nghiệm thu riêng tạiissue294/comment6396657957 sauR182/PR293; G6/036 vẫnpending, không tự bật release. Chỉđạo25/10 Linuxfirst: task298 tíchhợpactualpackage33/GUIobservations; LinuxmilestonekhôngđợibackendWinMac, nhưng không tự nghiệmthuV1-036full/G6."
+        },
+        "blocker": "Linux đã nghiệm thu 26/10 trên máy thật (gói 9085a0c). Windows/macOS hoãn theo owner25/10 (#300); V1-036 toàn phần/G6/releaseflag chưa ký.",
+        "next_action": "Linux: xong (evidence linux-qa-2026-10-26, #305/#306/#308). Còn: Windows/macOS khi owner mở lại (#300); minimum HW/FPS chưa đo, không chặn Linux."
+      }
+    },
+    {
+      "id": "V1-037",
+      "group_id": "",
+      "title": "Đối chiếu và báo sai khác",
+      "release": "V1",
+      "origin": "design_scope",
+      "evidence_status": "design_requirement",
+      "implementation": "done",
+      "owner": "qa",
+      "depends_on": [
+        "V1-026",
+        "V1-034"
+      ],
+      "server_responsibility": "Lưu test build và source provenance.",
+      "acceptance": "Có fixture VN/original và golden V1 riêng; báo sai khác theo nguồn; không cam kết pixel100% KR chưa chạy.",
+      "open_questions": "Báo cáo theo nhãn nguồn/trạng thái AGENTS §4 (confirmed/candidate/design); generic 99.5% pixel chưa đủ.",
+      "tracking": {
+        "assignee": "opencode-3",
+        "reviewer": "Codex",
+        "updated_at": "2026-10-22",
+        "accepted_baseline": "KR-00967-V1-scope-1",
+        "accepted_spec": "contracts-r4",
+        "integration_commit": "b83a7cdcfcabd54455464675950a0ff95c0fc2d4",
+        "evidence": [
+          "docs/research/findings/VN_ENGINE_DIFF.md",
+          "git:440bc8fd5648bb8f748e9f54a057803a82de48b1",
+          "git:b83a7cdcfcabd54455464675950a0ff95c0fc2d4",
+          "docs/research/ORACLE_REPORT.md"
+        ],
+        "verification": {
+          "status": "passed",
+          "command": "cargo xtask ci + CI GitHub ba OS",
+          "result": "xanh trên merge commit"
+        },
+        "review": {
+          "status": "approved",
+          "result": "Codex APPROVE PR #184 vòng 2 (head da6a1d5)"
+        },
+        "blocker": "",
+        "next_action": "Xong: oracle có provenance KR/VN tách golden, báo cáo sai khác tự sinh và kiểm trong cargo xtask ci (PR #184, đóng #180). Đo client gốc runtime vẫn hoãn (Q-009); claim RE mới (#146–#150) bổ sung oracle sau."
+      }
+    },
+    {
+      "id": "KR-F001-L01",
+      "group_id": "KR-F001",
+      "title": "Launcher/NGM/Nexon login",
+      "release": "drop_legacy",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Luồng login KR và phần nào được thay bằng auth mới?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F002-L01",
+      "group_id": "KR-F002",
+      "title": "Quảng trường đi bộ và NPC",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Màn nào truy cập được, state và thao tác gì?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F002-L02",
+      "group_id": "KR-F002",
+      "title": "Kênh nhiều instance",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Màn nào truy cập được, state và thao tác gì?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F003-L01",
+      "group_id": "KR-F003",
+      "title": "Battle đội và cứu đồng đội",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Create/join/ready/start, quyền chủ phòng và giới hạn người?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F003-L02",
+      "group_id": "KR-F003",
+      "title": "Phòng 5–8 người",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Create/join/ready/start, quyền chủ phòng và giới hạn người?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F003-L03",
+      "group_id": "KR-F003",
+      "title": "Password/private/spectator",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Create/join/ready/start, quyền chủ phòng và giới hạn người?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F003-L04",
+      "group_id": "KR-F003",
+      "title": "Chọn/random nhiều map và quick-match",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Create/join/ready/start, quyền chủ phòng và giới hạn người?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F004-L01",
+      "group_id": "KR-F004",
+      "title": "Consumable kim/khiên/phi tiêu",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Di chuyển, va chạm, fuse, nổ dây chuyền và điều kiện kết thúc?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F004-L02",
+      "group_id": "KR-F004",
+      "title": "Đẩy/đá/ném bom và block",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Di chuyển, va chạm, fuse, nổ dây chuyền và điều kiện kết thúc?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F004-L03",
+      "group_id": "KR-F004",
+      "title": "Nhiều nâng cấp/debuff/mount",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Di chuyển, va chạm, fuse, nổ dây chuyền và điều kiện kết thúc?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F005-L01",
+      "group_id": "KR-F005",
+      "title": "Toàn bộ roster và chỉ số riêng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Danh sách nhân vật, chỉ số và điều kiện mở khóa?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F006-L01",
+      "group_id": "KR-F006",
+      "title": "Xem/thử hàng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Mua/tặng/thử, tiền tệ và transaction server?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F006-L02",
+      "group_id": "KR-F006",
+      "title": "Mua/tặng bằng tiền ảo",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Mua/tặng/thử, tiền tệ và transaction server?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F006-L03",
+      "group_id": "KR-F006",
+      "title": "Ví/ledger/ownership và transaction",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Mua/tặng/thử, tiền tệ và transaction server?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F007-L01",
+      "group_id": "KR-F007",
+      "title": "Hồ sơ thống kê lâu dài",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách hồ sơ khỏi inventory và quy tắc equip?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F007-L02",
+      "group_id": "KR-F007",
+      "title": "Inventory/equip và hạn sử dụng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách hồ sơ khỏi inventory và quy tắc equip?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F008-L01",
+      "group_id": "KR-F008",
+      "title": "Chat kênh/trận và slash commands",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Kênh chat, whisper, lọc và quyền gửi?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F008-L02",
+      "group_id": "KR-F008",
+      "title": "Whisper/ignore/mail nếu xác nhận",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Kênh chat, whisper, lọc và quyền gửi?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F009-L01",
+      "group_id": "KR-F009",
+      "title": "Guild thành viên/quyền",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Thành lập, thành viên, quyền và hoạt động guild?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F009-L02",
+      "group_id": "KR-F009",
+      "title": "Guild hoạt động/xếp hạng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Thành lập, thành viên, quyền và hoạt động guild?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F010-L01",
+      "group_id": "KR-F010",
+      "title": "Bạn bè/messenger",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Phân biệt messenger, couple và friend; server giữ gì?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F010-L02",
+      "group_id": "KR-F010",
+      "title": "Couple/kết đôi",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Phân biệt messenger, couple và friend; server giữ gì?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F011-L01",
+      "group_id": "KR-F011",
+      "title": "Quest/trigger/progress",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Trigger, tiến độ, reset và phát thưởng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F011-L02",
+      "group_id": "KR-F011",
+      "title": "Daily mission/reset/reward",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Trigger, tiến độ, reset và phát thưởng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F012-L01",
+      "group_id": "KR-F012",
+      "title": "CAPass nhiệm vụ và reward track",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tên hệ thống thực, nhiệm vụ và reward track của build này?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F013-L01",
+      "group_id": "KR-F013",
+      "title": "Ladder và rating",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách các ladder, matchmaking và quy tắc điểm?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F013-L02",
+      "group_id": "KR-F013",
+      "title": "Weekly ladder và mùa giải",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách các ladder, matchmaking và quy tắc điểm?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F014-L01",
+      "group_id": "KR-F014",
+      "title": "Synthesis/hợp thành",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Recipe/probability theo build; liên hệ với Alchemist có được xác nhận?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F014-L02",
+      "group_id": "KR-F014",
+      "title": "Production/chế tạo",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Recipe/probability theo build; liên hệ với Alchemist có được xác nhận?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F014-L03",
+      "group_id": "KR-F014",
+      "title": "Resolution/phân giải",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Recipe/probability theo build; liên hệ với Alchemist có được xác nhận?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F015-L01",
+      "group_id": "KR-F015",
+      "title": "Cần/mồi và câu cá",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Bait/rod, xác suất, trao đổi và phần thưởng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F015-L02",
+      "group_id": "KR-F015",
+      "title": "Tặng/thả/đổi cá",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Bait/rod, xác suất, trao đổi và phần thưởng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F016-L01",
+      "group_id": "KR-F016",
+      "title": "Pet ownership/equip",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Định dạng bảng và tác dụng pet trong từng mode?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F016-L02",
+      "group_id": "KR-F016",
+      "title": "Pet skill/random table",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Định dạng bảng và tác dụng pet trong từng mode?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F017-L01",
+      "group_id": "KR-F017",
+      "title": "Tutorial tương tác/NPC",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Bài hướng dẫn và điều kiện hoàn thành?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F018-L01",
+      "group_id": "KR-F018",
+      "title": "HiddenCatch chuẩn và arcade nếu xác nhận",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Thế hệ mode, luật và map nào còn hoạt động?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F019-L01",
+      "group_id": "KR-F019",
+      "title": "AI Battle/difficulty/reward",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "AI, difficulty, điều kiện thắng và reward?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F020-L01",
+      "group_id": "KR-F020",
+      "title": "Airplane/bonus stage",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Bonus hay mode độc lập; input/va chạm/thắng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F021-L01",
+      "group_id": "KR-F021",
+      "title": "Baseball hai đội/tính điểm",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "State bóng, ghi điểm, respawn và luật đội?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F022-L01",
+      "group_id": "KR-F022",
+      "title": "BigBattle roster/map/luật riêng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Số người, ghép trận, bản đồ và luật riêng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F023-L01",
+      "group_id": "KR-F023",
+      "title": "CAHero nghề/kỹ năng/trang bị",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách mode, nghề, tiến trình và map scripts?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F023-L02",
+      "group_id": "KR-F023",
+      "title": "RPG tiến trình/map riêng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách mode, nghề, tiến trình và map scripts?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F024-L01",
+      "group_id": "KR-F024",
+      "title": "Monster AI/collision/spawn",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "AI, collision, spawn, stage clear và reward server?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F024-L02",
+      "group_id": "KR-F024",
+      "title": "Campaign/stage clear/reward",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "AI, collision, spawn, stage clear và reward server?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F025-L01",
+      "group_id": "KR-F025",
+      "title": "SandBox tạo/chia sẻ nội dung nếu xác nhận",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Chức năng thực: tạo/chia sẻ map, giới hạn và moderation?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F026-L01",
+      "group_id": "KR-F026",
+      "title": "DIYBomb tùy biến nếu xác nhận",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Chức năng thực và dữ liệu tùy biến bom?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F027-L01",
+      "group_id": "KR-F027",
+      "title": "ConfusedFight luật/ranking nếu xác nhận",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tên hiển thị, luật, ranking và khác biệt Battle?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F028-L01",
+      "group_id": "KR-F028",
+      "title": "IamBoss vai trò/luật riêng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "State boss/player, luật và quyền server?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F029-L01",
+      "group_id": "KR-F029",
+      "title": "SnowyChamp",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Có cùng SnowBall nguồn web không; luật từng nhóm?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F029-L02",
+      "group_id": "KR-F029",
+      "title": "Antarctic",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Có cùng SnowBall nguồn web không; luật từng nhóm?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F030-L01",
+      "group_id": "KR-F030",
+      "title": "MineExplore",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Có phải mode độc lập và còn được bật không?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F030-L02",
+      "group_id": "KR-F030",
+      "title": "IamWriggle",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Có phải mode độc lập và còn được bật không?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F031-L01",
+      "group_id": "KR-F031",
+      "title": "ItemCollection điều kiện/thưởng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Điều kiện sưu tập và thưởng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F032-L01",
+      "group_id": "KR-F032",
+      "title": "Event lịch/reset/reward",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Event còn bật, lịch và điều kiện phát thưởng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F032-L02",
+      "group_id": "KR-F032",
+      "title": "InstanceReward/LuckyCard",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Event còn bật, lịch và điều kiện phát thưởng?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F033-L01",
+      "group_id": "KR-F033",
+      "title": "Trang phục/layer/slot",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Quy tắc layer, equip, ownership và giới hạn từng slot?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F033-L02",
+      "group_id": "KR-F033",
+      "title": "Trang trí bom/ID/phòng",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Quy tắc layer, equip, ownership và giới hạn từng slot?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F034-L01",
+      "group_id": "KR-F034",
+      "title": "Emote và fanfare",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Trigger biểu cảm/hiệu ứng và quyền sở hữu?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F035-L01",
+      "group_id": "KR-F035",
+      "title": "Exchange giao dịch/confirm/cancel",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "UI trao đổi gì; xác nhận, hủy và transaction?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F036-L01",
+      "group_id": "KR-F036",
+      "title": "DTT pool/xác suất",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tên hiển thị, pool, tỷ lệ và lịch mùa?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F036-L02",
+      "group_id": "KR-F036",
+      "title": "DTT season shop",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tên hiển thị, pool, tỷ lệ và lịch mùa?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F037-L01",
+      "group_id": "KR-F037",
+      "title": "CustomMap format/import/export",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Format map tùy biến, chia sẻ và quan hệ với SandBox?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F037-L02",
+      "group_id": "KR-F037",
+      "title": "TileCustom/chia sẻ/moderation",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Format map tùy biến, chia sẻ và quan hệ với SandBox?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F038-L01",
+      "group_id": "KR-F038",
+      "title": "MonWars",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Mode hay event, luật và điều kiện truy cập?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F039-L01",
+      "group_id": "KR-F039",
+      "title": "Partners và theme liên quan",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Đối tác/NPC/theme hay mode độc lập?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F040-L01",
+      "group_id": "KR-F040",
+      "title": "GreenPC/legacy trust status",
+      "release": "drop_legacy",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tín hiệu/trạng thái bảo mật nào; phần nào còn cần cho sản phẩm mới?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F041-L01",
+      "group_id": "KR-F041",
+      "title": "PC-room entitlement/benefits",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Điều kiện cấp quyền/lợi ích; không suy từ client thành xác thực server?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F042-L01",
+      "group_id": "KR-F042",
+      "title": "MissionPong",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách từng event và luật/tiến độ/reset?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F042-L02",
+      "group_id": "KR-F042",
+      "title": "CAMission",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách từng event và luật/tiến độ/reset?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F042-L03",
+      "group_id": "KR-F042",
+      "title": "GrowSprout",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Tách từng event và luật/tiến độ/reset?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F043-L01",
+      "group_id": "KR-F043",
+      "title": "Webview/news/credits ngoài luồng V1",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Chức năng nào bắt buộc V1; văn bản nào phải thay cho dự án?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F044-L01",
+      "group_id": "KR-F044",
+      "title": "Phần thưởng/EXP/rank cuối trận",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Kết quả, chuyển màn, reset và phần thưởng do đâu quyết?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F045-L01",
+      "group_id": "KR-F045",
+      "title": "Mount ride/collision",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Mỗi mount/effect thay collision/input/thời gian ra sao?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F045-L02",
+      "group_id": "KR-F045",
+      "title": "Special status/debuff",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Mỗi mount/effect thay collision/input/thời gian ra sao?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F046-L01",
+      "group_id": "KR-F046",
+      "title": "Captain2/WhiteAngel phân loại",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Phân loại tutorial, event, theme và mode; không tự coi mọi folder là mode?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F046-L02",
+      "group_id": "KR-F046",
+      "title": "Retro/RetroWriggle",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Phân loại tutorial, event, theme và mode; không tự coi mọi folder là mode?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    },
+    {
+      "id": "KR-F046-L03",
+      "group_id": "KR-F046",
+      "title": "HoneyButterChip/FullMoon/bnbolympic",
+      "release": "later",
+      "origin": "design_scope",
+      "evidence_status": "asset_signal",
+      "implementation": "not_started",
+      "owner": "research",
+      "depends_on": [],
+      "server_responsibility": "Chưa xác định; cần tách state/quyền/dữ liệu server của tính năng.",
+      "acceptance": "Chưa triển khai; trước khi mở scope phải xác nhận entry→UI/code, viết spec và acceptance riêng.",
+      "open_questions": "Phân loại tutorial, event, theme và mode; không tự coi mọi folder là mode?",
+      "tracking": {
+        "assignee": "",
+        "reviewer": "",
+        "updated_at": "2026-10-19",
+        "accepted_baseline": "",
+        "accepted_spec": "",
+        "integration_commit": "",
+        "evidence": [],
+        "verification": {
+          "status": "not_run",
+          "command": "",
+          "result": ""
+        },
+        "review": {
+          "status": "not_requested",
+          "result": ""
+        },
+        "blocker": "",
+        "next_action": ""
+      }
+    }
+  ]
+}
