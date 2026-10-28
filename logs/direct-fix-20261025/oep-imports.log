@@ -1,0 +1,115 @@
+[1;36mfrida-agent[0m: Setting up OEP tracing for "ca.exe"
+[1;36mfrida-agent[0m: Main module base=0x400000 size=19582976
+[1;36mfrida-agent[0m: NtProtectVirtualMemory hook installing at 0x7bf3c6a0
+[1;36mfrida-agent[0m: NtProtect enter #0 handle=0xffffffff base_ptr=0x19afedc base=0x7bf3f2b0 region=4096 protection=0x40 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect leave #0 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #1 handle=0xffffffff base_ptr=0x19afedc base=0x7bf3f2b0 region=4096 protection=0x20 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect leave #1 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #2 handle=0xffffffff base_ptr=0x19afedc base=0x7bf3cfc4 region=4096 protection=0x40 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect leave #2 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #3 handle=0xffffffff base_ptr=0x19afbb8 base=0x84c1000 region=2212864 protection=0x4 caller=0x7bf6faf1
+[1;36mfrida-agent[0m: NtProtect leave #3 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #4 handle=0xffffffff base_ptr=0x19afbb8 base=0x86de000 region=100864 protection=0x4 caller=0x7bf6faf1
+[1;36mfrida-agent[0m: NtProtect leave #4 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #5 handle=0xffffffff base_ptr=0x19afbb8 base=0x870f000 region=1024 protection=0x4 caller=0x7bf6faf1
+[1;36mfrida-agent[0m: NtProtect leave #5 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #6 handle=0xffffffff base_ptr=0x19afbb8 base=0x8710000 region=65536 protection=0x4 caller=0x7bf6faf1
+[1;36mfrida-agent[0m: NtProtect leave #6 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #7 handle=0xffffffff base_ptr=0x19afbb8 base=0x84c1000 region=2212864 protection=0x20 caller=0x7bf6fc42
+[1;36mfrida-agent[0m: NtProtect leave #7 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #8 handle=0xffffffff base_ptr=0x19afbb8 base=0x86de000 region=100864 protection=0x8 caller=0x7bf6fc42
+[1;36mfrida-agent[0m: NtProtect leave #8 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #9 handle=0xffffffff base_ptr=0x19afbb8 base=0x870f000 region=1024 protection=0x2 caller=0x7bf6fc42
+[1;36mfrida-agent[0m: NtProtect leave #9 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #10 handle=0xffffffff base_ptr=0x19afbb8 base=0x8710000 region=65536 protection=0x2 caller=0x7bf6fc42
+[1;36mfrida-agent[0m: NtProtect leave #10 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #11 handle=0xffffffff base_ptr=0x19af87c base=0x84c11ac region=292 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #11 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #12 handle=0xffffffff base_ptr=0x19af87c base=0x84c1000 region=4096 protection=0x20 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #12 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #13 handle=0xffffffff base_ptr=0x19af87c base=0x84c1010 region=108 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #13 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #14 handle=0xffffffff base_ptr=0x19af87c base=0x84c1000 region=4096 protection=0x20 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #14 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #15 handle=0xffffffff base_ptr=0x19af87c base=0x84c1080 region=296 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #15 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #16 handle=0xffffffff base_ptr=0x19af87c base=0x84c1000 region=4096 protection=0x20 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #16 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #17 handle=0xffffffff base_ptr=0x19af87c base=0x84c1000 region=12 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #17 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #18 handle=0xffffffff base_ptr=0x19af87c base=0x84c1000 region=4096 protection=0x20 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #18 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #19 handle=0xffffffff base_ptr=0x19af87c base=0x744e0450 region=28 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #19 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #20 handle=0xffffffff base_ptr=0x19af87c base=0x744e0000 region=4096 protection=0x8 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #20 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #21 handle=0xffffffff base_ptr=0x19af87c base=0x744e04b8 region=308 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #21 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #22 handle=0xffffffff base_ptr=0x19af87c base=0x744e0000 region=4096 protection=0x8 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #22 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #23 handle=0xffffffff base_ptr=0x19af24c base=0x7446419c region=60 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #23 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #24 handle=0xffffffff base_ptr=0x19af24c base=0x74464000 region=4096 protection=0x8 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #24 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #25 handle=0xffffffff base_ptr=0x19af24c base=0x744641dc region=92 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #25 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #26 handle=0xffffffff base_ptr=0x19af24c base=0x74464000 region=4096 protection=0x8 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #26 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #27 handle=0xffffffff base_ptr=0x19af24c base=0x7446423c region=4 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #27 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #28 handle=0xffffffff base_ptr=0x19af24c base=0x74464000 region=4096 protection=0x8 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #28 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #29 handle=0xffffffff base_ptr=0x19af24c base=0x74464244 region=84 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #29 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #30 handle=0xffffffff base_ptr=0x19af24c base=0x74464000 region=4096 protection=0x8 caller=0x7bf7ce74
+[1;36mfrida-agent[0m: NtProtect leave #30 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #31 handle=0xffffffff base_ptr=0x19af24c base=0x7446429c region=32 protection=0x4 caller=0x7bf7cbd4
+[1;36mfrida-agent[0m: NtProtect leave #31 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #177 handle=0xffffffff base_ptr=0x19afedc base=0x401000 region=4294656 protection=0x40 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect leave #177 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #178 handle=0xffffffff base_ptr=0x19afed8 base=0x400000 region=4096 protection=0x4 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect main-base match #178 base=0x400000
+[1;36mfrida-agent[0m: DEP before value=1 flags=0x0 permanent=0 lastError=0
+[1;36mfrida-agent[0m: DEP SetProcessDEPPolicy value=1 lastError=0
+[1;36mfrida-agent[0m: DEP after value=1 flags=0x1 permanent=1 lastError=0
+[1;36mfrida-agent[0m: OEP range protect base=0x401000 size=11567104 result=true
+[1;36mfrida-agent[0m: Exception handler registered
+[1;36mfrida-agent[0m: NtProtect leave #178 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #179 handle=0xffffffff base_ptr=0x19afed8 base=0x400000 region=4096 protection=0x2 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect main-base match #179 base=0x400000
+[1;36mfrida-agent[0m: OEP range protect base=0x401000 size=11567104 result=true
+[1;36mfrida-agent[0m: NtProtect leave #179 status=0x0
+[1;36mfrida-agent[0m: Exception #0 type=illegal-instruction operation=none address=none pc=0x12c4179
+[1;36mfrida-agent[0m: Exception #1 type=illegal-instruction operation=none address=none pc=0x12c48bb
+[1;36mfrida-agent[0m: Exception #2 type=illegal-instruction operation=none address=none pc=0x12c4c82
+[1;36mfrida-agent[0m: Exception #3 type=illegal-instruction operation=none address=none pc=0x12c4cff
+[1;36mfrida-agent[0m: Exception #4 type=illegal-instruction operation=none address=none pc=0x12c5ab2
+[1;36mfrida-agent[0m: Exception #5 type=illegal-instruction operation=none address=none pc=0x12c55e7
+[1;36mfrida-agent[0m: Exception #6 type=illegal-instruction operation=none address=none pc=0x12c543a
+[1;36mfrida-agent[0m: Exception #7 type=illegal-instruction operation=none address=none pc=0x12d234b
+[1;36mfrida-agent[0m: Exception #8 type=illegal-instruction operation=none address=none pc=0x12d2073
+[1;36mfrida-agent[0m: Exception #9 type=illegal-instruction operation=none address=none pc=0x12d2fa9
+[1;36mfrida-agent[0m: Exception #10 type=illegal-instruction operation=none address=none pc=0x12d2c66
+[1;36mfrida-agent[0m: Exception #11 type=illegal-instruction operation=none address=none pc=0x12d2f2b
+[1;36mfrida-agent[0m: NtProtect enter #180 handle=0xffffffff base_ptr=0x19aeff0 base=0x400000 region=4096 protection=0x4 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect main-base match #180 base=0x400000
+[1;36mfrida-agent[0m: OEP range protect base=0x401000 size=11567104 result=true
+[1;36mfrida-agent[0m: NtProtect leave #180 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #181 handle=0xffffffff base_ptr=0x19aeff0 base=0x400000 region=4096 protection=0x2 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect main-base match #181 base=0x400000
+[1;36mfrida-agent[0m: OEP range protect base=0x401000 size=11567104 result=true
+[1;36mfrida-agent[0m: NtProtect leave #181 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #182 handle=0xffffffff base_ptr=0x19aeff0 base=0x400000 region=4096 protection=0x4 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect main-base match #182 base=0x400000
+[1;36mfrida-agent[0m: OEP range protect base=0x401000 size=11567104 result=true
+[1;36mfrida-agent[0m: NtProtect leave #182 status=0x0
+[1;36mfrida-agent[0m: NtProtect enter #183 handle=0xffffffff base_ptr=0x19aeff0 base=0x400000 region=4096 protection=0x2 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect main-base match #183 base=0x400000
+[1;36mfrida-agent[0m: OEP range protect base=0x401000 size=11567104 result=true
+[1;36mfrida-agent[0m: NtProtect leave #183 status=0x0
+[1;36mfrida-agent[0m: Exception #12 type=access-violation operation=execute address=0x9e5efe pc=0x9e5efe
+[1;36mfrida-agent[0m: OEP found (thread #396): 0x9e5efe
+[1;36mfrida-agent[0m: NtProtect enter #184 handle=0xffffffff base_ptr=0x19ad45c base=0x401000 region=11567104 protection=0x4 caller=0x7bc60e32
+[1;36mfrida-agent[0m: NtProtect leave #184 status=0x0
+{'type': 'send', 'payload': {'event': 'oep_reached', 'OEP': '0x9e5efe', 'BASE': '0x400000', 'DOTNET': False}}
+[{"slot": "0xc0f7c4", "target": "0x100107e0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOLogout"]}, {"slot": "0xc0f7c8", "target": "0x10010aa0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetFriendInfo"]}, {"slot": "0xc0f7cc", "target": "0x10010bb0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetMyIdCode"]}, {"slot": "0xc0f7d0", "target": "0x100108a0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOChangeMyInfo"]}, {"slot": "0xc0f7d4", "target": "0x10010b70", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetMyStatus"]}, {"slot": "0xc0f7d8", "target": "0x100109e0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetAddFriendConfirmMessage"]}, {"slot": "0xc0f7dc", "target": "0x100108e0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOBlockUser"]}, {"slot": "0xc0f7e0", "target": "0x10010920", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCODeleteUser"]}, {"slot": "0xc0f7e4", "target": "0x10010960", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOCreateChatSession"]}, {"slot": "0xc0f7e8", "target": "0x10010d30", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMGSResetCallbackAndWantClose"]}, {"slot": "0xc0f7ec", "target": "0x10010cc0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMGSRegisterCallbackMsg"]}, {"slot": "0xc0f7f0", "target": "0x100109a0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetServerMessage"]}, {"slot": "0xc0f7f4", "target": "0x10010820", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOAddNewFriend"]}, {"slot": "0xc0f7f8", "target": "0x10010860", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOConfirmAddFriend"]}, {"slot": "0xc0f7fc", "target": "0x100110d0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCSSendChatMessage"]}, {"slot": "0xc0f800", "target": "0x10010750", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCORegisterCallbackMessage"]}, {"slot": "0xc0f804", "target": "0x10010710", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOInitWithMultiServer"]}, {"slot": "0xc0f808", "target": "0x10010af0", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetMyScreenName"]}, {"slot": "0xc0f80c", "target": "0x10010b30", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetMyPosition"]}, {"slot": "0xc0f810", "target": "0x10010790", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOLogin"]}, {"slot": "0xc0f814", "target": "0x10010f30", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMGSGetMemberList"]}, {"slot": "0xc0f818", "target": "0x10010e10", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMGSGetInviteCandidateList"]}, {"slot": "0xc0f81c", "target": "0x10011050", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCSGetChatMessage"]}, {"slot": "0xc0f820", "target": "0x10010d90", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMGSInviteUser"]}, {"slot": "0xc0f824", "target": "0x10010a20", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetFriendList"]}, {"slot": "0xc0f828", "target": "0x10010a60", "module": {"name": "nmco3.dll", "base": "0x10000000", "size": 565248, "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"}, "names": ["NMCOGetIdCodeFromIdx"]}, {"slot": "0xc0f830", "target": "0x7714afc0", "module": {"name": "ole32.dll", "base": "0x77140000", "size": 778240, "path": "C:\\windows\\system32\\ole32.dll"}, "names": ["CoInitialize"]}, {"slot": "0xc0f834", "target": "0x77172c30", "module": {"name": "ole32.dll", "base": "0x77140000", "size": 778240, "path": "C:\\windows\\system32\\ole32.dll"}, "names": ["OleUninitialize"]}, {"slot": "0xc0f838", "target": "0x77170180", "module": {"name": "ole32.dll", "base": "0x77140000", "size": 778240, "path": "C:\\windows\\system32\\ole32.dll"}, "names": ["OleInitialize"]}, {"slot": "0xc0f83c", "target": "0x770ebae0", "module": {"name": "combase.dll", "base": "0x770e0000", "size": 327680, "path": "C:\\windows\\system32\\combase.dll"}, "names": ["CoUninitialize"]}, {"slot": "0xc0f840", "target": "0x770e6920", "module": {"name": "combase.dll", "base": "0x770e0000", "size": 327680, "path": "C:\\windows\\system32\\combase.dll"}, "names": ["CoCreateInstance"]}, {"slot": "0xc0f844", "target": "0x770e68c0", "module": {"name": "combase.dll", "base": "0x770e0000", "size": 327680, "path": "C:\\windows\\system32\\combase.dll"}, "names": ["CoCreateGuid"]}]

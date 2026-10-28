@@ -1,0 +1,32 @@
+INFO: umu-launcher version 1.4.4 (3.14.8 (main, Sep 30 2026, 17:55:09) [GCC 16.2.0])
+INFO: steamrt3 is up to date
+WARNING: Executable not found: W:\Games\Projects\boom-re\logs\unlicense-20261025T065707Z\dep-probe-20261025T075000Z\winpython\python.exe
+INFO: Running 'UMU-Proton-10.0-4' using runtime 'sniper'
+INFO: Running 'steamrt3' using runtime 'host'
+pressure-vessel-wrap[106596]: W: "/run/current-system/sw/bin/getent" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[106596]: W: Unable to determine architecture of provider / ldconfig: Error reading "(null)" ELF header: invalid `Elf' handle
+pressure-vessel-wrap[106596]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[106596]: W: "run/opengl-driver-32/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[106596]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+ProtonFixes[106713] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[106713] INFO: Running checks
+ProtonFixes[106713] INFO: All checks successful
+ProtonFixes[106713] WARN: Game title not found in CSV
+ProtonFixes[106713] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[106713] INFO: No store specified, using UMU database
+ProtonFixes[106713] INFO: Using early stage global defaults for UNKNOWN (umu-BoomTrace)
+ProtonFixes[106713] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[106713] INFO: No store specified, using UMU database
+ProtonFixes[106713] INFO: No early stage global protonfix found for UNKNOWN (umu-BoomTrace)
+ProtonFixes[106713] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[106713] INFO: Running checks
+ProtonFixes[106713] INFO: All checks successful
+ProtonFixes[106713] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[106713] INFO: No store specified, using UMU database
+ProtonFixes[106713] INFO: Using main stage global defaults for UNKNOWN (umu-BoomTrace)
+ProtonFixes[106713] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[106713] INFO: No store specified, using UMU database
+ProtonFixes[106713] INFO: No main stage global protonfix found for UNKNOWN (umu-BoomTrace)
+Proton: W:\Games\Projects\boom-re\logs\unlicense-20261025T065707Z\dep-probe-20261025T075000Z\winpython\python.exe
+Proton: Executable is inside wine prefix, launching normally.
+fsync: up and running.

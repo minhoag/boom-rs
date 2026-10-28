@@ -1,0 +1,16 @@
+diff --git a/server/src/session.rs b/server/src/session.rs
+index d35eb03..28f0bba 100644
+--- a/server/src/session.rs
++++ b/server/src/session.rs
+@@ -277,6 +277,11 @@ pub async fn handle(sock: TcpStream, port: u16, cfg: Arc<Config>, log: Log, hub:
+                 // after 289: enter-shop request (sub_7EFB6A): u8, u8 n, n x (str name, u32 id), u8 -> 20 (CStage__On_20, stage 14)
+                 log(format!("[{port}] shop enter 38 -> 20"));
+                 let _ = tx.send(pk::shop_data(gold));
++            } else if op == 102 && body.len() >= 3 && proto::get_int(&body[2..], 1, true) == 0 {
++                // CShopStageNew::vf80 waits for On_100 (u16 destination stage) before leaving the shop.
++                let stage = if in_room { 12 } else { 11 };
++                log(format!("[{port}] shop leave 102 -> 100 (stage {stage})"));
++                let _ = tx.send(pk::Packet::new(100).u16(stage).build());
+             } else if op == 260 || op == 259 {
+                 // cash requests: 260 on shop entry (sub_800DF0), 259 after a purchase; bool -> 221 {u8 slot, u32 cash}
+                 log(format!("[{port}] cash {op} -> 221 ({cash})"));

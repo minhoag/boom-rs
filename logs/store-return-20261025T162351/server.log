@@ -1,0 +1,685 @@
+     0.003 config Config { room_type: 0, map_index: 0, start_op: 117, round_time: 120.0, spawn_same: false, team_split: false, auto_start: 0.0, turn_start: 10.0, turn_mode: 1, go_start: 3.0, begin_start: 0.0, begin_op: 191, play_start: 4.0, post_play_start: 2.0, bomb_fuse: 2.5, death_end: 0.0, match_end: 3.0, 
+     0.003 listening on 3838
+     0.003 listening on 4848
+     0.003 listening on 5858
+     0.003 listening on 6868
+     1.655 [4848] connect from 127.0.0.1:47908
+     1.755 [4848] close 127.0.0.1:47908
+     1.983 [6868] connect from 127.0.0.1:51516
+     4.669 [6868] C->S opcode 15 body a566963731c296ca539596ca5395
+     8.071 [6868] C->S opcode 1 body a5685ba56fac4b64361117a56dbc0d3523f3a610af92ca21f496ca539596ca539596ca5395fdaefb55
+     8.071 [6868] login -> user 1000
+     8.071 [6868] S->C opcode 4
+     8.071 [6868] S->C opcode 15
+     8.071 [6868] S->C opcode 2
+     8.071 [6868] C->S opcode 58 body a553870f2f2a96ca539596ca539596ca539596ca5395
+     8.072 [6868] C->S opcode 9 body a56096ca5395
+     8.302 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+     8.310 [6868] C->S opcode 40 body a5415a
+     8.310 [6868] S->C opcode 14
+     8.310 [6868] S->C opcode 16
+     9.670 [6868] C->S opcode 15 body a5669637267496ca539596ca5395
+    13.240 [6868] C->S opcode 5 body a56c5096ca5395
+    13.240 [6868] S->C opcode 7
+    13.246 [6868] close 127.0.0.1:51516
+    13.248 [6868] connect from 127.0.0.1:37528
+    13.248 [6868] C->S opcode 6 body a56f5ba5a56ee2b936e1d70c6b96ca507d96ca53950000000071b185895a5b
+    13.248 [6868] channel login user 1000
+    13.248 [6868] S->C opcode 17
+    13.458 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    13.500 [6868] C->S opcode 303 body a4465b5a
+    13.500 [6868] C->S opcode 319 body a456
+    13.500 [6868] C->S opcode 64 body a529a569
+    13.500 [6868] user list page 0 -> 69
+    13.500 [6868] C->S opcode 476 body a4b5
+    13.500 [6868] C->S opcode 477 body a4b4
+    13.500 [6868] C->S opcode 395 body a4e2
+    13.502 [6868] S->C opcode 69
+    13.502 [6868] S->C opcode 69
+    13.502 [6868] S->C opcode 23
+    13.502 [6868] S->C opcode 51
+    13.502 [6868] S->C opcode 466
+    13.502 [6868] S->C opcode 467
+    13.502 [6868] S->C opcode 88
+    13.502 [6868] S->C opcode 234
+    13.503 [6868] S->C opcode 231
+    13.505 [6868] C->S opcode 337 body a43896ca5395
+    13.505 [6868] 337 outside a room join (data request), ignored
+    13.563 [6868] C->S opcode 64 body a529a569
+    13.564 [6868] user list page 0 -> 69
+    13.564 [6868] S->C opcode 69
+    13.564 [6868] C->S opcode 396 body a4e5
+    13.564 [6868] C->S opcode 282 body a473
+    13.605 [6868] C->S opcode 451 body a4aa
+    14.674 [6868] C->S opcode 15 body a5669637daf996ca539596ca5395
+    14.848 [6868] C->S opcode 325 body a42c5a
+    14.848 [6868] shop request -> 289
+    14.848 [6868] S->C opcode 289
+    14.855 [6868] C->S opcode 38 body a54f585ba56ee2b936e1d70c6b96ca507d5a
+    14.855 [6868] shop enter 38 -> 20
+    14.855 [6868] S->C opcode 20
+    14.855 [6868] C->S opcode 102 body a50f5b
+    14.896 [6868] C->S opcode 276 body a47d
+    14.896 [6868] shop list 276
+    14.896 [6868] C->S opcode 256 body a469
+    14.896 [6868] shop list 256
+    14.896 [6868] C->S opcode 278 body a47f
+    14.896 [6868] shop list 278
+    14.896 [6868] S->C opcode 64
+    14.896 [6868] S->C opcode 65
+    14.896 [6868] S->C opcode 225
+    15.080 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    15.133 [6868] C->S opcode 260 body a46d5a
+    15.133 [6868] cash 260 -> 221 (3000)
+    15.133 [6868] S->C opcode 221
+    15.810 [6868] C->S opcode 267 body a4625b5aa5695b5b
+    15.852 [6868] C->S opcode 75 body a5225b5a
+    15.852 [6868] C->S opcode 102 body a50f5a
+    15.852 [6868] shop leave 102 -> 100 (stage 11)
+    15.852 [6868] S->C opcode 100
+    15.857 [6868] C->S opcode 81 body a538
+    16.073 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    16.073 [6868] C->S opcode 303 body a4465b5a
+    16.074 [6868] C->S opcode 64 body a529a569
+    16.074 [6868] user list page 0 -> 69
+    16.074 [6868] S->C opcode 69
+    16.074 [6868] C->S opcode 476 body a4b5
+    16.074 [6868] C->S opcode 477 body a4b4
+    16.114 [6868] C->S opcode 395 body a4e2
+    16.116 [6868] S->C opcode 69
+    16.116 [6868] S->C opcode 69
+    16.116 [6868] S->C opcode 23
+    16.116 [6868] S->C opcode 51
+    16.116 [6868] S->C opcode 466
+    16.116 [6868] S->C opcode 467
+    16.116 [6868] S->C opcode 88
+    16.116 [6868] S->C opcode 234
+    16.117 [6868] S->C opcode 231
+    16.120 [6868] C->S opcode 337 body a43896ca5395
+    16.120 [6868] 337 outside a room join (data request), ignored
+    16.184 [6868] C->S opcode 64 body a529a569
+    16.184 [6868] user list page 0 -> 69
+    16.184 [6868] S->C opcode 69
+    16.184 [6868] C->S opcode 396 body a4e5
+    16.185 [6868] C->S opcode 282 body a473
+    16.227 [6868] C->S opcode 451 body a4aa
+    16.685 [6868] C->S opcode 325 body a42c5a
+    16.685 [6868] shop request -> 289
+    16.685 [6868] S->C opcode 289
+    16.691 [6868] C->S opcode 38 body a54f585ba56ee2b936e1d70c6b96ca507d5a
+    16.691 [6868] shop enter 38 -> 20
+    16.691 [6868] S->C opcode 20
+    16.691 [6868] C->S opcode 102 body a50f5b
+    16.731 [6868] C->S opcode 276 body a47d
+    16.731 [6868] shop list 276
+    16.731 [6868] C->S opcode 256 body a469
+    16.731 [6868] shop list 256
+    16.731 [6868] C->S opcode 278 body a47f
+    16.731 [6868] shop list 278
+    16.731 [6868] S->C opcode 64
+    16.731 [6868] S->C opcode 65
+    16.731 [6868] S->C opcode 225
+    16.915 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    16.966 [6868] C->S opcode 260 body a46d5a
+    16.966 [6868] cash 260 -> 221 (3000)
+    16.966 [6868] S->C opcode 221
+    17.616 [6868] C->S opcode 267 body a4625b5aa5695b5b
+    17.657 [6868] C->S opcode 75 body a5225b5a
+    17.657 [6868] C->S opcode 102 body a50f5a
+    17.657 [6868] shop leave 102 -> 100 (stage 11)
+    17.657 [6868] S->C opcode 100
+    17.657 [6868] C->S opcode 81 body a538
+    17.874 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    17.875 [6868] C->S opcode 303 body a4465b5a
+    17.875 [6868] C->S opcode 64 body a529a569
+    17.875 [6868] user list page 0 -> 69
+    17.875 [6868] S->C opcode 69
+    17.875 [6868] C->S opcode 476 body a4b5
+    17.916 [6868] C->S opcode 477 body a4b4
+    17.916 [6868] C->S opcode 395 body a4e2
+    17.919 [6868] S->C opcode 69
+    17.919 [6868] S->C opcode 69
+    17.919 [6868] S->C opcode 69
+    17.919 [6868] S->C opcode 23
+    17.919 [6868] S->C opcode 51
+    17.919 [6868] S->C opcode 466
+    17.919 [6868] S->C opcode 467
+    17.919 [6868] S->C opcode 88
+    17.919 [6868] S->C opcode 234
+    17.919 [6868] S->C opcode 231
+    17.923 [6868] C->S opcode 337 body a43896ca5395
+    17.923 [6868] 337 outside a room join (data request), ignored
+    17.978 [6868] C->S opcode 64 body a529a569
+    17.978 [6868] user list page 0 -> 69
+    17.978 [6868] S->C opcode 69
+    17.978 [6868] C->S opcode 396 body a4e5
+    17.978 [6868] C->S opcode 282 body a473
+    18.020 [6868] C->S opcode 451 body a4aa
+    19.675 [6868] C->S opcode 15 body a5669637cf6096ca539596ca5395
+    20.154 [6868] C->S opcode 77 body a524a578f7ac36d1c4be3fe0c2a73cfaf3a627fc6aa56996ca539b96ca539496ca539596ca538696ca539596ca539596ca53956935ac6a96ca53955a
+    20.154 [6868] S->C opcode 83
+    20.413 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    20.454 [6868] C->S opcode 303 body a4465b5a
+    20.454 [6868] C->S opcode 337 body a43896ca5395
+    20.454 [6868] user 1000 enters the room in slot 0 (0 others)
+    20.454 [6868] C->S opcode 476 body a4b5
+    20.454 [6868] S->C opcode 103
+    20.454 [6868] S->C opcode 106
+    20.454 [6868] S->C opcode 113
+    20.459 [6868] C->S opcode 88 body a531a6d396ca5395
+    20.459 [6868] map choice from user 1000: index 0 code 954 (automatic on entry: room map kept)
+    20.459 [6868] S->C opcode 113
+    21.361 [6868] C->S opcode 75 body a5225b5a
+    21.403 [6868] C->S opcode 81 body a538
+    21.403 [6868] user 1000 leaves the room
+    21.572 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    21.573 [6868] C->S opcode 303 body a4465b5a
+    21.573 [6868] C->S opcode 64 body a529a569
+    21.573 [6868] user list page 0 -> 69
+    21.573 [6868] S->C opcode 69
+    21.573 [6868] C->S opcode 476 body a4b5
+    21.573 [6868] C->S opcode 477 body a4b4
+    21.614 [6868] C->S opcode 395 body a4e2
+    21.617 [6868] S->C opcode 69
+    21.617 [6868] S->C opcode 23
+    21.617 [6868] S->C opcode 51
+    21.617 [6868] S->C opcode 466
+    21.617 [6868] S->C opcode 467
+    21.617 [6868] S->C opcode 88
+    21.617 [6868] S->C opcode 234
+    21.617 [6868] S->C opcode 231
+    21.617 [6868] C->S opcode 337 body a43896ca5395
+    21.617 [6868] 337 outside a room join (data request), ignored
+    21.675 [6868] C->S opcode 64 body a529a569
+    21.675 [6868] user list page 0 -> 69
+    21.675 [6868] S->C opcode 69
+    21.675 [6868] C->S opcode 396 body a4e5
+    21.676 [6868] C->S opcode 282 body a473
+    21.717 [6868] C->S opcode 451 body a4aa
+    23.427 [6868] C->S opcode 77 body a524a578f7ac36d1c4be3fe0c2a73cfaf3a627fc6aa56996ca538596ca539496ca539596ca538696ca539596ca539596ca53956935ac6a96ca53955a
+    23.427 [6868] S->C opcode 83
+    23.688 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    23.730 [6868] C->S opcode 303 body a4465b5a
+    23.730 [6868] C->S opcode 337 body a43896ca5395
+    23.730 [6868] user 1000 enters the room in slot 0 (0 others)
+    23.730 [6868] C->S opcode 476 body a4b5
+    23.730 [6868] S->C opcode 103
+    23.730 [6868] S->C opcode 106
+    23.730 [6868] S->C opcode 113
+    23.735 [6868] C->S opcode 88 body a531a6d396ca5395
+    23.735 [6868] map choice from user 1000: index 0 code 954 (automatic on entry: room map kept)
+    23.735 [6868] S->C opcode 113
+    24.256 [6868] C->S opcode 325 body a42c5a
+    24.256 [6868] shop request -> 289
+    24.256 [6868] S->C opcode 289
+    24.262 [6868] C->S opcode 38 body a54f585ba56ee2b936e1d70c6b96ca507d5a
+    24.262 [6868] shop enter 38 -> 20
+    24.262 [6868] S->C opcode 20
+    24.262 [6868] C->S opcode 102 body a50f5b
+    24.302 [6868] C->S opcode 276 body a47d
+    24.302 [6868] shop list 276
+    24.302 [6868] C->S opcode 256 body a469
+    24.302 [6868] shop list 256
+    24.302 [6868] C->S opcode 278 body a47f
+    24.302 [6868] shop list 278
+    24.302 [6868] S->C opcode 64
+    24.302 [6868] S->C opcode 65
+    24.302 [6868] S->C opcode 225
+    24.478 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    24.530 [6868] C->S opcode 260 body a46d5a
+    24.530 [6868] cash 260 -> 221 (3000)
+    24.530 [6868] S->C opcode 221
+    24.679 [6868] C->S opcode 15 body a5669637e31496ca539596ca5395
+    25.184 [6868] C->S opcode 267 body a4625b5aa5695b5b
+    25.184 [6868] C->S opcode 75 body a5225b5a
+    25.184 [6868] C->S opcode 102 body a50f5a
+    25.184 [6868] shop leave 102 -> 100 (stage 12)
+    25.184 [6868] S->C opcode 100
+    25.189 [6868] C->S opcode 83 body a53aa56896ca5395
+    25.441 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    25.441 [6868] C->S opcode 303 body a4465b5a
+    25.448 [6868] C->S opcode 337 body a43896ca5395
+    25.448 [6868] user 1000 enters the room in slot 0 (0 others)
+    25.448 [6868] S->C opcode 103
+    25.448 [6868] S->C opcode 106
+    25.448 [6868] S->C opcode 113
+    25.449 [6868] C->S opcode 476 body a4b5
+    25.450 [6868] C->S opcode 88 body a531a6d396ca5395
+    25.450 [6868] map choice from user 1000: index 0 code 954 (automatic on entry: room map kept)
+    25.450 [6868] S->C opcode 113
+    27.431 [6868] C->S opcode 88 body a531a6d396ca5395
+    27.431 [6868] map choice from user 1000: index 0 code 954
+    27.431 [6868] S->C opcode 113
+    29.296 [6868] C->S opcode 75 body a5225b5a
+    29.337 [6868] C->S opcode 81 body a538
+    29.337 [6868] user 1000 leaves the room
+    29.509 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    29.509 [6868] C->S opcode 303 body a4465b5a
+    29.510 [6868] C->S opcode 64 body a529a569
+    29.510 [6868] user list page 0 -> 69
+    29.510 [6868] S->C opcode 69
+    29.510 [6868] C->S opcode 476 body a4b5
+    29.510 [6868] C->S opcode 477 body a4b4
+    29.552 [6868] C->S opcode 395 body a4e2
+    29.554 [6868] S->C opcode 69
+    29.554 [6868] S->C opcode 23
+    29.554 [6868] S->C opcode 51
+    29.554 [6868] S->C opcode 466
+    29.554 [6868] S->C opcode 467
+    29.554 [6868] S->C opcode 88
+    29.554 [6868] S->C opcode 234
+    29.554 [6868] S->C opcode 231
+    29.555 [6868] C->S opcode 337 body a43896ca5395
+    29.555 [6868] 337 outside a room join (data request), ignored
+    29.613 [6868] C->S opcode 64 body a529a569
+    29.613 [6868] user list page 0 -> 69
+    29.613 [6868] S->C opcode 69
+    29.613 [6868] C->S opcode 396 body a4e5
+    29.614 [6868] C->S opcode 282 body a473
+    29.654 [6868] C->S opcode 451 body a4aa
+    29.685 [6868] C->S opcode 15 body a5669637979a96ca539596ca5395
+    32.666 [6868] C->S opcode 77 body a524a578f7ac36d1c4be3fe0c2a73cfaf3a627fc6aa56996ca538596ca539496ca539596ca538696ca539596ca539596ca53956935ac6a96ca53955a
+    32.667 [6868] S->C opcode 83
+    32.927 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    32.968 [6868] C->S opcode 303 body a4465b5a
+    32.968 [6868] C->S opcode 337 body a43896ca5395
+    32.968 [6868] user 1000 enters the room in slot 0 (0 others)
+    32.968 [6868] C->S opcode 476 body a4b5
+    32.968 [6868] S->C opcode 103
+    32.968 [6868] S->C opcode 106
+    32.968 [6868] S->C opcode 113
+    32.972 [6868] C->S opcode 88 body a531a6d396ca5395
+    32.972 [6868] map choice from user 1000: index 0 code 954 (automatic on entry: room map kept)
+    32.972 [6868] S->C opcode 113
+    33.686 [6868] C->S opcode 94 body a5375e5b
+    33.686 [6868] slot 4 closed=true
+    33.686 [6868] S->C opcode 106
+    34.108 [6868] C->S opcode 94 body a5375f5b
+    34.108 [6868] slot 5 closed=true
+    34.108 [6868] S->C opcode 106
+    34.431 [6868] C->S opcode 94 body a5375c5b
+    34.431 [6868] slot 6 closed=true
+    34.431 [6868] S->C opcode 106
+    34.686 [6868] C->S opcode 15 body a5669637840d96ca539596ca5395
+    34.727 [6868] C->S opcode 94 body a5375f5a
+    34.727 [6868] slot 5 closed=false
+    34.727 [6868] S->C opcode 106
+    35.010 [6868] C->S opcode 94 body a5375e5a
+    35.010 [6868] slot 4 closed=false
+    35.011 [6868] S->C opcode 106
+    35.277 [6868] C->S opcode 94 body a5375c5a
+    35.277 [6868] slot 6 closed=false
+    35.277 [6868] S->C opcode 106
+    39.688 [6868] C->S opcode 15 body a5669637b8b796ca539596ca5395
+    44.693 [6868] C->S opcode 15 body a5669637ad3b96ca539596ca5395
+    49.696 [6868] C->S opcode 15 body a566963441ac96ca539596ca5395
+    54.700 [6868] C->S opcode 15 body a5669634765096ca539596ca5395
+    59.230 [6868] C->S opcode 75 body a5225b5a
+    59.230 [6868] C->S opcode 81 body a538
+    59.230 [6868] user 1000 leaves the room
+    59.442 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+    59.442 [6868] C->S opcode 303 body a4465b5a
+    59.442 [6868] C->S opcode 64 body a529a569
+    59.442 [6868] user list page 0 -> 69
+    59.442 [6868] S->C opcode 69
+    59.442 [6868] C->S opcode 476 body a4b5
+    59.483 [6868] C->S opcode 477 body a4b4
+    59.483 [6868] C->S opcode 395 body a4e2
+    59.486 [6868] S->C opcode 69
+    59.486 [6868] S->C opcode 23
+    59.486 [6868] S->C opcode 51
+    59.486 [6868] S->C opcode 466
+    59.486 [6868] S->C opcode 467
+    59.486 [6868] S->C opcode 88
+    59.486 [6868] S->C opcode 234
+    59.486 [6868] S->C opcode 231
+    59.486 [6868] C->S opcode 337 body a43896ca5395
+    59.486 [6868] 337 outside a room join (data request), ignored
+    59.541 [6868] C->S opcode 64 body a529a569
+    59.541 [6868] user list page 0 -> 69
+    59.541 [6868] S->C opcode 69
+    59.541 [6868] C->S opcode 396 body a4e5
+    59.542 [6868] C->S opcode 282 body a473
+    59.582 [6868] C->S opcode 451 body a4aa
+    59.702 [6868] C->S opcode 15 body a56696346ada96ca539596ca5395
+    64.705 [6868] C->S opcode 15 body a56696341f4c96ca539596ca5395
+    69.711 [6868] C->S opcode 15 body a566963433f296ca539596ca5395
+    74.715 [6868] C->S opcode 15 body a5669634206196ca539596ca5395
+    79.719 [6868] C->S opcode 15 body a5669634d4ea96ca539596ca5395
+    84.723 [6868] C->S opcode 15 body a5669634c89f96ca539596ca5395
+    89.723 [6868] C->S opcode 15 body a5669634fd0696ca539596ca5395
+    94.728 [6868] C->S opcode 15 body a5669634918a96ca539596ca5395
+    99.730 [6868] C->S opcode 15 body a5669634863c96ca539596ca5395
+   104.733 [6868] C->S opcode 15 body a5669634baa196ca539596ca5395
+   109.736 [6868] C->S opcode 15 body a5669634af2b96ca539596ca5395
+   114.738 [6868] C->S opcode 15 body a566963543dc96ca539596ca5395
+   119.743 [6868] C->S opcode 15 body a5669635704396ca539596ca5395
+   124.747 [6868] C->S opcode 15 body a566963564f496ca539596ca5395
+   129.749 [6868] C->S opcode 15 body a5669635197996ca539596ca5395
+   134.752 [6868] C->S opcode 15 body a56696350de096ca539596ca5395
+   139.752 [6868] C->S opcode 15 body a5669635226b96ca539596ca5395
+   144.755 [6868] C->S opcode 15 body a5669635d61c96ca539596ca5395
+   146.729 [6868] C->S opcode 303 body a4465b5a
+   148.049 [6868] C->S opcode 302 body a447
+   148.049 [6868] C->S opcode 75 body a5225b5a
+   148.049 [6868] C->S opcode 337 body a43896ca5395
+   148.049 [6868] 337 outside a room join (data request), ignored
+   148.049 [6868] C->S opcode 66 body a52ba56ee2b936e1d70c6b5b5a
+   149.759 [6868] C->S opcode 15 body a5669635ca8196ca539596ca5395
+   154.763 [6868] C->S opcode 15 body a5669635ff3596ca539596ca5395
+   159.768 [6868] C->S opcode 15 body a566963593b896ca539596ca5395
+   164.771 [6868] C->S opcode 15 body a5669635802296ca539596ca5395
+   169.771 [6868] C->S opcode 15 body a5669635b4d596ca539596ca5395
+   174.777 [6868] C->S opcode 15 body a5669635a95896ca539596ca5395
+   179.782 [6868] C->S opcode 15 body a56697ca5dcf96ca539596ca5395
+   184.784 [6868] C->S opcode 15 body a56697ca727196ca539596ca5395
+   189.788 [6868] C->S opcode 15 body a56697ca66fa96ca539596ca5395
+   194.792 [6868] C->S opcode 15 body a56697ca1b6996ca539596ca5395
+   199.796 [6868] C->S opcode 15 body a56697ca0f1296ca539596ca5395
+   204.799 [6868] C->S opcode 15 body a56697ca238796ca539596ca5395
+   209.803 [6868] C->S opcode 15 body a56697cad00b96ca539596ca5395
+   214.807 [6868] C->S opcode 15 body a56697cac4bc96ca539596ca5395
+   219.812 [6868] C->S opcode 15 body a56697caf92396ca539596ca5395
+   224.814 [6868] C->S opcode 15 body a56697caedd496ca539596ca5395
+   229.818 [6868] C->S opcode 15 body a56697ca825896ca539596ca5395
+   234.820 [6868] C->S opcode 15 body a56697cab6c396ca539596ca5395
+   239.826 [6868] C->S opcode 15 body a56697caab7196ca539596ca5395
+   244.827 [6868] C->S opcode 15 body a56697cb5ff896ca539596ca5395
+   249.832 [6868] C->S opcode 15 body a56697cb4c6f96ca539596ca5395
+   254.837 [6868] C->S opcode 15 body a56697cb601396ca539596ca5395
+   259.843 [6868] C->S opcode 15 body a56697cb148196ca539596ca5395
+   264.848 [6868] C->S opcode 15 body a56697cb093496ca539596ca5395
+   269.851 [6868] C->S opcode 15 body a56697cb3db996ca539596ca5395
+   274.853 [6868] C->S opcode 15 body a56697cbd22096ca539596ca5395
+   279.857 [6868] C->S opcode 15 body a56697cbc6d796ca539596ca5395
+   281.058 [6868] C->S opcode 325 body a42c5a
+   281.058 [6868] shop request -> 289
+   281.058 [6868] S->C opcode 289
+   281.064 [6868] C->S opcode 38 body a54f585ba56ee2b936e1d70c6b96ca507d5a
+   281.064 [6868] shop enter 38 -> 20
+   281.064 [6868] S->C opcode 20
+   281.064 [6868] C->S opcode 102 body a50f5b
+   281.105 [6868] C->S opcode 276 body a47d
+   281.105 [6868] shop list 276
+   281.105 [6868] C->S opcode 256 body a469
+   281.105 [6868] shop list 256
+   281.105 [6868] C->S opcode 278 body a47f
+   281.105 [6868] shop list 278
+   281.105 [6868] S->C opcode 64
+   281.105 [6868] S->C opcode 65
+   281.105 [6868] S->C opcode 225
+   281.290 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+   281.344 [6868] C->S opcode 260 body a46d5a
+   281.344 [6868] cash 260 -> 221 (3000)
+   281.344 [6868] S->C opcode 221
+   282.248 [6868] C->S opcode 267 body a4625b5aa5695b5b
+   282.289 [6868] C->S opcode 75 body a5225b5a
+   282.289 [6868] C->S opcode 102 body a50f5a
+   282.289 [6868] shop leave 102 -> 100 (stage 11)
+   282.289 [6868] S->C opcode 100
+   282.290 [6868] C->S opcode 81 body a538
+   282.507 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+   282.507 [6868] C->S opcode 303 body a4465b5a
+   282.508 [6868] C->S opcode 64 body a529a569
+   282.508 [6868] user list page 0 -> 69
+   282.508 [6868] S->C opcode 69
+   282.508 [6868] C->S opcode 476 body a4b5
+   282.508 [6868] C->S opcode 477 body a4b4
+   282.549 [6868] C->S opcode 395 body a4e2
+   282.553 [6868] S->C opcode 69
+   282.553 [6868] S->C opcode 69
+   282.553 [6868] S->C opcode 23
+   282.553 [6868] S->C opcode 51
+   282.553 [6868] S->C opcode 466
+   282.553 [6868] S->C opcode 467
+   282.553 [6868] S->C opcode 88
+   282.553 [6868] S->C opcode 234
+   282.553 [6868] S->C opcode 231
+   282.556 [6868] C->S opcode 337 body a43896ca5395
+   282.556 [6868] 337 outside a room join (data request), ignored
+   282.620 [6868] C->S opcode 64 body a529a569
+   282.620 [6868] user list page 0 -> 69
+   282.620 [6868] S->C opcode 69
+   282.620 [6868] C->S opcode 396 body a4e5
+   282.621 [6868] C->S opcode 282 body a473
+   282.662 [6868] C->S opcode 451 body a4aa
+   284.860 [6868] C->S opcode 15 body a56697cbfb5996ca539596ca5395
+   289.866 [6868] C->S opcode 15 body a56697cbefcf96ca539596ca5395
+   294.871 [6868] C->S opcode 15 body a56697cb9c7396ca539596ca5395
+   299.873 [6868] C->S opcode 15 body a56697cbb0e596ca539596ca5395
+   304.878 [6868] C->S opcode 15 body a56697cba56896ca539596ca5395
+   309.881 [6868] C->S opcode 15 body a56697c8591d96ca539596ca5395
+   314.883 [6868] C->S opcode 15 body a56697c84d8796ca539596ca5395
+   319.888 [6868] C->S opcode 15 body a56697c8620a96ca539596ca5395
+   324.890 [6868] C->S opcode 15 body a56697c816bd96ca539596ca5395
+   329.896 [6868] C->S opcode 15 body a56697c80b2396ca539596ca5395
+   334.897 [6868] C->S opcode 15 body a56697c83faa96ca539596ca5395
+   339.901 [6868] C->S opcode 15 body a56697c82c5e96ca539596ca5395
+   344.903 [6868] C->S opcode 15 body a56697c8c0c196ca539596ca5395
+   349.906 [6868] C->S opcode 15 body a56697c8f54a96ca539596ca5395
+   354.911 [6868] C->S opcode 15 body a56697c8e9f996ca539596ca5395
+   359.912 [6868] C->S opcode 15 body a56697c89e6096ca539596ca5395
+   364.915 [6868] C->S opcode 15 body a56697c8b21596ca539596ca5395
+   369.917 [6868] C->S opcode 15 body a56697c8a69f96ca539596ca5395
+   374.921 [6868] C->S opcode 15 body a56697c95b0096ca539596ca5395
+   379.927 [6868] C->S opcode 15 body a56697c94fb696ca539596ca5395
+   384.931 [6868] C->S opcode 15 body a56697c97c3a96ca539596ca5395
+   389.936 [6868] C->S opcode 15 body a56697c910a996ca539596ca5395
+   394.942 [6868] C->S opcode 15 body a56697c9055f96ca539596ca5395
+   395.918 [6868] C->S opcode 302 body a447
+   395.918 [6868] C->S opcode 75 body a5225b5a
+   395.918 [6868] C->S opcode 337 body a43896ca5395
+   395.918 [6868] 337 outside a room join (data request), ignored
+   395.918 [6868] C->S opcode 66 body a52ba56ee2b936e1d70c6b5b5a
+   399.943 [6868] C->S opcode 15 body a56697c939c696ca539596ca5395
+   404.945 [6868] C->S opcode 15 body a56697c92e4996ca539596ca5395
+   409.947 [6868] C->S opcode 15 body a56697c9c2f396ca539596ca5395
+   414.948 [6868] C->S opcode 15 body a56697c9f77a96ca539596ca5395
+   419.949 [6868] C->S opcode 15 body a56697c9ebed96ca539596ca5395
+   424.951 [6868] C->S opcode 15 body a56697c99f9496ca539596ca5395
+   429.953 [6868] C->S opcode 15 body a56697c98c1e96ca539596ca5395
+   434.954 [6868] C->S opcode 15 body a56697c9a08196ca539596ca5395
+   439.958 [6868] C->S opcode 15 body a56697ce550a96ca539596ca5395
+   444.961 [6868] C->S opcode 15 body a56697ce49be96ca539596ca5395
+   449.967 [6868] C->S opcode 15 body a56697ce7e2c96ca539596ca5395
+   454.972 [6868] C->S opcode 15 body a56697ce12d096ca539596ca5395
+   459.979 [6868] C->S opcode 15 body a56697ce074196ca539596ca5395
+   464.983 [6868] C->S opcode 15 body a56697ce3bca96ca539596ca5395
+   469.983 [6868] C->S opcode 15 body a56697ce287d96ca539596ca5395
+   474.987 [6868] C->S opcode 15 body a56697cedce696ca539596ca5395
+   479.989 [6868] C->S opcode 15 body a56697cef16b96ca539596ca5395
+   484.992 [6868] C->S opcode 15 body a56697cee51d96ca539596ca5395
+   489.997 [6868] C->S opcode 15 body a56697ce998096ca539596ca5395
+   495.003 [6868] C->S opcode 15 body a56697ce8e3696ca539596ca5395
+   500.008 [6868] C->S opcode 15 body a56697cea2ba96ca539596ca5395
+   505.009 [6868] C->S opcode 15 body a56697cf572d96ca539596ca5395
+   510.010 [6868] C->S opcode 15 body a56697cf4bd496ca539596ca5395
+   515.013 [6868] C->S opcode 15 body a56697cf785996ca539596ca5395
+   520.017 [6868] C->S opcode 15 body a56697cf6ccd96ca539596ca5395
+   525.020 [6868] C->S opcode 15 body a56697cf017796ca539596ca5395
+   530.025 [6868] C->S opcode 15 body a56697cf35fa96ca539596ca5395
+   535.029 [6868] C->S opcode 15 body a56697cf2a6e96ca539596ca5395
+   540.033 [6868] C->S opcode 15 body a56697cfde1396ca539596ca5395
+   545.035 [6868] C->S opcode 15 body a56697cff28596ca539596ca5395
+   550.040 [6868] C->S opcode 15 body a56697cfe70896ca539596ca5395
+   555.041 [6868] C->S opcode 15 body a56697cf9bb396ca539596ca5395
+   560.043 [6868] C->S opcode 15 body a56697cf882596ca539596ca5395
+   565.044 [6868] C->S opcode 15 body a56697cfbcac96ca539596ca5395
+   570.049 [6868] C->S opcode 15 body a56697cc515096ca539596ca5395
+   575.051 [6868] C->S opcode 15 body a56697cc45da96ca539596ca5395
+   580.052 [6868] C->S opcode 15 body a56697cc7a4d96ca539596ca5395
+   582.534 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+   585.057 [6868] C->S opcode 15 body a56697cc6ef096ca539596ca5395
+   590.058 [6868] C->S opcode 15 body a56697cc037b96ca539596ca5395
+   595.061 [6868] C->S opcode 15 body a56697cc37ec96ca539596ca5395
+   596.476 [6868] C->S opcode 325 body a42c5a
+   596.476 [6868] shop request -> 289
+   596.476 [6868] S->C opcode 289
+   596.481 [6868] C->S opcode 38 body a54f585ba56ee2b936e1d70c6b96ca507d5a
+   596.481 [6868] shop enter 38 -> 20
+   596.482 [6868] S->C opcode 20
+   596.482 [6868] C->S opcode 102 body a50f5b
+   596.522 [6868] C->S opcode 276 body a47d
+   596.522 [6868] shop list 276
+   596.522 [6868] C->S opcode 256 body a469
+   596.522 [6868] shop list 256
+   596.522 [6868] C->S opcode 278 body a47f
+   596.522 [6868] shop list 278
+   596.522 [6868] S->C opcode 64
+   596.522 [6868] S->C opcode 65
+   596.522 [6868] S->C opcode 225
+   596.708 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+   596.760 [6868] C->S opcode 260 body a46d5a
+   596.760 [6868] cash 260 -> 221 (3000)
+   596.760 [6868] S->C opcode 221
+   597.251 [6868] C->S opcode 267 body a4625b5aa5695b5b
+   597.291 [6868] C->S opcode 75 body a5225b5a
+   597.291 [6868] C->S opcode 102 body a50f5a
+   597.291 [6868] shop leave 102 -> 100 (stage 11)
+   597.291 [6868] S->C opcode 100
+   597.292 [6868] C->S opcode 81 body a538
+   597.509 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+   597.509 [6868] C->S opcode 303 body a4465b5a
+   597.510 [6868] C->S opcode 64 body a529a569
+   597.510 [6868] user list page 0 -> 69
+   597.510 [6868] S->C opcode 69
+   597.510 [6868] C->S opcode 476 body a4b5
+   597.510 [6868] C->S opcode 477 body a4b4
+   597.552 [6868] C->S opcode 395 body a4e2
+   597.555 [6868] S->C opcode 69
+   597.555 [6868] S->C opcode 69
+   597.555 [6868] S->C opcode 69
+   597.555 [6868] S->C opcode 23
+   597.555 [6868] S->C opcode 51
+   597.555 [6868] S->C opcode 466
+   597.555 [6868] S->C opcode 467
+   597.555 [6868] S->C opcode 88
+   597.555 [6868] S->C opcode 234
+   597.555 [6868] S->C opcode 231
+   597.558 [6868] C->S opcode 337 body a43896ca5395
+   597.558 [6868] 337 outside a room join (data request), ignored
+   597.613 [6868] C->S opcode 64 body a529a569
+   597.613 [6868] user list page 0 -> 69
+   597.613 [6868] S->C opcode 69
+   597.613 [6868] C->S opcode 396 body a4e5
+   597.614 [6868] C->S opcode 282 body a473
+   597.655 [6868] C->S opcode 451 body a4aa
+   600.067 [6868] C->S opcode 15 body a56697cc2b9396ca539596ca5395
+   605.068 [6868] C->S opcode 15 body a56697ccd81a96ca539596ca5395
+   610.073 [6868] C->S opcode 15 body a56697cccc8996ca539596ca5395
+   615.078 [6868] C->S opcode 15 body a56697cce13d96ca539596ca5395
+   620.082 [6868] C->S opcode 15 body a56697cc95a196ca539596ca5395
+   625.086 [6868] C->S opcode 15 body a56697cc8a5596ca539596ca5395
+   630.088 [6868] C->S opcode 15 body a56697ccbedf96ca539596ca5395
+   635.092 [6868] C->S opcode 15 body a56697cd534396ca539596ca5395
+   640.095 [6868] C->S opcode 15 body a56697cd47f596ca539596ca5395
+   645.098 [6868] C->S opcode 15 body a56697cd747e96ca539596ca5395
+   650.102 [6868] C->S opcode 15 body a56697cd68e296ca539596ca5395
+   655.106 [6868] C->S opcode 15 body a56697cd1c9696ca539596ca5395
+   660.109 [6868] C->S opcode 15 body a56697cd311896ca539596ca5395
+   665.112 [6868] C->S opcode 15 body a56697cd258d96ca539596ca5395
+   670.113 [6868] C->S opcode 15 body a56697cdda3496ca539596ca5395
+   675.116 [6868] C->S opcode 15 body a56697cdceb996ca539596ca5395
+   680.118 [6868] C->S opcode 15 body a56697cde32396ca539596ca5395
+   685.121 [6868] C->S opcode 15 body a56697cd97d596ca539596ca5395
+   690.125 [6868] C->S opcode 15 body a56697cd845996ca539596ca5395
+   695.130 [6868] C->S opcode 15 body a56697cdb8cc96ca539596ca5395
+   700.131 [6868] C->S opcode 15 body a56697cdad7796ca539596ca5395
+   705.137 [6868] C->S opcode 15 body a56697c241e596ca539596ca5395
+   710.139 [6868] C->S opcode 15 body a56697c2766f96ca539596ca5395
+   715.143 [6868] C->S opcode 15 body a56697c26a1096ca539596ca5395
+   720.147 [6868] C->S opcode 15 body a56697c21e8496ca539596ca5395
+   725.150 [6868] C->S opcode 15 body a56697c2330996ca539596ca5395
+   730.153 [6868] C->S opcode 15 body a56697c227b396ca539596ca5395
+   735.157 [6868] C->S opcode 15 body a56697c2d42696ca539596ca5395
+   740.160 [6868] C->S opcode 15 body a56697c2c8a896ca539596ca5395
+   745.166 [6868] C->S opcode 15 body a56697c2fd5e96ca539596ca5395
+   750.171 [6868] C->S opcode 15 body a56697c291cc96ca539596ca5395
+   755.171 [6868] C->S opcode 15 body a56697c2867796ca539596ca5395
+   760.175 [6868] C->S opcode 15 body a56697c2bafb96ca539596ca5395
+   765.178 [6868] C->S opcode 15 body a56697c2af6f96ca539596ca5395
+   770.181 [6868] C->S opcode 15 body a56697c3431096ca539596ca5395
+   775.185 [6868] C->S opcode 15 body a56697c3778696ca539596ca5395
+   780.189 [6868] C->S opcode 15 body a56697c3640a96ca539596ca5395
+   785.193 [6868] C->S opcode 15 body a56697c318be96ca539596ca5395
+   790.194 [6868] C->S opcode 15 body a56697c30d2096ca539596ca5395
+   795.200 [6868] C->S opcode 15 body a56697c321d696ca539596ca5395
+   800.203 [6868] C->S opcode 15 body a56697c3d65a96ca539596ca5395
+   805.206 [6868] C->S opcode 15 body a56697c3cace96ca539596ca5395
+   810.211 [6868] C->S opcode 15 body a56697c3ff7d96ca539596ca5395
+   815.216 [6868] C->S opcode 15 body a56697c393e396ca539596ca5395
+   820.221 [6868] C->S opcode 15 body a56697c3879696ca539596ca5395
+   825.223 [6868] C->S opcode 15 body a56697c3b41896ca539596ca5395
+   830.226 [6868] C->S opcode 15 body a56697c3a88c96ca539596ca5395
+   835.230 [6868] C->S opcode 15 body a56697c05d3396ca539596ca5395
+   840.233 [6868] C->S opcode 15 body a56697c071a796ca539596ca5395
+   845.238 [6868] C->S opcode 15 body a56697c0662a96ca539596ca5395
+   850.243 [6868] C->S opcode 15 body a56697c01ad996ca539596ca5395
+   855.244 [6868] C->S opcode 15 body a56697c00f4096ca539596ca5395
+   860.247 [6868] C->S opcode 15 body a56697c023f496ca539596ca5395
+   865.252 [6868] C->S opcode 15 body a56697c0d07a96ca539596ca5395
+   870.253 [6868] C->S opcode 15 body a56697c0c4ed96ca539596ca5395
+   875.255 [6868] C->S opcode 15 body a56697c0f89696ca539596ca5395
+   880.259 [6868] C->S opcode 15 body a56697c0ed0596ca539596ca5395
+   885.264 [6868] C->S opcode 15 body a56697c0818996ca539596ca5395
+   890.263 [6868] C->S opcode 15 body a56697c0b63096ca539596ca5395
+   895.265 [6868] C->S opcode 15 body a56697c0aaba96ca539596ca5395
+   897.523 [6868] C->S opcode 298 body a443a56ee2b936e1d70c6b5b
+   900.266 [6868] C->S opcode 15 body a56697c15f2d96ca539596ca5395
+   905.269 [6868] C->S opcode 15 body a56697c173d196ca539596ca5395
+   910.273 [6868] C->S opcode 15 body a56697c1604596ca539596ca5395
+   915.274 [6868] C->S opcode 15 body a56697c114cc96ca539596ca5395
+   920.276 [6868] C->S opcode 15 body a56697c1097196ca539596ca5395
+   925.277 [6868] C->S opcode 15 body a56697c13df896ca539596ca5395
+   930.279 [6868] C->S opcode 15 body a56697c1d26296ca539596ca5395
+   935.281 [6868] C->S opcode 15 body a56697c1c61796ca539596ca5395
+   940.284 [6868] C->S opcode 15 body a56697c1fa9b96ca539596ca5395
+   945.290 [6868] C->S opcode 15 body a56697c1ef0996ca539596ca5395
+   950.292 [6868] C->S opcode 15 body a56697c183b396ca539596ca5395
+   955.293 [6868] C->S opcode 15 body a56697c1b03a96ca539596ca5395
+   960.296 [6868] C->S opcode 15 body a56697c1a4ae96ca539596ca5395
+   965.297 [6868] C->S opcode 15 body a56697c6595196ca539596ca5395
+   970.300 [6868] C->S opcode 15 body a56697c64dc596ca539596ca5395
+   975.305 [6868] C->S opcode 15 body a56697c6624896ca539596ca5395
+   980.306 [6868] C->S opcode 15 body a56697c616f396ca539596ca5395
+   985.310 [6868] C->S opcode 15 body a56697c60b6696ca539596ca5395
+   990.311 [6868] C->S opcode 15 body a56697c63fe896ca539596ca5395
+   995.314 [6868] C->S opcode 15 body a56697c6d39d96ca539596ca5395
+  1000.317 [6868] C->S opcode 15 body a56697c6c00696ca539596ca5395
+  1005.319 [6868] C->S opcode 15 body a56697c6f48896ca539596ca5395
+  1010.319 [6868] C->S opcode 15 body a56697c6e93396ca539596ca5395
+  1015.321 [6868] C->S opcode 15 body a56697c69da596ca539596ca5395
+  1020.322 [6868] C->S opcode 15 body a56697c6b22f96ca539596ca5395
+  1025.324 [6868] C->S opcode 15 body a56697c6a6d196ca539596ca5395
+  1030.325 [6868] C->S opcode 15 body a56697c75b5896ca539596ca5395
+  1035.328 [6868] C->S opcode 15 body a56697c74fcd96ca539596ca5395
+  1040.329 [6868] C->S opcode 15 body a56697c77c7496ca539596ca5395
+  1045.331 [6868] C->S opcode 15 body a56697c710f996ca539596ca5395
+  1050.336 [6868] C->S opcode 15 body a56697c7056f96ca539596ca5395
+  1055.342 [6868] C->S opcode 15 body a56697c7391d96ca539596ca5395
+  1060.348 [6868] C->S opcode 15 body a56697c72d8396ca539596ca5395
+  1065.352 [6868] C->S opcode 15 body a56697c7c23696ca539596ca5395
+  1070.356 [6868] C->S opcode 15 body a56697c7f6bb96ca539596ca5395
+  1075.359 [6868] C->S opcode 15 body a56697c7eb2f96ca539596ca5395
+  1080.362 [6868] C->S opcode 15 body a56697c79fd096ca539596ca5395
+  1085.364 [6868] C->S opcode 15 body a56697c78c4596ca539596ca5395
+  1090.366 [6868] C->S opcode 15 body a56697c7a0cf96ca539596ca5395
+  1095.372 [6868] C->S opcode 15 body a56697c4557d96ca539596ca5395
+  1100.376 [6868] C->S opcode 15 body a56697c449e096ca539596ca5395
+  1105.381 [6868] C->S opcode 15 body a56697c47d9496ca539596ca5395
+  1110.383 [6868] C->S opcode 15 body a56697c4121e96ca539596ca5395
+  1115.388 [6868] C->S opcode 15 body a56697c4068c96ca539596ca5395
+  1120.390 [6868] C->S opcode 15 body a56697c43b3196ca539596ca5395
+  1125.395 [6868] C->S opcode 15 body a56697c42fa596ca539596ca5395
+  1130.399 [6868] C->S opcode 15 body a56697c4dc2996ca539596ca5395
+  1135.402 [6868] C->S opcode 15 body a56697c4f0dd96ca539596ca5395
+  1140.404 [6868] C->S opcode 15 body a56697c4e54796ca539596ca5395
+  1145.409 [6868] C->S opcode 15 body a56697c499ca96ca539596ca5395
+  1150.409 [6868] C->S opcode 15 body a56697c48e7d96ca539596ca5395
+  1155.410 [6868] C->S opcode 15 body a56697c4a2e496ca539596ca5395
+  1160.411 [6868] C->S opcode 15 body a56697c5576f96ca539596ca5395
+  1165.417 [6868] C->S opcode 15 body a56697c54b1d96ca539596ca5395
+  1170.421 [6868] C->S opcode 15 body a56697c57f8096ca539596ca5395
+  1175.367 [6868] close 127.0.0.1:37528
+  1175.367 [6868] S->C opcode 69
+  1175.367 [6868] S->C opcode 69

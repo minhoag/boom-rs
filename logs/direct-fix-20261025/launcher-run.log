@@ -1,0 +1,32 @@
+INFO: umu-launcher version 1.4.4 (3.14.8 (main, Sep 30 2026, 17:55:09) [GCC 16.2.0])
+INFO: steamrt3 is up to date
+WARNING: Executable not found: W:\Games\Projects\boom-re\logs\direct-fix-20261025\boomlaunch.exe
+INFO: Running 'UMU-Proton-10.0-4' using runtime 'sniper'
+INFO: Running 'steamrt3' using runtime 'host'
+pressure-vessel-wrap[112338]: W: "/run/current-system/sw/bin/getent" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[112338]: W: Unable to determine architecture of provider / ldconfig: Error reading "(null)" ELF header: invalid `Elf' handle
+pressure-vessel-wrap[112338]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[112338]: W: "run/opengl-driver-32/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[112338]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+ProtonFixes[112453] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[112453] INFO: Running checks
+ProtonFixes[112453] INFO: All checks successful
+ProtonFixes[112453] WARN: Game title not found in CSV
+ProtonFixes[112453] INFO: Non-steam game UNKNOWN (umu-BoomLauncher)
+ProtonFixes[112453] INFO: No store specified, using UMU database
+ProtonFixes[112453] INFO: Using early stage global defaults for UNKNOWN (umu-BoomLauncher)
+ProtonFixes[112453] INFO: Non-steam game UNKNOWN (umu-BoomLauncher)
+ProtonFixes[112453] INFO: No store specified, using UMU database
+ProtonFixes[112453] INFO: No early stage global protonfix found for UNKNOWN (umu-BoomLauncher)
+ProtonFixes[112453] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[112453] INFO: Running checks
+ProtonFixes[112453] INFO: All checks successful
+ProtonFixes[112453] INFO: Non-steam game UNKNOWN (umu-BoomLauncher)
+ProtonFixes[112453] INFO: No store specified, using UMU database
+ProtonFixes[112453] INFO: Using main stage global defaults for UNKNOWN (umu-BoomLauncher)
+ProtonFixes[112453] INFO: Non-steam game UNKNOWN (umu-BoomLauncher)
+ProtonFixes[112453] INFO: No store specified, using UMU database
+ProtonFixes[112453] INFO: No main stage global protonfix found for UNKNOWN (umu-BoomLauncher)
+Proton: W:\Games\Projects\boom-re\logs\direct-fix-20261025\boomlaunch.exe
+Proton: Executable is inside wine prefix, launching normally.
+fsync: up and running.

@@ -1,0 +1,1335 @@
+INFO: umu-launcher version 1.4.4 (3.14.8 (main, Sep 30 2026, 17:55:09) [GCC 16.2.0])
+INFO: steamrt3 is up to date
+INFO: Running 'UMU-Proton-10.0-4' using runtime 'sniper'
+INFO: Running 'steamrt3' using runtime 'host'
+pressure-vessel-wrap[104010]: W: "/run/current-system/sw/bin/getent" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[104010]: W: Unable to determine architecture of provider / ldconfig: Error reading "(null)" ELF header: invalid `Elf' handle
+pressure-vessel-wrap[104010]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[104010]: W: "run/opengl-driver-32/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[104010]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+ProtonFixes[104122] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[104122] INFO: Running checks
+ProtonFixes[104122] INFO: All checks successful
+ProtonFixes[104122] WARN: Game title not found in CSV
+ProtonFixes[104122] INFO: Non-steam game UNKNOWN (umu-BoomDirectFix)
+ProtonFixes[104122] INFO: No store specified, using UMU database
+ProtonFixes[104122] INFO: Using early stage global defaults for UNKNOWN (umu-BoomDirectFix)
+ProtonFixes[104122] INFO: Non-steam game UNKNOWN (umu-BoomDirectFix)
+ProtonFixes[104122] INFO: No store specified, using UMU database
+ProtonFixes[104122] INFO: No early stage global protonfix found for UNKNOWN (umu-BoomDirectFix)
+ProtonFixes[104122] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[104122] INFO: Running checks
+ProtonFixes[104122] INFO: All checks successful
+ProtonFixes[104122] INFO: Non-steam game UNKNOWN (umu-BoomDirectFix)
+ProtonFixes[104122] INFO: No store specified, using UMU database
+ProtonFixes[104122] INFO: Using main stage global defaults for UNKNOWN (umu-BoomDirectFix)
+ProtonFixes[104122] INFO: Non-steam game UNKNOWN (umu-BoomDirectFix)
+ProtonFixes[104122] INFO: No store specified, using UMU database
+ProtonFixes[104122] INFO: No main stage global protonfix found for UNKNOWN (umu-BoomDirectFix)
+Proton: /mnt/Games/Projects/boom-re/logs/unlicense-20261025T065707Z/candidate-build-20261025T083000Z/runtime-single-20261025T090000Z/game-copy/ca.exe
+Proton: Executable a unix path, launching with /unix option.
+fsync: up and running.
+14504.712:0024:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\wineboot.exe" image L"C:\\windows\\system32\\wineboot.exe" cmdline L"\"C:\\windows\\system32\\wineboot.exe\" --init" parent (nil) machine 0
+14504.717:002c:trace:seh:install_bpf Installing seccomp filters.
+14504.717:002c:trace:seh:check_bpf_jit_enable enabled 0x31.
+14504.717:0024:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\wineboot.exe" pid 0028 tid 002c handles 0x14/0x18
+14504.718:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.718:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\wineboot.exe" at 0000000140000000: builtin
+14504.718:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.719:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.720:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.721:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.721:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.721:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.722:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ws2_32.dll" at 00006FFFFF9A0000: builtin
+14504.722:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.722:002c:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.722:002c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.722:002c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 000000000024D3E0 17)
+14504.723:002c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.723:002c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 000000000024D440 17)
+14504.723:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.724:002c:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021ED20 260)
+14504.724:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21ef38,0x00000008,(nil))
+14504.728:002c:trace:process:CreateProcessInternalW app (null) cmdline L"C:\\windows\\system32\\winemenubuilder.exe -a -r", inherit 0, flags 0, env 0000000000000000 ((null))
+14504.728:002c:trace:process:find_exe_file looking for L"C:\\windows\\system32\\winemenubuilder.exe" in L"C:\\windows\\system32;.;C:\\windows\\system32;C:\\windows\\system;C:\\windows;C:\\Program Files (x86)\\Steam;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0"
+14504.728:002c:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14504.729:002c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\winemenubuilder.exe" image L"C:\\windows\\system32\\winemenubuilder.exe" cmdline L"C:\\windows\\system32\\winemenubuilder.exe -a -r" parent (nil) machine 0
+14504.735:0034:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14504.735:0034:trace:seh:install_bpf Seccomp filters already installed.
+14504.735:002c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\winemenubuilder.exe" pid 0030 tid 0034 handles 0x44/0x48
+14504.735:002c:trace:process:CreateProcessInternalW started process pid 0030 tid 0034
+14504.735:002c:trace:process:CreateProcessInternalW app L"C:\\windows\\system32\\services.exe" cmdline (null), inherit 1, flags 0x8, env 0000000000000000 ((null))
+14504.735:0034:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.735:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\winemenubuilder.exe" at 0000000140000000: builtin
+14504.736:002c:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14504.736:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.736:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.736:002c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\services.exe" image L"C:\\windows\\system32\\services.exe" cmdline L"\"C:\\windows\\system32\\services.exe\"" parent (nil) machine 0
+14504.737:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.738:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.738:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.738:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.739:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14504.739:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14504.739:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14504.740:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14504.740:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\combase.dll" at 00006FFFFF870000: builtin
+14504.740:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\coml2.dll" at 00006FFFFF4F0000: builtin
+14504.740:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ole32.dll" at 00006FFFFF8D0000: builtin
+14504.741:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shcore.dll" at 00006FFFFEB20000: builtin
+14504.741:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shlwapi.dll" at 00006FFFFEB50000: builtin
+14504.742:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shell32.dll" at 00006FFFFEBB0000: builtin
+14504.742:003c:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14504.742:003c:trace:seh:install_bpf Seccomp filters already installed.
+14504.742:002c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\services.exe" pid 0038 tid 003c handles 0x3c/0x40
+14504.742:002c:trace:process:CreateProcessInternalW started process pid 0038 tid 003c
+14504.742:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleaut32.dll" at 00006FFFFE8D0000: builtin
+14504.742:003c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.742:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\services.exe" at 0000000140000000: builtin
+14504.742:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\propsys.dll" at 00006FFFFE890000: builtin
+14504.743:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\windowscodecs.dll" at 00006FFFFE9C0000: builtin
+14504.743:0034:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.743:0034:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.743:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.743:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.743:0034:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.743:0034:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 000000000024F470 17)
+14504.744:0034:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.744:0034:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 000000000024F4D0 17)
+14504.744:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.745:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.745:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.745:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.745:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14504.745:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\setupapi.dll" at 00006FFFFE800000: builtin
+14504.745:003c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\userenv.dll" at 00006FFFFE7E0000: builtin
+14504.745:003c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.746:003c:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.746:003c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.746:003c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 000000000024D4D0 17)
+14504.746:003c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.746:003c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 000000000024D530 17)
+14504.747:003c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.748:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 0000000000000000 0)
+14504.748:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 00000000007F32F0 43)
+14504.748:003c:trace:process:ExpandEnvironmentStringsW (L"c:\\windows\\system32\\discord\\bridge.exe --service" 0000000000000000 0)
+14504.748:003c:trace:process:ExpandEnvironmentStringsW (L"c:\\windows\\system32\\discord\\bridge.exe --service" 00000000007F3FF0 49)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\users\\steamuser\\AppData\\Local\\Temp\\EagleX64.sys" 0000000000000000 0)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\users\\steamuser\\AppData\\Local\\Temp\\EagleX64.sys" 00000000007F4740 51)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k LocalServiceNetworkRestricted" 0000000000000000 0)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k LocalServiceNetworkRestricted" 00000000007F4930 65)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 0000000000000000 0)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 00000000007F33B0 43)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\Microsoft.Net\\Framework\\v3.0\\wpf\\presentationfontcache.exe" 0000000000000000 0)
+14504.749:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\Microsoft.Net\\Framework\\v3.0\\wpf\\presentationfontcache.exe" 00000000007F4C40 70)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\http.sys" 0000000000000000 0)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\http.sys" 00000000007F3410 37)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 0000000000000000 0)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 00000000007F3470 43)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\mountmgr.sys" 0000000000000000 0)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\mountmgr.sys" 00000000007F34D0 41)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\msiexec.exe /V" 0000000000000000 0)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\msiexec.exe /V" 00000000007F5790 35)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\ndis.sys" 0000000000000000 0)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\ndis.sys" 00000000007F3530 37)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\nsiproxy.sys" 0000000000000000 0)
+14504.750:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\nsiproxy.sys" 00000000007F3590 41)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\plugplay.exe" 0000000000000000 0)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\plugplay.exe" 00000000007F5B80 33)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\rpcss.exe" 0000000000000000 0)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\rpcss.exe" 00000000007F64A0 30)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\lsass.exe" 0000000000000000 0)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\lsass.exe" 00000000007F6C20 30)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 0000000000000000 0)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 00000000007F3650 43)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 0000000000000000 0)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k netsvcs" 00000000007F36B0 43)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\sharedgpures.sys" 0000000000000000 0)
+14504.751:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\sharedgpures.sys" 00000000007F6DD0 45)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\spoolsv.exe" 0000000000000000 0)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\spoolsv.exe" 00000000007F6E90 32)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k imgsvc" 0000000000000000 0)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k imgsvc" 00000000007F37D0 42)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\termsv.exe" 0000000000000000 0)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\termsv.exe" 00000000007F0B70 31)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebth.sys" 0000000000000000 0)
+14504.752:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebth.sys" 00000000007F3830 40)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebus.sys" 0000000000000000 0)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebus.sys" 00000000007F3890 40)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winehid.sys" 0000000000000000 0)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winehid.sys" 00000000007F38F0 40)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\wineusb.sys" 0000000000000000 0)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\wineusb.sys" 00000000007F3950 40)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\winmgmt.exe" 0000000000000000 0)
+14504.753:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\winmgmt.exe" 00000000007FF690 32)
+14504.754:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\wuauserv.exe" 0000000000000000 0)
+14504.754:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\wuauserv.exe" 00000000007FF6E0 33)
+14504.755:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\mountmgr.sys" 0000000000000000 0)
+14504.755:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\mountmgr.sys" 00000000007F39B0 41)
+14504.755:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\winedevice.exe" 0000000000000000 0)
+14504.755:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\winedevice.exe" 00000000007FF730 35)
+14504.755:003c:trace:process:GetEnvironmentVariableW (L"SystemRoot" 000000000020E4A0 32767)
+14504.755:003c:trace:process:GetEnvironmentVariableW (L"SystemDrive" 000000000020E4A0 32767)
+14504.756:003c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x20e108,0x00000008,(nil))
+14504.757:003c:trace:process:GetEnvironmentVariableW (L"WINEBOOTSTRAPMODE" 000000000021E6D0 1024)
+14504.757:003c:trace:process:GetEnvironmentVariableW (L"WINEBUSCONFIG" 000000000021E6D0 1024)
+14504.757:003c:trace:process:GetEnvironmentVariableW (L"PROTON_DISABLE_HIDRAW" 000000000021E6D0 1024)
+14504.757:003c:trace:process:GetEnvironmentVariableW (L"PROTON_ENABLE_HIDRAW" 000000000021E6D0 1024)
+14504.757:003c:trace:process:CreateProcessInternalW app (null) cmdline L"C:\\windows\\system32\\winedevice.exe", inherit 0, flags 0x408, env 0000000000803420 (L"SystemRoot=C:\\windows")
+14504.757:003c:trace:process:find_exe_file looking for L"C:\\windows\\system32\\winedevice.exe" in L"C:\\windows\\system32;.;C:\\windows\\system32;C:\\windows\\system;C:\\windows;C:\\Program Files (x86)\\Steam;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0"
+14504.758:003c:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14504.758:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\winedevice.exe" image L"C:\\windows\\system32\\winedevice.exe" cmdline L"C:\\windows\\system32\\winedevice.exe" parent (nil) machine 0
+14504.764:0048:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14504.764:0048:trace:seh:install_bpf Seccomp filters already installed.
+14504.764:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\winedevice.exe" pid 0044 tid 0048 handles 0xf4/0xf8
+14504.764:003c:trace:process:CreateProcessInternalW started process pid 0044 tid 0048
+14504.764:0048:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.764:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\winedevice.exe" at 0000000140000000: builtin
+14504.765:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.765:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.766:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.766:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.766:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.766:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.766:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ntoskrnl.exe" at 00006FFFFE770000: builtin
+14504.766:0048:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.767:0048:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.767:0048:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.767:0048:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000245E00 17)
+14504.767:0048:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.767:0048:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000245E30 17)
+14504.768:0048:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.768:0048:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14504.768:0048:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14504.769:0048:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14504.772:0058:trace:process:NtQueryInformationProcess (0x4c,0x00000000,0x24b038,0x00000030,(nil))
+14504.772:0058:trace:process:NtQueryInformationProcess (0x4c,0x0000001a,0xc0f3e8,0x00000008,(nil))
+14504.774:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\mountmgr.sys" 0000000000000000 0)
+14504.774:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\mountmgr.sys" 000000000024C770 41)
+14504.774:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\mountmgr.sys" at 00006FFFFE740000: builtin
+14504.776:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\setupapi.dll" at 00006FFFFE800000: builtin
+14504.778:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k LocalServiceNetworkRestricted" 0000000000000000 0)
+14504.778:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\svchost.exe -k LocalServiceNetworkRestricted" 000000000080A480 65)
+14504.778:003c:trace:process:CreateProcessInternalW app (null) cmdline L"C:\\windows\\system32\\svchost.exe -k LocalServiceNetworkRestricted", inherit 0, flags 0x408, env 0000000000803420 (L"SystemRoot=C:\\windows")
+14504.778:003c:trace:process:find_exe_file looking for L"C:\\windows\\system32\\svchost.exe" in L"C:\\windows\\system32;.;C:\\windows\\system32;C:\\windows\\system;C:\\windows;C:\\Program Files (x86)\\Steam;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0"
+14504.778:003c:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14504.779:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\svchost.exe" image L"C:\\windows\\system32\\svchost.exe" cmdline L"C:\\windows\\system32\\svchost.exe -k LocalServiceNetworkRestricted" parent (nil) machine 0
+14504.784:0070:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14504.784:0070:trace:seh:install_bpf Seccomp filters already installed.
+14504.784:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\svchost.exe" pid 006c tid 0070 handles 0x11c/0x120
+14504.784:003c:trace:process:CreateProcessInternalW started process pid 006c tid 0070
+14504.785:0070:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.785:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\svchost.exe" at 0000000140000000: builtin
+14504.785:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.785:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.787:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.787:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.787:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.787:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.787:0070:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.787:0070:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.788:0070:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.788:0070:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000245BB0 17)
+14504.788:0070:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.788:0070:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000245BE0 17)
+14504.789:0070:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.789:0070:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14504.789:0070:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14504.789:0070:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\wevtsvc.dll" 0000000000000000 0)
+14504.789:0070:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\wevtsvc.dll" 00000000002499C0 32)
+14504.790:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\wevtsvc.dll" at 00006FFFFE720000: builtin
+14504.790:0070:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14504.793:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\sharedgpures.sys" 0000000000000000 0)
+14504.793:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\sharedgpures.sys" 000000000080CE60 45)
+14504.794:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14504.794:0034:trace:process:GetEnvironmentVariableW (L"oanocache" 0000000000000000 0)
+14504.794:0034:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.794:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\sharedgpures.sys" 0000000000000000 0)
+14504.794:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\sharedgpures.sys" 0000000000C1F3C0 45)
+14504.794:0034:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14504.794:0034:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14504.794:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\sharedgpures.sys" at 00006FFFFE6D0000: builtin
+14504.794:0034:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21f81c,0x00000004,(nil))
+14504.794:0034:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21f81c,0x00000004,(nil))
+14504.794:0034:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\explorer.exe" image L"C:\\windows\\system32\\explorer.exe" cmdline L"\"C:\\windows\\system32\\explorer.exe\" /desktop" parent (nil) machine 0
+14504.795:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\plugplay.exe" 0000000000000000 0)
+14504.795:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\plugplay.exe" 00000000007FF820 33)
+14504.795:003c:trace:process:CreateProcessInternalW app (null) cmdline L"C:\\windows\\system32\\plugplay.exe", inherit 0, flags 0x408, env 0000000000803420 (L"SystemRoot=C:\\windows")
+14504.795:003c:trace:process:find_exe_file looking for L"C:\\windows\\system32\\plugplay.exe" in L"C:\\windows\\system32;.;C:\\windows\\system32;C:\\windows\\system;C:\\windows;C:\\Program Files (x86)\\Steam;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0"
+14504.796:003c:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14504.796:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\plugplay.exe" image L"C:\\windows\\system32\\plugplay.exe" cmdline L"C:\\windows\\system32\\plugplay.exe" parent (nil) machine 0
+14504.801:0084:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14504.802:0084:trace:seh:install_bpf Seccomp filters already installed.
+14504.802:0034:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\explorer.exe" pid 0080 tid 0084 handles 0x74/0x78
+14504.802:008c:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14504.802:008c:trace:seh:install_bpf Seccomp filters already installed.
+14504.802:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\plugplay.exe" pid 0088 tid 008c handles 0x138/0x13c
+14504.802:003c:trace:process:CreateProcessInternalW started process pid 0088 tid 008c
+14504.802:008c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.802:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\plugplay.exe" at 0000000140000000: builtin
+14504.802:0084:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.802:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\explorer.exe" at 0000000140000000: builtin
+14504.803:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.803:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.803:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.803:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.804:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.804:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.804:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.804:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.804:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.805:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.805:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.805:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.805:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14504.805:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14504.805:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14504.806:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14504.806:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14504.806:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14504.806:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14504.806:008c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.806:008c:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.806:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14504.806:0084:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.806:0084:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.807:008c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.807:008c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000244390 17)
+14504.807:0084:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.807:0084:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 000000000024D9B0 17)
+14504.807:008c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.807:008c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 00000000002443F0 17)
+14504.807:0084:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.807:0084:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 000000000024DA10 17)
+14504.867:008c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14504.867:008c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.867:008c:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14504.867:008c:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14504.868:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14504.868:0084:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.868:0084:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14504.868:0084:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14504.871:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\nsiproxy.sys" 0000000000000000 0)
+14504.871:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\nsiproxy.sys" 00000000007F39B0 41)
+14504.871:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\winex11.drv" at 00006FFFFE6B0000: builtin
+14504.872:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\nsiproxy.sys" 0000000000000000 0)
+14504.872:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\nsiproxy.sys" 000000000024C8F0 41)
+14504.873:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\nsiproxy.sys" at 00006FFFFE690000: builtin
+14504.874:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\ndis.sys" 0000000000000000 0)
+14504.874:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\ndis.sys" 00000000007F39B0 37)
+14504.875:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\ndis.sys" 0000000000000000 0)
+14504.875:0054:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\ndis.sys" 000000000024C9B0 37)
+14504.876:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\dnsapi.dll" at 00006FFFFE5F0000: builtin
+14504.877:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\nsi.dll" at 00006FFFFE5D0000: builtin
+14504.877:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ws2_32.dll" at 00006FFFFF9A0000: builtin
+14504.877:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\iphlpapi.dll" at 00006FFFFE620000: builtin
+14504.877:0054:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\ndis.sys" at 00006FFFFE660000: builtin
+14504.879:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebus.sys" 0000000000000000 0)
+14504.879:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebus.sys" 00000000007F39B0 40)
+14504.879:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\winedevice.exe" 0000000000000000 0)
+14504.879:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\winedevice.exe" 00000000007FF820 35)
+14504.879:003c:trace:process:CreateProcessInternalW app (null) cmdline L"C:\\windows\\system32\\winedevice.exe", inherit 0, flags 0x408, env 0000000000803420 (L"SystemRoot=C:\\windows")
+14504.879:003c:trace:process:find_exe_file looking for L"C:\\windows\\system32\\winedevice.exe" in L"C:\\windows\\system32;.;C:\\windows\\system32;C:\\windows\\system;C:\\windows;C:\\Program Files (x86)\\Steam;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0"
+14504.880:003c:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14504.880:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\winedevice.exe" image L"C:\\windows\\system32\\winedevice.exe" cmdline L"C:\\windows\\system32\\winedevice.exe" parent (nil) machine 0
+14504.887:00a8:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14504.887:00a8:trace:seh:install_bpf Seccomp filters already installed.
+14504.887:003c:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\winedevice.exe" pid 00a4 tid 00a8 handles 0x158/0x15c
+14504.887:003c:trace:process:CreateProcessInternalW started process pid 00a4 tid 00a8
+14504.888:00a8:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14504.888:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\winedevice.exe" at 0000000140000000: builtin
+14504.888:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14504.888:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14504.889:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14504.890:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14504.890:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14504.890:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14504.890:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ntoskrnl.exe" at 00006FFFFE770000: builtin
+14504.890:00a8:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14504.890:00a8:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14504.891:00a8:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14504.891:00a8:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000245E00 17)
+14504.891:00a8:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14504.891:00a8:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000245E30 17)
+14504.892:00a8:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14504.892:00a8:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14504.892:00a8:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14504.893:00a8:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14504.896:00b4:trace:process:NtQueryInformationProcess (0x4c,0x00000000,0x24fc28,0x00000030,(nil))
+14504.896:00b4:trace:process:NtQueryInformationProcess (0x4c,0x0000001a,0xc0f3e8,0x00000008,(nil))
+14504.898:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebus.sys" 0000000000000000 0)
+14504.898:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebus.sys" 000000000024C770 40)
+14504.898:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\hidparse.sys" at 00006FFFFE580000: builtin
+14504.898:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\winebus.sys" at 00006FFFFE5B0000: builtin
+14504.899:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\setupapi.dll" at 00006FFFFE800000: builtin
+14504.902:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winehid.sys" 0000000000000000 0)
+14504.902:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winehid.sys" 000000000024CA70 40)
+14504.905:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14504.906:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14504.906:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14504.906:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\hidclass.sys" at 00006FFFFE540000: builtin
+14504.906:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\winehid.sys" at 00006FFFFE560000: builtin
+14504.921:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\uxtheme.dll" at 00006FFFFE4F0000: builtin
+14504.926:0084:err:system:NtUserChangeDisplaySettings Changing L"\\\\.\\DISPLAY2" display settings returned -2.
+14504.926:0084:err:explorer:initialize_display_settings Failed to initialize registry display settings for L"\\\\.\\DISPLAY2".
+14504.930:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shcore.dll" at 00006FFFFEB20000: builtin
+14504.930:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shlwapi.dll" at 00006FFFFEB50000: builtin
+14504.930:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shell32.dll" at 00006FFFFEBB0000: builtin
+14504.932:0084:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e70c,0x00000004,(nil))
+14504.932:0084:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e70c,0x00000004,(nil))
+14504.933:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\combase.dll" at 00006FFFFF870000: builtin
+14504.933:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\coml2.dll" at 00006FFFFF4F0000: builtin
+14504.933:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ole32.dll" at 00006FFFFF8D0000: builtin
+14504.935:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleaut32.dll" at 00006FFFFE8D0000: builtin
+14504.935:0084:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\actxprxy.dll" at 00006FFFFE490000: builtin
+14504.936:0084:trace:process:GetEnvironmentVariableW (L"oanocache" 0000000000000000 0)
+14504.936:0084:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFFC0D157
+14504.936:0084:trace:seh:dispatch_exception rip=00006fffffc0d157 rsp=000000000021d570 rbp=000000000021d660 eflags=00000202
+14504.936:0084:trace:seh:dispatch_exception rax=000000000021d590 rbx=000000000021e420 rcx=000000000021d590 rdx=0000000000000000
+14504.936:0084:trace:seh:dispatch_exception rsi=0000000000000064 rdi=00000000007e21b0  r8=0000000000000000  r9=0000000000000000
+14504.936:0084:trace:seh:dispatch_exception r10=00000000007e22f0 r11=0000000000000010 r12=000000000021e420 r13=0000000000000005
+14504.936:0084:trace:seh:dispatch_exception r14=00006fffff8acdb4 r15=00000000007e21b0 mxcsr=00001fa0
+14504.936:0084:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF556AA0 (rec=000000000021D590 frame=000000000021D7B0 context=000000000021D090 dispatch=000000000021C830) sp=21e130
+14504.936:0084:trace:seh:call_seh_handlers TEB handler at 00006FFFFF556AA0 returned 1
+14504.936:0084:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF8848A0 (rec=000000000021D590 frame=000000000021EC90 context=000000000021D090 dispatch=000000000021C830) sp=21ede0
+14504.936:0084:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=000000000021EC90 target_ip=00006FFFFF873DEA
+14504.936:0084:trace:seh:RtlUnwindEx rip=00006ffffff748e5 rsp=000000000021bb10 rbp=000000000021bb90 eflags=00000202
+14504.936:0084:trace:seh:RtlUnwindEx rax=000000000021d7b0 rbx=000000000021ec90 rcx=000000000021c1d0 rdx=00006fffff873dea
+14504.936:0084:trace:seh:RtlUnwindEx rsi=000000000021c830 rdi=000000000021bc80  r8=000000000021d590  r9=00006fffff895030
+14504.936:0084:trace:seh:RtlUnwindEx r10=0000000000000000 r11=0000000000000000 r12=000000000021d590 r13=000000000021c1d0
+14504.936:0084:trace:seh:RtlUnwindEx r14=000000000021ec90 r15=000000007ffc0000 mxcsr=00001fa0
+14504.936:0084:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFF556AA0 (rec=000000000021D590, frame=000000000021D7B0 context=000000000021C1D0, dispatch=000000000021BB90)
+14504.936:0084:trace:seh:RtlUnwindEx handler at 00006FFFFF556AA0 returned 1
+14504.936:0084:trace:seh:RtlRestoreContext returning to 00006FFFFF873DEA stack 000000000021EC50
+14504.975:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14506.841:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\wineusb.sys" 0000000000000000 0)
+14506.841:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\wineusb.sys" 00000000007F39B0 40)
+14506.842:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\wineusb.sys" 0000000000000000 0)
+14506.842:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\wineusb.sys" 0000000000C2E400 40)
+14506.843:00b0:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\drivers\\wineusb.sys" at 00006FFFFE470000: builtin
+14506.845:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebth.sys" 0000000000000000 0)
+14506.845:003c:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebth.sys" 00000000007F39B0 40)
+14506.846:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebth.sys" 0000000000000000 0)
+14506.846:00b0:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\drivers\\winebth.sys" 0000000000C2E4C0 40)
+14506.846:00b0:err:ntoskrnl:ZwLoadDriver failed to create driver L"\\Registry\\Machine\\System\\CurrentControlSet\\Services\\winebth": c0000142
+14506.847:003c:fixme:service:scmdatabase_autostart_services Auto-start service L"winebth" failed to start: 1114
+14506.847:002c:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021EDE0 80)
+14506.847:002c:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021EDE0 80)
+14506.850:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14506.850:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14506.850:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14506.851:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shcore.dll" at 00006FFFFEB20000: builtin
+14506.851:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shlwapi.dll" at 00006FFFFEB50000: builtin
+14506.851:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shell32.dll" at 00006FFFFEBB0000: builtin
+14506.854:0050:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\rpcss.exe" 0000000000000000 0)
+14506.854:0050:trace:process:ExpandEnvironmentStringsW (L"C:\\windows\\system32\\rpcss.exe" 000000000080DC30 30)
+14506.855:0050:trace:process:CreateProcessInternalW app (null) cmdline L"C:\\windows\\system32\\rpcss.exe", inherit 0, flags 0x408, env 0000000000803420 (L"SystemRoot=C:\\windows")
+14506.855:0050:trace:process:find_exe_file looking for L"C:\\windows\\system32\\rpcss.exe" in L"C:\\windows\\system32;.;C:\\windows\\system32;C:\\windows\\system;C:\\windows;C:\\Program Files (x86)\\Steam;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0"
+14506.856:0050:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14506.856:0050:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\rpcss.exe" image L"C:\\windows\\system32\\rpcss.exe" cmdline L"C:\\windows\\system32\\rpcss.exe" parent (nil) machine 0
+14506.864:0118:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14506.864:0118:trace:seh:install_bpf Seccomp filters already installed.
+14506.864:0050:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\rpcss.exe" pid 0114 tid 0118 handles 0x184/0x188
+14506.864:0050:trace:process:CreateProcessInternalW started process pid 0114 tid 0118
+14506.864:0118:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14506.865:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcss.exe" at 0000000140000000: builtin
+14506.865:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14506.865:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14506.866:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14506.867:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14506.867:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14506.867:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14506.867:0118:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14506.867:0118:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14506.867:0118:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14506.868:0118:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14506.868:0118:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000245DE0 17)
+14506.868:0118:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14506.868:0118:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000245E10 17)
+14506.869:0118:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14506.869:0118:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14506.869:0118:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14506.876:0084:trace:process:CreateProcessInternalW app L"C:\\windows\\system32\\tabtip.exe" cmdline (null), inherit 1, flags 0x8, env 0000000000000000 ((null))
+14506.876:0084:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14506.877:0084:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\tabtip.exe" image L"C:\\windows\\system32\\tabtip.exe" cmdline L"\"C:\\windows\\system32\\tabtip.exe\"" parent (nil) machine 0
+14506.886:013c:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14506.886:013c:trace:seh:install_bpf Seccomp filters already installed.
+14506.886:0084:trace:process:NtCreateUserProcess L"\\??\\C:\\windows\\system32\\tabtip.exe" pid 0138 tid 013c handles 0xdc/0xe0
+14506.886:0084:trace:process:CreateProcessInternalW started process pid 0138 tid 013c
+14506.886:013c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14506.886:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\tabtip.exe" at 0000000140000000: builtin
+14506.887:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14506.887:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14506.888:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14506.889:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14506.889:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14506.889:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14506.890:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14506.890:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14506.890:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14506.891:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14506.891:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\combase.dll" at 00006FFFFF870000: builtin
+14506.891:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\coml2.dll" at 00006FFFFF4F0000: builtin
+14506.891:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ole32.dll" at 00006FFFFF8D0000: builtin
+14506.891:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleaut32.dll" at 00006FFFFE8D0000: builtin
+14506.892:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shcore.dll" at 00006FFFFEB20000: builtin
+14506.892:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shlwapi.dll" at 00006FFFFEB50000: builtin
+14506.892:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shell32.dll" at 00006FFFFEBB0000: builtin
+14506.892:013c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14506.892:013c:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14506.893:013c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14506.893:013c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 000000000024F1F0 17)
+14506.893:013c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14506.893:013c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 000000000024F250 17)
+14506.915:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14506.915:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e9cc,0x00000004,(nil))
+14506.915:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e9cc,0x00000004,(nil))
+14506.916:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14506.916:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\combase.dll" at 00006FFFFF870000: builtin
+14506.916:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\coml2.dll" at 00006FFFFF4F0000: builtin
+14506.916:002c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ole32.dll" at 00006FFFFF8D0000: builtin
+14506.916:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e9cc,0x00000004,(nil))
+14506.916:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e9cc,0x00000004,(nil))
+14506.916:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e9cc,0x00000004,(nil))
+14506.916:002c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e9cc,0x00000004,(nil))
+14506.917:002c:trace:process:NtTerminateProcess handle (nil), exit_code 0, process_exiting 0.
+14506.917:002c:trace:process:NtTerminateProcess handle (nil), self 1, process_exiting 0.
+14506.917:002c:trace:process:NtTerminateProcess handle 0xffffffffffffffff, exit_code 0, process_exiting 1.
+14506.917:002c:trace:process:NtTerminateProcess handle 0xffffffffffffffff, self 1, process_exiting 1.
+14506.924:0024:trace:seh:install_bpf Installing seccomp filters.
+14506.924:0024:trace:seh:check_bpf_jit_enable enabled 0x31.
+14506.925:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x21f960,0x00000040,(nil))
+14506.925:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\umu.exe" at 0000000140000000: builtin
+14506.925:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14506.925:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14506.926:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14506.927:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14506.927:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14506.927:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14506.928:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\cabinet.dll" at 00006FFFFE2F0000: builtin
+14506.929:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14506.929:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14506.929:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14506.930:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14506.931:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14506.931:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\combase.dll" at 00006FFFFF870000: builtin
+14506.931:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\coml2.dll" at 00006FFFFF4F0000: builtin
+14506.931:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ole32.dll" at 00006FFFFF8D0000: builtin
+14506.931:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleaut32.dll" at 00006FFFFE8D0000: builtin
+14506.932:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleacc.dll" at 00006FFFFE150000: builtin
+14506.932:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\comctl32.dll" at 00006FFFFE190000: builtin
+14506.932:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\bcrypt.dll" at 00006FFFFE030000: builtin
+14506.932:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\crypt32.dll" at 00006FFFFE060000: builtin
+14506.933:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\dbghelp.dll" at 00006FFFFDF70000: builtin
+14506.933:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imagehlp.dll" at 00006FFFFE000000: builtin
+14506.934:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\mspatcha.dll" at 00006FFFFDF50000: builtin
+14506.934:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\odbccp32.dll" at 00006FFFFDF20000: builtin
+14506.935:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shcore.dll" at 00006FFFFEB20000: builtin
+14506.935:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shlwapi.dll" at 00006FFFFEB50000: builtin
+14506.935:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shell32.dll" at 00006FFFFEBB0000: builtin
+14506.936:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sxs.dll" at 00006FFFFDF00000: builtin
+14506.936:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\mpr.dll" at 00006FFFFDDA0000: builtin
+14506.937:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ws2_32.dll" at 00006FFFFF9A0000: builtin
+14506.937:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\wininet.dll" at 00006FFFFDDD0000: builtin
+14506.937:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\urlmon.dll" at 00006FFFFDE70000: builtin
+14506.937:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\version.dll" at 00006FFFFDD80000: builtin
+14506.938:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\wintrust.dll" at 00006FFFFDD40000: builtin
+14506.938:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msi.dll" at 00006FFFFE320000: builtin
+14506.938:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f438,0x00000008,(nil))
+14506.938:0024:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000021F090 85)
+14506.938:0024:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14506.938:0024:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000265AF0 17)
+14506.939:0024:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14506.939:0024:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000265B80 17)
+14506.965:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14506.966:013c:trace:process:GetEnvironmentVariableW (L"oanocache" 0000000000000000 0)
+14506.966:013c:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14506.966:013c:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 000000000021FE40 80)
+14506.966:013c:trace:process:GetEnvironmentVariableW (L"SteamGameId" 000000000021FE40 80)
+14506.966:0084:trace:process:GetEnvironmentVariableW (L"PROTON_USE_XALIA" 000000000021F0A0 2)
+14506.966:0084:trace:process:GetEnvironmentVariableW (L"WINEDATADIR" 0000000000000000 0)
+14506.966:0084:trace:process:GetEnvironmentVariableW (L"WINEDATADIR" 00000000007E2CD0 69)
+14506.966:0084:trace:process:SetEnvironmentVariableW (L"XALIA_WINE_SYSTEM_PROCESS" L"1")
+14506.966:0084:trace:process:CreateProcessInternalW app L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe" cmdline (null), inherit 1, flags 0x8, env 0000000000000000 ((null))
+14506.966:0084:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe"
+14506.967:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleacc.dll" at 00006FFFFE150000: builtin
+14506.967:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\uiautomationcore.dll" at 00006FFFFDCB0000: builtin
+14506.968:0084:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14506.968:0084:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe"
+14506.968:0084:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe"
+14506.968:0084:trace:process:NtCreateUserProcess L"\\??\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\xalia\\xalia.exe" image L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\xalia\\xalia.exe" cmdline L"\"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe\"" parent (nil) machine 0
+14506.977:0144:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+14506.977:0144:trace:seh:install_bpf Seccomp filters already installed.
+14506.977:0084:trace:process:NtCreateUserProcess L"\\??\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\xalia\\xalia.exe" pid 0140 tid 0144 handles 0xe0/0xe4
+14506.977:0084:trace:process:CreateProcessInternalW started process pid 0140 tid 0144
+14506.977:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000025,0x11f960,0x00000040,(nil))
+14506.977:0144:trace:loaddll:build_module Loaded L"S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\xalia\\xalia.exe" at 0000000000400000: native
+14506.978:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 00006FFFFFC00000: builtin
+14506.978:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 00006FFFFFEC0000: builtin
+14506.978:0034:trace:loaddll:build_module Loaded L"c:\\windows\\system32\\winex11.drv" at 00006FFFFE6B0000: builtin
+14506.979:013c:trace:loaddll:build_module Loaded L"c:\\windows\\system32\\winex11.drv" at 00006FFFFE6B0000: builtin
+14506.979:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 00006FFFFFAF0000: builtin
+14506.980:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 00006FFFFF9E0000: builtin
+14506.980:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 00006FFFFFAC0000: builtin
+14506.980:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 00006FFFFFBA0000: builtin
+14506.980:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\dbghelp.dll" at 00006FFFFDF70000: builtin
+14506.982:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 00006FFFFF5C0000: builtin
+14506.982:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 00006FFFFF610000: builtin
+14506.982:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 00006FFFFF7E0000: builtin
+14506.983:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 00006FFFFF520000: builtin
+14506.983:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\combase.dll" at 00006FFFFF870000: builtin
+14506.983:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\coml2.dll" at 00006FFFFF4F0000: builtin
+14506.983:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ole32.dll" at 00006FFFFF8D0000: builtin
+14506.984:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shcore.dll" at 00006FFFFEB20000: builtin
+14506.985:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shlwapi.dll" at 00006FFFFEB50000: builtin
+14506.985:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shell32.dll" at 00006FFFFEBB0000: builtin
+14506.985:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\mscoree.dll" at 00006FFFFDC60000: builtin
+14506.985:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x11f438,0x00000008,(nil))
+14506.985:0144:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 000000000011F090 85)
+14506.985:0144:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0000000000000000 0)
+14506.985:0144:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 000000000014F540 17)
+14506.986:0144:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0000000000000000 0)
+14506.986:0144:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 000000000014F5A0 17)
+14506.986:0034:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\uxtheme.dll" at 00006FFFFE4F0000: builtin
+14506.987:013c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\uxtheme.dll" at 00006FFFFE4F0000: builtin
+14506.990:0034:trace:process:NtTerminateProcess handle (nil), exit_code 0, process_exiting 0.
+14506.990:0034:trace:process:NtTerminateProcess handle (nil), self 1, process_exiting 0.
+14506.991:0034:trace:process:NtTerminateProcess handle 0xffffffffffffffff, exit_code 0, process_exiting 1.
+14506.991:0034:trace:process:NtTerminateProcess handle 0xffffffffffffffff, self 1, process_exiting 1.
+14506.996:013c:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+14506.996:013c:fixme:uiautomation:uia_get_providers_for_hwnd Override provider callback currently unimplemented.
+14506.996:013c:fixme:uiautomation:default_uia_provider_callback Default ProviderType_NonClientArea provider unimplemented.
+14507.000:013c:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+14507.003:013c:fixme:uiautomation:base_hwnd_fragment_get_FragmentRoot 0000000000399E28, 000000000021F9D0: stub!
+14507.003:013c:fixme:uiautomation:base_hwnd_fragment_GetEmbeddedFragmentRoots 0000000000399E28, 000000000021F9E0: stub!
+14507.004:0024:trace:process:GetEnvironmentVariableW (L"oanocache" 0000000000000000 0)
+14507.005:0024:trace:loaddll:build_module Loaded L"c:\\windows\\system32\\winex11.drv" at 00006FFFFE6B0000: builtin
+14507.015:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\uxtheme.dll" at 00006FFFFE4F0000: builtin
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e6fc,0x00000004,(nil))
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e6fc,0x00000004,(nil))
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e6fc,0x00000004,(nil))
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e6fc,0x00000004,(nil))
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e6fc,0x00000004,(nil))
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x21e6fc,0x00000004,(nil))
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000001a,0x21f4c8,0x00000008,(nil))
+14507.023:0024:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x21f8b0,0x00000008,(nil))
+14507.024:0024:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\vrclient_x64.dll" at 00006FFFFDA30000: builtin
+14507.024:0024:trace:process:GetEnvironmentVariableW (L"PROTON_VR_RUNTIME" 000000000021DE60 4096)
+14507.025:0024:trace:loaddll:free_modref Unloaded module L"C:\\windows\\system32\\vrclient_x64.dll" : builtin
+14507.025:0024:trace:process:CreateProcessInternalW app (null) cmdline L"\"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ca.exe\"", inherit 0, flags 0x400, env 0000000000000000 ((null))
+14507.025:0024:trace:process:find_exe_file looking for L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ca.exe" in L"C:\\windows\\system32;.;C:\\windows\\system32;C:\\windows\\system;C:\\windows;C:\\Program Files (x86)\\Steam;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0"
+14507.043:0024:trace:process:GetEnvironmentVariableW (L"PROTON_ORIG_LAUNCHER_NAME" 0000000000000000 0)
+14507.045:0024:trace:process:NtCreateUserProcess L"\\??\\S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ca.exe" image L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ca.exe" cmdline L"\"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ca.exe\"" parent (nil) machine 0
+14507.058:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 00006FFFFE6F0000: builtin
+14507.058:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000007,0x11f8b0,0x00000008,(nil))
+14507.059:0024:trace:process:NtCreateUserProcess L"\\??\\S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ca.exe" pid 0158 tid 015c handles 0x9c/0xa0
+14507.059:0024:trace:process:CreateProcessInternalW started process pid 0158 tid 015c
+14507.060:0144:trace:loaddll:build_module Loaded L"c:\\windows\\system32\\winex11.drv" at 00006FFFFE6B0000: builtin
+14507.060:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000025,0x19bfbdc,0x00000030,(nil))
+14507.060:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ca.exe" at 00400000: native
+14507.061:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernelbase.dll" at 7BBF0000: builtin
+14507.061:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\kernel32.dll" at 7BEB0000: builtin
+14507.063:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msvcrt.dll" at 7BAC0000: builtin
+14507.064:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ucrtbase.dll" at 7B990000: builtin
+14507.064:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\sechost.dll" at 7BA90000: builtin
+14507.064:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\advapi32.dll" at 7BB90000: builtin
+14507.065:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\cawh.sys" at 10000000: native
+14507.067:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\win32u.dll" at 7B550000: builtin
+14507.067:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\user32.dll" at 7B5A0000: builtin
+14507.067:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\gdi32.dll" at 7B780000: builtin
+14507.067:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\uxtheme.dll" at 00006FFFFE4F0000: builtin
+14507.067:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imm32.dll" at 7B520000: builtin
+14507.069:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rpcrt4.dll" at 7B310000: builtin
+14507.069:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\combase.dll" at 7B3B0000: builtin
+14507.070:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\coml2.dll" at 7B2E0000: builtin
+14507.070:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ole32.dll" at 7B410000: builtin
+14507.070:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleaut32.dll" at 7B200000: builtin
+14507.070:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleacc.dll" at 7B4E0000: builtin
+14507.070:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\comctl32.dll" at 7B820000: builtin
+14507.072:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleaut32.dll" at 00006FFFFE8D0000: builtin
+14507.072:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\rtworkq.dll" at 00006FFFFEAF0000: builtin
+14507.072:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\opengl32.dll" at 7AE90000: builtin
+14507.073:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\mpr.dll" at 00006FFFFDDA0000: builtin
+14507.074:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ws2_32.dll" at 00006FFFFF9A0000: builtin
+14507.074:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\wininet.dll" at 00006FFFFDDD0000: builtin
+14507.074:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\urlmon.dll" at 00006FFFFDE70000: builtin
+14507.074:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msxml3.dll" at 00006FFFFDA40000: builtin
+14507.074:0144:trace:process:GetEnvironmentVariableW (L"oanocache" 0000000000000000 0)
+14507.074:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11e00c,0x00000004,(nil))
+14507.074:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11e00c,0x00000004,(nil))
+14507.074:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11e00c,0x00000004,(nil))
+14507.074:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11e00c,0x00000004,(nil))
+14507.074:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\libvkd3d-shader-1.dll" at 7AC70000: builtin
+14507.074:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11e00c,0x00000004,(nil))
+14507.074:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\libvkd3d-1.dll" at 7ADF0000: builtin
+14507.074:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11e00c,0x00000004,(nil))
+14507.074:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\wined3d.dll" at 7AFE0000: builtin
+14507.074:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ddraw.dll" at 7B170000: builtin
+14507.074:0144:fixme:mscoree:parse_supported_runtime sku=L".NETFramework,Version=v4.8" not implemented
+14507.075:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\dwk.dll" at 001C0000: native
+14507.075:0144:fixme:mscoree:parse_supported_runtime sku=L".NETFramework,Version=v4.8" not implemented
+14507.076:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\dnsapi.dll" at 7AC00000: builtin
+14507.076:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\nsi.dll" at 7ABE0000: builtin
+14507.077:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\ws2_32.dll" at 7ABA0000: builtin
+14507.077:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\iphlpapi.dll" at 7AC30000: builtin
+14507.078:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\bcrypt.dll" at 00006FFFFE030000: builtin
+14507.078:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shcore.dll" at 7A1C0000: builtin
+14507.079:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shlwapi.dll" at 7A1F0000: builtin
+14507.079:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\shell32.dll" at 7A250000: builtin
+14507.079:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msacm32.dll" at 00006FFFFE9E0000: builtin
+14507.079:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\WINMM.dll" at 00006FFFFEA10000: builtin
+14507.079:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\version.dll" at 7A1A0000: builtin
+14507.080:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\VERSION.dll" at 00006FFFFDD80000: builtin
+14507.080:0144:trace:loaddll:build_module Loaded L"C:\\windows\\mono\\mono-2.0\\bin\\libmono-2.0-x86_64.dll" at 00006FFFFD620000: builtin
+14507.080:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\mpr.dll" at 7A0D0000: builtin
+14507.080:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\wininet.dll" at 7A100000: builtin
+14507.081:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\msacm32.dll" at 79FB0000: builtin
+14507.081:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\winmm.dll" at 79FF0000: builtin
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_LOG_MASK" 0000000000597820 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_LOG_LEVEL" 0000000000597820 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_LOG_HEADER" 0000000000597820 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_LOG_DEST" 0000000000597820 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_CFG_DIR" 0000000000597820 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_CONFIG" 0000000000597820 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"DUMP_CROSS_OFFSETS" 0000000000597820 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_VERBOSE_HWCAP" 000000000059D3D0 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_CONSERVATIVE_HWCAP" 000000000059D3D0 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_DEBUG" 000000000059D3D0 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_VERBOSE_HWCAP" 000000000059D3D0 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_CONSERVATIVE_HWCAP" 000000000059D3D0 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_LLDB" 000000000059F1E0 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_XDEBUG" 000000000059F1E0 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_LASTAOT" 00000000005A2B30 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_PROFILE" 00000000005A2B30 1024)
+14507.082:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11f26c,0x00000004,(nil))
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_GC_PARAMS" 00000000005A3B40 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_THREADS_SUSPEND" 00000000005A4720 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_SLEEP_ABORT_LIMIT" 00000000005A4720 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_GC_DEBUG" 00000000005A53A0 1024)
+14507.082:0144:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+14507.082:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x00000003,0x11ee60,0x00000060,(nil))
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_DEBUG_ASSEMBLY_UNLOAD" 00000000005A7700 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_PATH" 00000000005A7700 1024)
+14507.082:0144:trace:process:GetEnvironmentVariableW (L"MONO_GAC_PREFIX" 00000000005A7700 1024)
+14507.083:0144:trace:loaddll:build_module Loaded L"C:\\windows\\Microsoft.NET\\Framework64\\v2.0.50727\\fusion.dll" at 00006FFFFE8A0000: builtin
+14507.083:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\binkw32.dll" at 30000000: native
+14507.085:0144:trace:loaddll:build_module Loaded L"C:\\windows\\mono\\mono-2.0\\lib\\mono\\4.5\\mscorlib.dll" at 0000000002E10000: native
+14507.086:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ea7c,0x00000004,(nil))
+14507.086:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ea7c,0x00000004,(nil))
+14507.086:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ea7c,0x00000004,(nil))
+14507.086:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ea7c,0x00000004,(nil))
+14507.086:0144:trace:process:GetEnvironmentVariableW (L"USERPROFILE" 00000000005B2120 1024)
+14507.086:0144:trace:process:GetEnvironmentVariableW (L"MONO_COM" 00000000005EB0C0 1024)
+14507.087:0144:trace:process:GetEnvironmentVariableW (L"MONO_DISABLE_WCF_HACK" 00000000005EF100 1024)
+14507.088:0144:trace:process:GetEnvironmentVariableW (L"MONO_VERBOSE_METHOD" 0000000000620A30 1024)
+14507.088:0144:trace:process:GetEnvironmentVariableW (L"MONO_INLINELIMIT" 0000000000621C20 1024)
+14507.088:0144:trace:process:GetEnvironmentVariableW (L"MONO_INLINE_CALLED_METHOD_NAME_LIMIT" 0000000000621C20 1024)
+14507.088:0144:trace:process:GetEnvironmentVariableW (L"MONO_INLINE_CALLER_METHOD_NAME_LIMIT" 0000000000621C20 1024)
+14507.089:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11f37c,0x00000004,(nil))
+14507.089:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11f37c,0x00000004,(nil))
+14507.089:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11f37c,0x00000004,(nil))
+14507.089:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11f37c,0x00000004,(nil))
+14507.089:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\d3dx9_30.dll" at 01B80000: native
+14507.089:0144:trace:process:GetEnvironmentVariableW (L"MONO_EXTERNAL_ENCODINGS" 000000000063E210 1024)
+14507.090:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\dbghelp.dll" at 79F20000: builtin
+14507.091:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\ijl15.dll" at 60000000: native
+14507.091:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\imagehlp.dll" at 79F00000: builtin
+14507.091:0144:trace:loaddll:build_module Loaded L"C:\\windows\\mono\\mono-2.0\\lib\\mono\\gac\\System.Core\\4.0.0.0__b77a5c561934e089\\System.Core.dll" at 0000000010000000: native
+14507.092:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d53c,0x00000004,(nil))
+14507.092:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d53c,0x00000004,(nil))
+14507.092:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d53c,0x00000004,(nil))
+14507.092:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d53c,0x00000004,(nil))
+14507.092:0144:trace:process:GetEnvironmentVariableW (L"USERPROFILE" 0000000000654E40 1024)
+14507.093:0144:trace:loaddll:build_module Loaded L"S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\xalia\\Superpower.dll" at 0000000003C40000: native
+14507.093:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ddec,0x00000004,(nil))
+14507.093:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ddec,0x00000004,(nil))
+14507.093:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ddec,0x00000004,(nil))
+14507.093:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\mss32.dll" at 21100000: native
+14507.093:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11ddec,0x00000004,(nil))
+14507.093:0144:trace:process:GetEnvironmentVariableW (L"USERPROFILE" 0000000003451870 1024)
+14507.094:0144:trace:loaddll:build_module Loaded L"C:\\windows\\mono\\mono-2.0\\lib\\mono\\4.5\\Facades\\netstandard.dll" at 0000000003C60000: native
+14507.094:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d81c,0x00000004,(nil))
+14507.094:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d81c,0x00000004,(nil))
+14507.094:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d81c,0x00000004,(nil))
+14507.094:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d81c,0x00000004,(nil))
+14507.094:015c:trace:loaddll:build_module Loaded L"S:\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\candidate-build-20261025T083000Z\\runtime-single-20261025T090000Z\\game-copy\\nmco3.dll" at 01DE0000: native
+14507.095:0144:trace:process:GetEnvironmentVariableW (L"USERPROFILE" 0000000003453720 1024)
+14507.095:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf958,0x00000004,(nil))
+14507.095:015c:trace:process:GetEnvironmentVariableW (L"WINEUNIXCP" 019BF5C2 85)
+14507.095:015c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 00000000 0)
+14507.095:015c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4464" 0015DBC8 17)
+14507.096:015c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 00000000 0)
+14507.096:015c:trace:process:ExpandEnvironmentStringsW (L"@tzres.dll,-4465" 0015DDD0 17)
+14507.096:015c:trace:process:set_entry_point setting FT_Thunk at 7BEF5664 to 00000000
+14507.097:015c:trace:process:GetEnvironmentVariableW (L"WINE_SHRINK_ENV" 019BF8D4 80)
+14507.097:015c:trace:process:GetEnvironmentVariableW (L"SteamGameId" 019BF8D4 80)
+14507.098:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11db6c,0x00000004,(nil))
+14507.101:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\SETUPAPI.dll" at 00006FFFFE800000: builtin
+14507.101:0144:trace:loaddll:build_module Loaded L"S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\xalia\\SDL2.dll" at 00006FFFFD480000: native
+14507.101:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11db6c,0x00000004,(nil))
+14507.105:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\hid.dll" at 00006FFFFE9C0000: builtin
+14507.112:00b4:trace:process:NtQueryInformationProcess (0x118c,0x00000000,0xceb038,0x00000030,(nil))
+14507.112:00b4:trace:process:NtQueryInformationProcess (0x118c,0x0000001a,0xc0f378,0x00000008,(nil))
+14507.124:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\XInput1_4.dll" at 00006FFFFD450000: builtin
+14507.125:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\oleacc.dll" at 00006FFFFE150000: builtin
+14507.125:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\comctl32.dll" at 00006FFFFE190000: builtin
+14507.125:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\dinput8.dll" at 00006FFFFD3F0000: builtin
+14507.131:0144:fixme:dinput:hid_joystick_device_try_open device usage ffc0:0001 not implemented!
+14507.132:0144:fixme:dinput:hid_joystick_device_try_open device usage 000c:0001 not implemented!
+14507.132:0144:fixme:dinput:hid_joystick_device_try_open device usage ff00:0001 not implemented!
+14507.132:0144:fixme:dinput:hid_joystick_device_try_open device usage ff00:0001 not implemented!
+14507.132:0144:fixme:dinput:hid_joystick_device_try_open device usage 0001:0080 not implemented!
+14507.132:0144:fixme:dinput:hid_joystick_device_try_open device usage 000c:0001 not implemented!
+14507.133:0144:fixme:dinput:hid_joystick_device_try_open device usage ff60:0061 not implemented!
+14507.133:0144:fixme:dinput:hid_joystick_device_try_open device usage ff05:0000 not implemented!
+14507.133:0144:fixme:dinput:hid_joystick_device_try_open device usage ff03:0000 not implemented!
+14507.133:0144:fixme:dinput:hid_joystick_device_try_open device usage 000c:0001 not implemented!
+14507.133:0144:fixme:dinput:hid_joystick_device_try_open device usage 0001:0080 not implemented!
+14507.133:0144:fixme:dinput:hid_joystick_device_try_open device usage ff02:0002 not implemented!
+14507.134:0144:fixme:dinput:hid_joystick_device_try_open device usage ff04:0002 not implemented!
+14507.134:0144:fixme:dinput:hid_joystick_device_try_open device usage ff06:0002 not implemented!
+14507.134:0144:fixme:dinput:hid_joystick_device_try_open device usage 00ff:0001 not implemented!
+14507.140:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\cfgmgr32.dll" at 00006FFFFD3C0000: builtin
+14507.140:0144:trace:loaddll:free_modref Unloaded module L"C:\\windows\\system32\\cfgmgr32.dll" : builtin
+14507.146:0144:fixme:combase:RoGetActivationFactory (L"Windows.Gaming.Input.RawGameController", {eb8d0792-e95a-4b19-afc7-0a59f8bf759e}, 00006FFFFD5F8960): semi-stub
+14507.146:0144:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\windows.gaming.input.dll" at 00006FFFFD3B0000: builtin
+14507.158:0174:fixme:dinput:hid_joystick_device_try_open device usage ffc0:0001 not implemented!
+14507.158:0174:fixme:dinput:hid_joystick_device_try_open device usage 000c:0001 not implemented!
+14507.158:0174:fixme:dinput:hid_joystick_device_try_open device usage ff00:0001 not implemented!
+14507.158:0174:fixme:dinput:hid_joystick_device_try_open device usage ff00:0001 not implemented!
+14507.159:0174:fixme:dinput:hid_joystick_device_try_open device usage 0001:0080 not implemented!
+14507.159:0174:fixme:dinput:hid_joystick_device_try_open device usage 000c:0001 not implemented!
+14507.159:0174:fixme:dinput:hid_joystick_device_try_open device usage ff60:0061 not implemented!
+14507.159:0174:fixme:dinput:hid_joystick_device_try_open device usage ff05:0000 not implemented!
+14507.159:0174:fixme:dinput:hid_joystick_device_try_open device usage ff03:0000 not implemented!
+14507.160:0174:fixme:dinput:hid_joystick_device_try_open device usage 000c:0001 not implemented!
+14507.160:0174:fixme:dinput:hid_joystick_device_try_open device usage 0001:0080 not implemented!
+14507.160:0174:fixme:dinput:hid_joystick_device_try_open device usage ff02:0002 not implemented!
+14507.160:0174:fixme:dinput:hid_joystick_device_try_open device usage ff04:0002 not implemented!
+14507.160:0174:fixme:dinput:hid_joystick_device_try_open device usage ff06:0002 not implemented!
+14507.161:0174:fixme:dinput:hid_joystick_device_try_open device usage 00ff:0001 not implemented!
+14507.164:015c:trace:process:GetEnvironmentVariableW (L"oanocache" 00000000 0)
+14507.164:0144:trace:process:GetEnvironmentVariableW (L"XALIA_WINE_SYSTEM_PROCESS" 00000000034FA7E0 1024)
+14507.164:015c:trace:loaddll:build_module Loaded L"c:\\windows\\system32\\winex11.drv" at 79EE0000: builtin
+14507.171:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.172:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.172:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.172:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.172:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.172:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.172:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.172:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11dacc,0x00000004,(nil))
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.173:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\uxtheme.dll" at 79E90000: builtin
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.173:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d95c,0x00000004,(nil))
+14507.175:0144:trace:process:GetEnvironmentVariableW (L"MONO_THREADS_PER_CPU" 0000000000622800 1024)
+14507.179:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000000c,0x19bee4c,0x00000004,(nil))
+14507.179:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000000c,0x19bee4c,0x00000004,(nil))
+14507.179:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000000c,0x19bee4c,0x00000004,(nil))
+14507.179:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000000c,0x19bee4c,0x00000004,(nil))
+14507.179:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000000c,0x19bee4c,0x00000004,(nil))
+14507.179:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000000c,0x19bee4c,0x00000004,(nil))
+14507.180:0144:trace:process:GetEnvironmentVariableW (L"MONO_DUMP_HANDLES_ON_ERROR_TOO_MANY_OPEN_FILES" 000000000362E8A0 1024)
+14507.181:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000007,0x19bfb70,0x00000004,(nil))
+14507.181:015c:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+14507.184:015c:trace:loaddll:build_module Loaded L"C:\\windows\\system32\\D3D9.DLL" at 79AC0000: native
+14507.184:015c:trace:process:GetEnvironmentVariableW (L"DXVK_NO_VR" 001E0670 260)
+14507.184:015c:trace:process:GetEnvironmentVariableW (L"DXVK_LOG_LEVEL" 001EB8D8 260)
+14507.184:015c:warn:seh:dispatch_exception "Load Library("
+14507.184:015c:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+14507.184:015c:trace:seh:dispatch_exception  info[0]=0000000E
+14507.184:015c:trace:seh:dispatch_exception  info[1]=00C97600
+14507.184:015c:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+14507.184:015c:trace:seh:dispatch_exception eax=019bfc7c ebx=00000008 ecx=00000000 edx=019bfc90
+14507.184:015c:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+14507.184:015c:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+14507.184:015c:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+14507.184:015c:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+14507.184:015c:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+14507.184:015c:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+14507.184:015c:warn:seh:dispatch_exception "D3D9.DLL"
+14507.184:015c:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+14507.184:015c:trace:seh:dispatch_exception  info[0]=00000009
+14507.184:015c:trace:seh:dispatch_exception  info[1]=00C981C8
+14507.184:015c:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+14507.184:015c:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981c8 ecx=00000000 edx=019bfc90
+14507.184:015c:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+14507.184:015c:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+14507.184:015c:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+14507.184:015c:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+14507.184:015c:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+14507.184:015c:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+14507.184:015c:warn:seh:dispatch_exception ") Successed !!\n"
+14507.184:015c:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+14507.184:015c:trace:seh:dispatch_exception  info[0]=00000010
+14507.184:015c:trace:seh:dispatch_exception  info[1]=00C975F0
+14507.184:015c:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+14507.184:015c:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981c8 ecx=00000000 edx=019bfc90
+14507.184:015c:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+14507.184:015c:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+14507.184:015c:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+14507.184:015c:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+14507.184:015c:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+14507.184:015c:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+14507.184:015c:warn:seh:dispatch_exception "Load Library("
+14507.184:015c:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+14507.184:015c:trace:seh:dispatch_exception  info[0]=0000000E
+14507.184:015c:trace:seh:dispatch_exception  info[1]=00C97600
+14507.184:015c:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+14507.184:015c:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981d4 ecx=00000000 edx=019bfc90
+14507.184:015c:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+14507.184:015c:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+14507.184:015c:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+14507.184:015c:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+14507.184:015c:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+14507.184:015c:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.184:015c:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+14507.184:015c:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+14507.185:015c:warn:seh:dispatch_exception "D3DX9_30.DLL"
+14507.185:015c:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+14507.185:015c:trace:seh:dispatch_exception  info[0]=0000000D
+14507.185:015c:trace:seh:dispatch_exception  info[1]=00C981D4
+14507.185:015c:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+14507.185:015c:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981d4 ecx=00000000 edx=019bfc90
+14507.185:015c:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.185:015c:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+14507.185:015c:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+14507.185:015c:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+14507.185:015c:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+14507.185:015c:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+14507.185:015c:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+14507.185:015c:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.185:015c:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+14507.185:015c:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+14507.185:015c:warn:seh:dispatch_exception ") Successed !!\n"
+14507.185:015c:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+14507.185:015c:trace:seh:dispatch_exception  info[0]=00000010
+14507.185:015c:trace:seh:dispatch_exception  info[1]=00C975F0
+14507.185:015c:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+14507.185:015c:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981d4 ecx=00000000 edx=019bfc90
+14507.185:015c:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.185:015c:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+14507.185:015c:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+14507.185:015c:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+14507.185:015c:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+14507.185:015c:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+14507.185:015c:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+14507.185:015c:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+14507.185:015c:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+14507.185:015c:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+14507.185:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfe30,0x00000004,(nil))
+14507.185:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bfe20,0x00000018,(nil))
+14507.185:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfe30,0x00000004,(nil))
+14507.185:015c:trace:process:GetEnvironmentVariableW (L"_NT_SYMBOL_PATH" 00000000 0)
+14507.185:015c:trace:process:GetEnvironmentVariableW (L"_NT_ALT_SYMBOL_PATH" 00000000 0)
+14507.185:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf5d4,0x00000018,(nil))
+14507.185:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf640,0x00000018,(nil))
+14507.195:0144:trace:process:GetEnvironmentVariableW (L"TMP" 000000000375E050 1024)
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.195:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11caac,0x00000004,(nil))
+14507.198:0144:trace:seh:EnumProcessModulesEx (FFFFFFFFFFFFFFFF, 00000000037493E0, 8192, 000000000011C80C, 0)
+14507.198:0144:trace:seh:EnumProcessModulesEx (FFFFFFFFFFFFFFFF, 00000000037493E0, 8192, 000000000011C7FC, 0)
+14507.198:0144:trace:seh:EnumProcessModulesEx (FFFFFFFFFFFFFFFF, 00000000037493E0, 8192, 000000000011C7FC, 0)
+14507.203:0144:trace:loaddll:build_module Loaded L"C:\\windows\\mono\\mono-2.0\\lib\\mono\\gac\\System.Numerics\\4.0.0.0__b77a5c561934e089\\System.Numerics.dll" at 0000000004500000: native
+14507.203:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11cc5c,0x00000004,(nil))
+14507.203:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11cc5c,0x00000004,(nil))
+14507.204:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11cc5c,0x00000004,(nil))
+14507.204:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11cc5c,0x00000004,(nil))
+14507.204:0144:trace:process:GetEnvironmentVariableW (L"USERPROFILE" 00000000037499D0 1024)
+14507.215:0144:trace:loaddll:build_module Loaded L"C:\\windows\\mono\\mono-2.0\\lib\\mono\\gac\\System\\4.0.0.0__b77a5c561934e089\\System.dll" at 0000000004550000: native
+14507.216:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11a0dc,0x00000004,(nil))
+14507.216:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11a0dc,0x00000004,(nil))
+14507.216:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11a0dc,0x00000004,(nil))
+14507.216:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11a0dc,0x00000004,(nil))
+14507.216:0144:trace:process:GetEnvironmentVariableW (L"USERPROFILE" 0000000003828C80 1024)
+14507.217:015c:fixme:dbghelp:elf_search_auxv can't find symbol in module
+14507.218:015c:trace:seh:EnumProcessModulesEx (FFFFFFFF, 01A26E80, 1024, 019BFC00, 0)
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.218:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.220:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.222:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.222:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.222:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.222:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.223:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.223:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.223:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.223:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.224:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.224:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.224:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.224:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.225:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.225:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.225:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.225:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.226:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.227:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.228:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.228:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.228:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.228:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.229:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.230:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.232:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.232:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.232:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.232:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.234:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.234:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.234:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.234:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.235:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.235:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.235:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.235:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.237:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.237:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.237:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.237:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.238:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.240:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.241:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.241:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.242:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.242:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.242:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.242:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.242:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.242:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.243:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.244:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.246:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.246:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.246:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.246:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.247:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.247:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.247:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.247:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.248:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.249:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.250:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.250:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.250:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.250:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.251:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.252:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bfab8,0x00000004,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf980,0x00000018,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x0000001a,0x19bf934,0x00000004,(nil))
+14507.253:015c:trace:process:NtQueryInformationProcess (0xffffffff,0x00000000,0x19bf7f8,0x00000018,(nil))
+14507.318:0144:trace:loaddll:build_module Loaded L"S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\xalia\\Tmds.DBus.Protocol.dll" at 00000000049D0000: native
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d8ac,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d8ac,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d8ac,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d8ac,0x00000004,(nil))
+14507.318:0144:trace:process:GetEnvironmentVariableW (L"USERPROFILE" 00000000039931C0 1024)
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d43c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d43c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d43c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d43c,0x00000004,(nil))
+14507.318:0144:trace:process:GetEnvironmentVariableW (L"XALIA_DEBUG_INPUT" 0000000003984FC0 1024)
+14507.318:0144:trace:process:GetEnvironmentVariableW (L"XALIA_DEBUG_INPUT" 0000000003984FC0 1024)
+14507.318:0144:trace:process:GetEnvironmentVariableW (L"XALIA_LAYERED_BOX" 000000000399B750 1024)
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.318:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11d82c,0x00000004,(nil))
+14507.326:0144:trace:process:GetEnvironmentVariableW (L"XALIA_LAYERED_BOX" 00000000039AF700 1024)
+14507.329:0144:trace:process:GetEnvironmentVariableW (L"XALIA_USE_ATSPI" 00000000039AF700 1024)
+14507.329:0144:trace:process:GetEnvironmentVariableW (L"XALIA_USE_WIN32" 00000000039AF700 1024)
+14507.338:0144:trace:process:GetEnvironmentVariableW (L"XALIA_DEBUG_INPUT" 0000000003A2E800 1024)
+14507.338:0144:trace:process:GetEnvironmentVariableW (L"XALIA_DEBUG_INPUT" 0000000003A2E800 1024)
+14507.338:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11f15c,0x00000004,(nil))
+14507.338:0144:trace:process:NtQueryInformationProcess (0xffffffffffffffff,0x0000000c,0x11f15c,0x00000004,(nil))
+14507.338:0144:trace:process:GetEnvironmentVariableW (L"XALIA_DEBUG_TREEVIEW" 0000000003A39610 1024)
+14507.342:0144:trace:process:GetEnvironmentVariableW (L"XALIA_SUPPORTED_ONLY" 0000000003BB94B0 1024)
+14507.342:0144:trace:process:GetEnvironmentVariableW (L"XALIA_SUPPORTED_ONLY" 0000000003BB94B0 1024)
+14507.342:0144:trace:process:GetEnvironmentVariableW (L"XALIA_DEBUG" 0000000003A8D3C0 1024)
+14507.358:0144:trace:process:GetEnvironmentVariableW (L"MONO_DISABLE_MANAGED_COLLATION" 0000000003B13780 1024)
+14507.366:0144:trace:process:GetEnvironmentVariableW (L"XALIA_DEBUG_EXCEPTIONS" 0000000003AFDEF0 1024)
+14507.373:0144:trace:process:GetEnvironmentVariableW (L"XALIA_SUPPORTED_ONLY" 0000000003BA89A0 1024)
+14507.373:0144:trace:process:GetEnvironmentVariableW (L"XALIA_SUPPORTED_ONLY" 0000000003BA89A0 1024)
+14507.382:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.382:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.383:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.383:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.383:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.385:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.385:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.385:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.386:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.386:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.386:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.386:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.386:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.386:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.386:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.387:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.387:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.387:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.387:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.387:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.387:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.387:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.387:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.388:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.388:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.388:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.388:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.388:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.388:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.388:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.389:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.389:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.389:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.389:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.389:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.391:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.391:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.391:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.391:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.391:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.392:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.392:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.392:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.393:0144:trace:seh:EnumProcessModulesEx (0000000000000198, 000000000011D330, 8, 000000000011D32C, 0)
+14507.393:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d068,0x00000008,(nil))
+14507.393:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11d030,0x00000030,(nil))
+14507.393:0144:trace:process:NtQueryInformationProcess (0x198,0x0000001a,0x11d0b8,0x00000008,(nil))
+14507.393:0144:trace:process:NtQueryInformationProcess (0x198,0x00000000,0x11ceb0,0x00000030,(nil))
+14507.675:0084:trace:process:NtTerminateProcess handle 0xdc, exit_code 0, process_exiting 0.
+14507.676:0084:trace:process:NtTerminateProcess handle 0xdc, self 0, process_exiting 0.
+14507.676:0084:trace:process:NtTerminateProcess handle (nil), exit_code 0, process_exiting 0.
+14507.676:0084:trace:process:NtTerminateProcess handle (nil), self 1, process_exiting 0.
+14507.676:0084:trace:process:NtTerminateProcess handle 0xffffffffffffffff, exit_code 0, process_exiting 1.
+14507.676:0084:trace:process:NtTerminateProcess handle 0xffffffffffffffff, self 1, process_exiting 1.
+14507.693:0024:trace:process:NtQueryInformationProcess (0x9c,0x00000000,0x21fe30,0x00000030,(nil))
+14507.693:0024:trace:process:NtTerminateProcess handle (nil), exit_code 1, process_exiting 0.
+14507.693:0024:trace:process:NtTerminateProcess handle (nil), self 1, process_exiting 0.
+14507.693:0024:trace:process:NtTerminateProcess handle 0xffffffffffffffff, exit_code 1, process_exiting 1.
+14507.693:0024:trace:process:NtTerminateProcess handle 0xffffffffffffffff, self 1, process_exiting 1.
+14507.693:003c:trace:process:NtTerminateProcess handle 0xf4, exit_code 0, process_exiting 0.
+14507.693:003c:trace:process:NtTerminateProcess handle 0xf4, self 0, process_exiting 0.
+14507.693:003c:trace:process:NtTerminateProcess handle 0x11c, exit_code 0, process_exiting 0.
+14507.693:003c:trace:process:NtTerminateProcess handle 0x11c, self 0, process_exiting 0.
+14507.693:003c:trace:process:NtTerminateProcess handle 0x138, exit_code 0, process_exiting 0.
+14507.693:003c:trace:process:NtTerminateProcess handle 0x138, self 0, process_exiting 0.
+14507.694:0168:warn:seh:dispatch_exception backtrace: --- Exception 0x6be.
+14507.694:003c:trace:process:NtTerminateProcess handle 0x158, exit_code 0, process_exiting 0.
+14507.694:0168:trace:seh:dispatch_exception code=6be (unknown) flags=0 addr=00006FFFFFC0D157
+14507.694:0168:trace:seh:dispatch_exception rip=00006fffffc0d157 rsp=0000000003d9e440 rbp=0000000003d9e530 eflags=00000202
+14507.694:0168:trace:seh:dispatch_exception rax=0000000003d9e460 rbx=0000000003d9f2d0 rcx=0000000003d9e460 rdx=0000000000000000
+14507.694:0168:trace:seh:dispatch_exception rsi=0000000000000014 rdi=0000000003d9e5d8  r8=0000000000000000  r9=0000000000000000
+14507.694:0168:trace:seh:dispatch_exception r10=00000000034d0c50 r11=000000000000001a r12=0000000003d9f2d0 r13=0000000000000005
+14507.694:0168:trace:seh:dispatch_exception r14=00006fffffad2e82 r15=0000000003498ab0 mxcsr=00001f80
+14507.694:0168:trace:seh:call_vectored_handlers calling handler at 00006FFFFD70F920 code=6be flags=0
+14507.694:0168:trace:seh:call_vectored_handlers handler at 00006FFFFD70F920 returned 0
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFFC0D157: L"kernelbase.dll" + 000000000000D157.
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFF550E56: L"rpcrt4.dll" + 0000000000030E56.
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFF540414: L"rpcrt4.dll" + 0000000000020414.
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFF55F465: L"rpcrt4.dll" + 000000000003F465.
+14507.694:0168:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF556AA0 (rec=0000000003D9E460 frame=0000000003D9E660 context=0000000003D9DF60 dispatch=0000000003D9D700) sp=3d9efe0
+14507.694:0168:trace:seh:call_seh_handlers TEB handler at 00006FFFFF556AA0 returned 1
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFF54398A: L"rpcrt4.dll" + 000000000002398A.
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFF52529B: L"rpcrt4.dll" + 000000000000529B.
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFFACACCB: L"sechost.dll" + 000000000000ACCB.
+14507.694:0168:warn:seh:virtual_unwind backtrace: 00006FFFFFAC8C62: L"sechost.dll" + 0000000000008C62.
+14507.694:0168:trace:seh:call_seh_handlers calling TEB handler 00006FFFFFAC8740 (rec=0000000003D9E460 frame=0000000003D9FCE0 context=0000000003D9DF60 dispatch=0000000003D9D700) sp=3d9ff80
+14507.694:0168:trace:seh:RtlUnwindEx code=6be flags=2 end_frame=0000000003D9FCE0 target_ip=00006FFFFFAC273A
+14507.694:0168:trace:seh:RtlUnwindEx rip=00006ffffff748e5 rsp=0000000003d9c9e0 rbp=0000000003d9ca60 eflags=00000202
+14507.694:0168:trace:seh:RtlUnwindEx rax=0000000003d9e660 rbx=0000000003d9fce0 rcx=0000000003d9d0a0 rdx=00006fffffac273a
+14507.694:0168:trace:seh:RtlUnwindEx rsi=0000000003d9d700 rdi=0000000003d9cb50  r8=0000000003d9e460  r9=00006fffffacdcc0
+14507.694:0168:trace:seh:RtlUnwindEx r10=0000000003d9d4b0 r11=000000000000f030 r12=0000000003d9e460 r13=0000000003d9d0a0
+14507.694:0168:trace:seh:RtlUnwindEx r14=0000000003d9fce0 r15=00000000003b0000 mxcsr=00001f80
+14507.694:0168:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFF556AA0 (rec=0000000003D9E460, frame=0000000003D9E660 context=0000000003D9D0A0, dispatch=0000000003D9CA60)
+14507.694:0168:trace:seh:RtlUnwindEx handler at 00006FFFFF556AA0 returned 1
+14507.694:0168:trace:seh:RtlRestoreContext returning to 00006FFFFFAC273A stack 0000000003D9FAF0
+14507.694:0168:err:service:device_notify_proc failed to get event, error 1726
+14507.694:003c:trace:process:NtTerminateProcess handle 0x158, self 0, process_exiting 0.
+14507.694:0168:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFFC0D157
+14507.694:0168:trace:seh:dispatch_exception rip=00006fffffc0d157 rsp=0000000003d9e460 rbp=0000000003d9e550 eflags=00000206
+14507.694:0168:trace:seh:dispatch_exception rax=0000000003d9e480 rbx=0000000003d9f310 rcx=0000000003d9e480 rdx=0000000000000000
+14507.694:0168:trace:seh:dispatch_exception rsi=0000000000000014 rdi=0000000003498ab0  r8=0000000000000000  r9=0000000000000000
+14507.694:0168:trace:seh:dispatch_exception r10=0000000000000000 r11=0000000000151800 r12=0000000003d9f310 r13=0000000000000001
+14507.694:0168:trace:seh:dispatch_exception r14=00006fffffad2ec0 r15=0000000003498ab0 mxcsr=00001f80
+14507.694:0168:trace:seh:call_vectored_handlers calling handler at 00006FFFFD70F920 code=6ba flags=0
+14507.694:0168:trace:seh:call_vectored_handlers handler at 00006FFFFD70F920 returned 0
+14507.694:0168:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF556AA0 (rec=0000000003D9E480 frame=0000000003D9E6A0 context=0000000003D9DF80 dispatch=0000000003D9D720) sp=3d9f020
+14507.694:0168:trace:seh:call_seh_handlers TEB handler at 00006FFFFF556AA0 returned 1
+14507.694:0168:trace:seh:call_seh_handlers calling TEB handler 00006FFFFFAC8740 (rec=0000000003D9E480 frame=0000000003D9FE10 context=0000000003D9DF80 dispatch=0000000003D9D720) sp=3d9ff80
+14507.694:0168:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=0000000003D9FE10 target_ip=00006FFFFFAC273A
+14507.694:0168:trace:seh:RtlUnwindEx rip=00006ffffff748e5 rsp=0000000003d9ca00 rbp=0000000003d9ca80 eflags=00000206
+14507.694:0168:trace:seh:RtlUnwindEx rax=0000000003d9e6a0 rbx=0000000003d9fe10 rcx=0000000003d9d0c0 rdx=00006fffffac273a
+14507.694:0168:trace:seh:RtlUnwindEx rsi=0000000003d9d720 rdi=0000000003d9cb70  r8=0000000003d9e480  r9=00006fffffacdcc0
+14507.694:0168:trace:seh:RtlUnwindEx r10=0000000000000000 r11=0000000000000000 r12=0000000003d9e480 r13=0000000003d9d0c0
+14507.694:0168:trace:seh:RtlUnwindEx r14=0000000003d9fe10 r15=00000000003b0000 mxcsr=00001f80
+14507.694:0168:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFF556AA0 (rec=0000000003D9E480, frame=0000000003D9E6A0 context=0000000003D9D0C0, dispatch=0000000003D9CA80)
+14507.694:0168:trace:seh:RtlUnwindEx handler at 00006FFFFF556AA0 returned 1
+14507.694:0168:trace:seh:RtlRestoreContext returning to 00006FFFFFAC273A stack 0000000003D9FAF0
+14507.694:003c:trace:process:NtTerminateProcess handle 0x184, exit_code 0, process_exiting 0.
+14507.694:003c:trace:process:NtTerminateProcess handle 0x184, self 0, process_exiting 0.
+14507.696:003c:trace:process:NtTerminateProcess handle (nil), exit_code 0, process_exiting 0.
+14507.696:003c:trace:process:NtTerminateProcess handle (nil), self 1, process_exiting 0.
+14507.696:003c:trace:process:NtTerminateProcess handle 0xffffffffffffffff, exit_code 0, process_exiting 1.
+14507.696:003c:trace:process:NtTerminateProcess handle 0xffffffffffffffff, self 1, process_exiting 1.
+14507.744:0144:trace:process:NtTerminateProcess handle (nil), exit_code 0, process_exiting 0.
+14507.746:0144:trace:process:NtTerminateProcess handle (nil), self 1, process_exiting 0.
+14507.746:0144:trace:process:NtTerminateProcess handle 0xffffffffffffffff, exit_code 0, process_exiting 1.
+14507.746:0144:trace:process:NtTerminateProcess handle 0xffffffffffffffff, self 1, process_exiting 1.

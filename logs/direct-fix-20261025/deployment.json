@@ -1,0 +1,21 @@
+{
+  "time": "2026-10-25T16:02:29.750721",
+  "baseline": "7f5ba3fde369dc9de1805646ce080c754fdbd9b5",
+  "source": "tools/launcher/boomlaunch.c",
+  "runtime": "User confirmed login reaches lobby, black screen gone; running experiment copy via the new launcher. Installed copies are byte-identical; installed-path fresh launch not yet performed.",
+  "files": [
+    {
+      "file": "/mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom/ca.exe",
+      "sha256": "ebb97fd4c4bd17fb97ab02aa5b28dbe8f7ded83bf00d01fccc9690aaffb9a520",
+      "backup": "/mnt/Games/Projects/boom-re/logs/direct-fix-20261025/ca.exe.before-install.bak",
+      "backup_sha256": "bce8644d4e783d1354ab4fc880e1ab9a4ab3325327028f37d99e5439e25f4bbd"
+    },
+    {
+      "file": "/mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom/boomlaunch.exe",
+      "sha256": "41c2bac0bfe92b1ddc6564975d39081a277a5cfe490dd042b14b1c1e059d54fc",
+      "backup": "/mnt/Games/Projects/boom-re/logs/direct-fix-20261025/boomlaunch.exe.before-install.bak",
+      "backup_sha256": "690393af50a6114c441c151f6c0fe2244e641e54bbcaa6093e10bb81ffaddff4"
+    }
+  ],
+  "scope": "Existing Python Unlicense/import/VM artifact reused. This session client repair and compatibility patches implemented in boomlaunch.c. No alternate client executable created. Lutris entry unchanged."
+}

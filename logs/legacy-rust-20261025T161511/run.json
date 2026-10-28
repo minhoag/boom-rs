@@ -1,0 +1,35 @@
+{
+  "binary": "/mnt/Games/Projects/boom-re/server/target/release/boom-server",
+  "binary_sha256": "7a6680b5da807011d67716f7331339ecae31aede132b25b38ad4172ad611eb30",
+  "environment": {
+    "ROOM_TYPE": "0",
+    "ALL_MAPS": "1",
+    "BOOM_DIR": "/mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom",
+    "SERVER_IP": "127.0.0.1",
+    "MAP_INDEX": "0",
+    "AUTO_START": "0",
+    "START_OP": "117",
+    "TURN_START": "10",
+    "TURN_MODE": "1",
+    "GO_START": "3",
+    "PLAY_START": "4",
+    "POST_PLAY_START": "2",
+    "PLAYERS": "2"
+  },
+  "previous_server_pid": 117476,
+  "assets_manifest": "/mnt/Games/Projects/boom-re/logs/map-assets-20261025T161342/manifest.json",
+  "note": "Existing legacy Rust emulator, not crates/boom-server. No rebuild. Normal rooms need two players. Listens on all interfaces as implemented.",
+  "pid": 121186,
+  "command": [
+    "/mnt/Games/Projects/boom-re/server/target/release/boom-server",
+    "--log",
+    "/mnt/Games/Projects/boom-re/logs/legacy-rust-20261025T161511/server.log"
+  ],
+  "verified_listening_ports": [
+    3838,
+    4848,
+    5858,
+    6868
+  ],
+  "runtime_status": "Listening; user reconnect/map selection/gameplay confirmation pending"
+}

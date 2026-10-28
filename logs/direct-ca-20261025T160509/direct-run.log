@@ -1,0 +1,302 @@
+INFO: umu-launcher version 1.4.4 (3.14.8 (main, Sep 30 2026, 17:55:09) [GCC 16.2.0])
+INFO: steamrt3 is up to date
+INFO: Running 'UMU-Proton-10.0-4' using runtime 'sniper'
+INFO: Running 'steamrt3' using runtime 'host'
+pressure-vessel-wrap[114503]: W: "/run/current-system/sw/bin/getent" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[114503]: W: Unable to determine architecture of provider / ldconfig: Error reading "(null)" ELF header: invalid `Elf' handle
+pressure-vessel-wrap[114503]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[114503]: W: "run/opengl-driver-32/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[114503]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+ProtonFixes[114619] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[114619] INFO: Running checks
+ProtonFixes[114619] INFO: All checks successful
+ProtonFixes[114619] WARN: Game title not found in CSV
+ProtonFixes[114619] INFO: Non-steam game UNKNOWN (umu-BoomDirectCA)
+ProtonFixes[114619] INFO: No store specified, using UMU database
+ProtonFixes[114619] INFO: Using early stage global defaults for UNKNOWN (umu-BoomDirectCA)
+ProtonFixes[114619] INFO: Non-steam game UNKNOWN (umu-BoomDirectCA)
+ProtonFixes[114619] INFO: No store specified, using UMU database
+ProtonFixes[114619] INFO: No early stage global protonfix found for UNKNOWN (umu-BoomDirectCA)
+ProtonFixes[114619] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[114619] INFO: Running checks
+ProtonFixes[114619] INFO: All checks successful
+ProtonFixes[114619] INFO: Non-steam game UNKNOWN (umu-BoomDirectCA)
+ProtonFixes[114619] INFO: No store specified, using UMU database
+ProtonFixes[114619] INFO: Using main stage global defaults for UNKNOWN (umu-BoomDirectCA)
+ProtonFixes[114619] INFO: Non-steam game UNKNOWN (umu-BoomDirectCA)
+ProtonFixes[114619] INFO: No store specified, using UMU database
+ProtonFixes[114619] INFO: No main stage global protonfix found for UNKNOWN (umu-BoomDirectCA)
+Proton: /mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom/ca.exe
+Proton: Executable a unix path, launching with /unix option.
+fsync: up and running.
+15505.730:002c:trace:seh:install_bpf Installing seccomp filters.
+15505.730:002c:trace:seh:check_bpf_jit_enable enabled 0x31.
+15505.747:0034:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15505.747:0034:trace:seh:install_bpf Seccomp filters already installed.
+15505.767:0040:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15505.767:0040:trace:seh:install_bpf Seccomp filters already installed.
+15505.789:0068:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15505.789:0068:trace:seh:install_bpf Seccomp filters already installed.
+15505.806:007c:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15505.806:007c:trace:seh:install_bpf Seccomp filters already installed.
+15505.879:0098:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15505.879:0098:trace:seh:install_bpf Seccomp filters already installed.
+15507.613:00a0:err:ntoskrnl:ZwLoadDriver failed to create driver L"\\Registry\\Machine\\System\\CurrentControlSet\\Services\\winebth": c0000142
+15507.613:0034:fixme:service:scmdatabase_autostart_services Auto-start service L"winebth" failed to start: 1114
+15507.686:0024:trace:seh:install_bpf Installing seccomp filters.
+15507.686:0024:trace:seh:check_bpf_jit_enable enabled 0x31.
+15507.772:00d0:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15507.772:00d0:trace:seh:install_bpf Seccomp filters already installed.
+15507.901:00d0:err:system:NtUserChangeDisplaySettings Changing L"\\\\.\\DISPLAY2" display settings returned -2.
+15507.901:00d0:err:explorer:initialize_display_settings Failed to initialize registry display settings for L"\\\\.\\DISPLAY2".
+15507.910:00d0:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFFC0D157
+15507.910:00d0:trace:seh:dispatch_exception rip=00006fffffc0d157 rsp=000000000021d570 rbp=000000000021d660 eflags=00000202
+15507.910:00d0:trace:seh:dispatch_exception rax=000000000021d590 rbx=000000000021e420 rcx=000000000021d590 rdx=0000000000000000
+15507.910:00d0:trace:seh:dispatch_exception rsi=0000000000000064 rdi=00000000007e1b70  r8=0000000000000000  r9=0000000000000000
+15507.910:00d0:trace:seh:dispatch_exception r10=00000000007e1cb0 r11=0000000000000010 r12=000000000021e420 r13=0000000000000005
+15507.910:00d0:trace:seh:dispatch_exception r14=00006ffffeeecdb4 r15=00000000007e1b70 mxcsr=00001fa0
+15507.910:00d0:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF936AA0 (rec=000000000021D590 frame=000000000021D7B0 context=000000000021D090 dispatch=000000000021C830) sp=21e130
+15507.910:00d0:trace:seh:call_seh_handlers TEB handler at 00006FFFFF936AA0 returned 1
+15507.910:00d0:trace:seh:call_seh_handlers calling TEB handler 00006FFFFEEC48A0 (rec=000000000021D590 frame=000000000021EC90 context=000000000021D090 dispatch=000000000021C830) sp=21ede0
+15507.910:00d0:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=000000000021EC90 target_ip=00006FFFFEEB3DEA
+15507.910:00d0:trace:seh:RtlUnwindEx rip=00006ffffff748e5 rsp=000000000021bb10 rbp=000000000021bb90 eflags=00000202
+15507.910:00d0:trace:seh:RtlUnwindEx rax=000000000021d7b0 rbx=000000000021ec90 rcx=000000000021c1d0 rdx=00006ffffeeb3dea
+15507.910:00d0:trace:seh:RtlUnwindEx rsi=000000000021c830 rdi=000000000021bc80  r8=000000000021d590  r9=00006ffffeed5030
+15507.910:00d0:trace:seh:RtlUnwindEx r10=0000000000000000 r11=0000000000000000 r12=000000000021d590 r13=000000000021c1d0
+15507.910:00d0:trace:seh:RtlUnwindEx r14=000000000021ec90 r15=000000007ffc0000 mxcsr=00001fa0
+15507.910:00d0:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFF936AA0 (rec=000000000021D590, frame=000000000021D7B0 context=000000000021C1D0, dispatch=000000000021BB90)
+15507.910:00d0:trace:seh:RtlUnwindEx handler at 00006FFFFF936AA0 returned 1
+15507.910:00d0:trace:seh:RtlRestoreContext returning to 00006FFFFEEB3DEA stack 000000000021EC50
+15507.920:00e8:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15507.920:00e8:trace:seh:install_bpf Seccomp filters already installed.
+15507.942:0110:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15507.942:0110:trace:seh:install_bpf Seccomp filters already installed.
+15508.016:00d0:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe"
+15508.017:00d0:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe"
+15508.017:00d0:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\S:\\Steam\\compatibilitytools.d\\UMU-Proton-10.0-4\\files\\share\\wine/../xalia/xalia.exe"
+15508.027:0118:trace:seh:sigsys_handler SIGSYS, rax 0xffff, rip 0x600000000005.
+15508.027:0118:trace:seh:install_bpf Seccomp filters already installed.
+15508.046:0110:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15508.046:0110:fixme:uiautomation:uia_get_providers_for_hwnd Override provider callback currently unimplemented.
+15508.046:0110:fixme:uiautomation:default_uia_provider_callback Default ProviderType_NonClientArea provider unimplemented.
+15508.050:0110:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15508.053:0110:fixme:uiautomation:base_hwnd_fragment_get_FragmentRoot 0000000000399468, 000000000021F9D0: stub!
+15508.053:0110:fixme:uiautomation:base_hwnd_fragment_GetEmbeddedFragmentRoots 0000000000399468, 000000000021F9E0: stub!
+15508.125:0118:fixme:mscoree:parse_supported_runtime sku=L".NETFramework,Version=v4.8" not implemented
+15508.126:0118:fixme:mscoree:parse_supported_runtime sku=L".NETFramework,Version=v4.8" not implemented
+15508.134:0118:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+15508.171:0118:fixme:combase:RoGetActivationFactory (L"Windows.Gaming.Input.RawGameController", {eb8d0792-e95a-4b19-afc7-0a59f8bf759e}, 00006FFFFD618960): semi-stub
+15508.196:0130:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+15508.198:0130:warn:seh:dispatch_exception "Load Library("
+15508.198:0130:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+15508.198:0130:trace:seh:dispatch_exception  info[0]=0000000E
+15508.198:0130:trace:seh:dispatch_exception  info[1]=00C97600
+15508.198:0130:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+15508.198:0130:trace:seh:dispatch_exception eax=019bfc7c ebx=00000008 ecx=00000000 edx=019bfc90
+15508.198:0130:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.198:0130:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+15508.198:0130:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+15508.198:0130:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+15508.198:0130:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+15508.198:0130:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+15508.198:0130:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+15508.198:0130:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.198:0130:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+15508.198:0130:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+15508.199:0130:warn:seh:dispatch_exception "D3D9.DLL"
+15508.199:0130:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+15508.199:0130:trace:seh:dispatch_exception  info[0]=00000009
+15508.199:0130:trace:seh:dispatch_exception  info[1]=00C981C8
+15508.199:0130:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+15508.199:0130:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981c8 ecx=00000000 edx=019bfc90
+15508.199:0130:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+15508.199:0130:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+15508.199:0130:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+15508.199:0130:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+15508.199:0130:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+15508.199:0130:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+15508.199:0130:warn:seh:dispatch_exception ") Successed !!\n"
+15508.199:0130:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+15508.199:0130:trace:seh:dispatch_exception  info[0]=00000010
+15508.199:0130:trace:seh:dispatch_exception  info[1]=00C975F0
+15508.199:0130:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+15508.199:0130:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981c8 ecx=00000000 edx=019bfc90
+15508.199:0130:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+15508.199:0130:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+15508.199:0130:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+15508.199:0130:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+15508.199:0130:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+15508.199:0130:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+15508.199:0130:warn:seh:dispatch_exception "Load Library("
+15508.199:0130:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+15508.199:0130:trace:seh:dispatch_exception  info[0]=0000000E
+15508.199:0130:trace:seh:dispatch_exception  info[1]=00C97600
+15508.199:0130:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+15508.199:0130:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981d4 ecx=00000000 edx=019bfc90
+15508.199:0130:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+15508.199:0130:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+15508.199:0130:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+15508.199:0130:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+15508.199:0130:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+15508.199:0130:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+15508.199:0130:warn:seh:dispatch_exception "D3DX9_30.DLL"
+15508.199:0130:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+15508.199:0130:trace:seh:dispatch_exception  info[0]=0000000D
+15508.199:0130:trace:seh:dispatch_exception  info[1]=00C981D4
+15508.199:0130:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+15508.199:0130:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981d4 ecx=00000000 edx=019bfc90
+15508.199:0130:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+15508.199:0130:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+15508.199:0130:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+15508.199:0130:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+15508.199:0130:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+15508.199:0130:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+15508.199:0130:warn:seh:dispatch_exception ") Successed !!\n"
+15508.199:0130:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=7BC3B858
+15508.199:0130:trace:seh:dispatch_exception  info[0]=00000010
+15508.199:0130:trace:seh:dispatch_exception  info[1]=00C975F0
+15508.199:0130:trace:seh:dispatch_exception eip=7bc3b858 esp=019bfc7c ebp=019bfcd4 eflags=00000213
+15508.199:0130:trace:seh:dispatch_exception eax=019bfc7c ebx=00c981d4 ecx=00000000 edx=019bfc90
+15508.199:0130:trace:seh:dispatch_exception esi=019bfd0c edi=019bfc94 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=40010006 flags=0
+15508.199:0130:trace:seh:call_vectored_handlers handler at 79ADD260 returned 0
+15508.199:0130:trace:seh:call_seh_handlers calling handler at 7BED6750 code=40010006 flags=0
+15508.199:0130:trace:seh:__regs_RtlUnwind code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind eip=7bebf152 esp=019be8e8 ebp=019be8f0 eflags=00000216
+15508.199:0130:trace:seh:__regs_RtlUnwind eax=00000000 ebx=00000000 ecx=40010006 edx=019bfd10
+15508.199:0130:trace:seh:__regs_RtlUnwind esi=019beb48 edi=019beb48 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15508.199:0130:trace:seh:__regs_RtlUnwind calling handler at 7BF8F860 code=40010006 flags=2
+15508.199:0130:trace:seh:__regs_RtlUnwind handler at 7BF8F860 returned 1
+15508.215:0118:trace:seh:EnumProcessModulesEx (FFFFFFFFFFFFFFFF, 0000000003DCC000, 8192, 000000000011C80C, 0)
+15508.215:0118:trace:seh:EnumProcessModulesEx (FFFFFFFFFFFFFFFF, 0000000003E01F10, 8192, 000000000011C7FC, 0)
+15508.215:0118:trace:seh:EnumProcessModulesEx (FFFFFFFFFFFFFFFF, 0000000003E01F10, 8192, 000000000011C7FC, 0)
+15508.231:0130:fixme:dbghelp:elf_search_auxv can't find symbol in module
+15508.231:0130:trace:seh:EnumProcessModulesEx (FFFFFFFF, 01A263E8, 1024, 019BFC00, 0)
+15508.308:0130:fixme:hnetcfg:fw_profile_get_FirewallEnabled 019E39E0, 019BD3B8
+15508.311:0130:trace:seh:NtGetContextThread 0xfffffffe: eax=000000ea ebx=00000001 ecx=40010006 edx=019bfd10 esi=00000001 edi=019bd1b0
+15508.311:0130:trace:seh:NtGetContextThread 0xfffffffe: ebp=019bd2c0 esp=019bd180 eip=7bf3cd8c cs=0023 ss=002b flags=00000246
+15508.311:0130:trace:seh:NtGetContextThread 0xfffffffe: ds=002b es=002b fs=0063 gs=006b
+15508.398:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.400:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.401:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.402:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.402:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.403:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.403:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.404:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.404:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.405:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.405:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.407:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15508.408:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15509.056:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15509.063:0118:trace:seh:EnumProcessModulesEx (0000000000000158, 000000000011D330, 8, 000000000011D32C, 0)
+15516.449:0130:trace:seh:dispatch_exception code=406d1388 (EXCEPTION_WINE_NAME_THREAD) flags=0 addr=7BC3B858
+15516.449:0130:trace:seh:dispatch_exception  info[0]=00001000
+15516.449:0130:trace:seh:dispatch_exception  info[1]=21144FA4
+15516.449:0130:trace:seh:dispatch_exception  info[2]=000001A4
+15516.449:0130:trace:seh:dispatch_exception  info[3]=00000000
+15516.449:0130:trace:seh:dispatch_exception eip=7bc3b858 esp=019bd1d4 ebp=019bd22c eflags=00000217
+15516.449:0130:trace:seh:dispatch_exception eax=019bd1d4 ebx=00000000 ecx=00000000 edx=019bd1e8
+15516.449:0130:trace:seh:dispatch_exception esi=019bd27c edi=019bd1f4 cs=0023 ds=002b es=002b fs=0063 gs=006b ss=002b
+15516.449:0130:trace:seh:call_vectored_handlers calling handler at 79ADD260 code=406d1388 flags=0
+15516.449:0130:trace:seh:call_vectored_handlers handler at 79ADD260 returned ffffffff
+15516.464:0130:fixme:bitmap:NtGdiCreateBitmap planes = 0
+15516.501:0124:fixme:uiautomation:msaa_provider_GetPatternProvider Unimplemented patternId 10002
+15516.501:0124:fixme:uiautomation:base_hwnd_provider_GetPatternProvider 000000000039F860, 10002, 000000000182F8A0: stub
+15519.420:0130:trace:seh:NtGetContextThread 0xfffffffe: eax=000000ea ebx=00000001 ecx=00000000 edx=019bd1e8 esi=00000001 edi=019bd0c0
+15519.420:0130:trace:seh:NtGetContextThread 0xfffffffe: ebp=019bd1d0 esp=019bd090 eip=7bf3cd8c cs=0023 ss=002b flags=00000246
+15519.420:0130:trace:seh:NtGetContextThread 0xfffffffe: ds=002b es=002b fs=0063 gs=006b
+15519.521:0130:fixme:system:NtUserSystemParametersInfo Unimplemented action: 59 (SPI_SETSTICKYKEYS)
+15519.521:0130:fixme:system:NtUserSystemParametersInfo Unimplemented action: 51 (SPI_SETFILTERKEYS)
+15519.521:0130:fixme:system:NtUserSystemParametersInfo Unimplemented action: 53 (SPI_SETTOGGLEKEYS)
+15523.674:0130:trace:seh:NtGetContextThread 0xfffffffe: eax=000000ea ebx=00000001 ecx=00000000 edx=019bd1e8 esi=00000001 edi=019bcb98
+15523.674:0130:trace:seh:NtGetContextThread 0xfffffffe: ebp=019bcca8 esp=019bcb68 eip=7bf3cd8c cs=0023 ss=002b flags=00000246
+15523.674:0130:trace:seh:NtGetContextThread 0xfffffffe: ds=002b es=002b fs=0063 gs=006b
+15563.808:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15563.812:0124:fixme:uiautomation:msaa_provider_GetPatternProvider Unimplemented patternId 10002
+15563.812:0124:fixme:uiautomation:base_hwnd_provider_GetPatternProvider 00000000003BDA30, 10002, 000000000182F8A0: stub
+15563.815:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15568.763:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15568.767:0124:fixme:uiautomation:msaa_provider_GetPatternProvider Unimplemented patternId 10002
+15568.767:0124:fixme:uiautomation:base_hwnd_provider_GetPatternProvider 00000000003BF3C0, 10002, 000000000182F8A0: stub
+15568.770:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15571.173:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15571.177:0124:fixme:uiautomation:msaa_provider_GetPatternProvider Unimplemented patternId 10002
+15571.177:0124:fixme:uiautomation:base_hwnd_provider_GetPatternProvider 000000000039F860, 10002, 000000000182F8A0: stub
+15571.180:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15572.789:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15572.793:0124:fixme:uiautomation:msaa_provider_GetPatternProvider Unimplemented patternId 10002
+15572.793:0124:fixme:uiautomation:base_hwnd_provider_GetPatternProvider 00000000003BDA30, 10002, 000000000182F8A0: stub
+15572.796:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15618.836:0130:fixme:clipboard:import_text unsupported TEXT type "TEXT"
+15640.003:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15640.010:0124:fixme:uiautomation:msaa_provider_GetPatternProvider Unimplemented patternId 10002
+15640.010:0124:fixme:uiautomation:base_hwnd_provider_GetPatternProvider 00000000003BF3C0, 10002, 000000000182F8A0: stub
+15640.013:0124:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+15673.629:013c:warn:seh:dispatch_exception backtrace: --- Exception 0x6be.
+15673.629:013c:trace:seh:dispatch_exception code=6be (unknown) flags=0 addr=00006FFFFFC0D157
+15673.629:013c:trace:seh:dispatch_exception rip=00006fffffc0d157 rsp=000000000379e440 rbp=000000000379e530 eflags=00000202
+15673.629:013c:trace:seh:dispatch_exception rax=000000000379e460 rbx=000000000379f2d0 rcx=000000000379e460 rdx=0000000000000000
+15673.629:013c:trace:seh:dispatch_exception rsi=0000000000000014 rdi=000000000379e5d8  r8=0000000000000000  r9=0000000000000000
+15673.629:013c:trace:seh:dispatch_exception r10=00000000006518b0 r11=000000000000001b r12=000000000379f2d0 r13=0000000000000005
+15673.629:013c:trace:seh:dispatch_exception r14=00006fffffad2e82 r15=00000000034cc380 mxcsr=00001f80
+15673.629:013c:trace:seh:call_vectored_handlers calling handler at 00006FFFFD8705F0 code=6be flags=0
+15673.629:013c:trace:seh:call_vectored_handlers handler at 00006FFFFD8705F0 returned 0
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFFC0D157: L"kernelbase.dll" + 000000000000D157.
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFF930E56: L"rpcrt4.dll" + 0000000000030E56.
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFF920414: L"rpcrt4.dll" + 0000000000020414.
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFF93F465: L"rpcrt4.dll" + 000000000003F465.
+15673.629:013c:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF936AA0 (rec=000000000379E460 frame=000000000379E660 context=000000000379DF60 dispatch=000000000379D700) sp=379efe0
+15673.629:013c:trace:seh:call_seh_handlers TEB handler at 00006FFFFF936AA0 returned 1
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFF92398A: L"rpcrt4.dll" + 000000000002398A.
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFF90529B: L"rpcrt4.dll" + 000000000000529B.
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFFACACCB: L"sechost.dll" + 000000000000ACCB.
+15673.629:013c:warn:seh:virtual_unwind backtrace: 00006FFFFFAC8C62: L"sechost.dll" + 0000000000008C62.
+15673.629:013c:trace:seh:call_seh_handlers calling TEB handler 00006FFFFFAC8740 (rec=000000000379E460 frame=000000000379FCE0 context=000000000379DF60 dispatch=000000000379D700) sp=379ff80
+15673.629:013c:trace:seh:RtlUnwindEx code=6be flags=2 end_frame=000000000379FCE0 target_ip=00006FFFFFAC273A
+15673.629:013c:trace:seh:RtlUnwindEx rip=00006ffffff748e5 rsp=000000000379c9e0 rbp=000000000379ca60 eflags=00000202
+15673.629:013c:trace:seh:RtlUnwindEx rax=000000000379e660 rbx=000000000379fce0 rcx=000000000379d0a0 rdx=00006fffffac273a
+15673.629:013c:trace:seh:RtlUnwindEx rsi=000000000379d700 rdi=000000000379cb50  r8=000000000379e460  r9=00006fffffacdcc0
+15673.629:013c:trace:seh:RtlUnwindEx r10=000000000379d4b0 r11=000000000000f030 r12=000000000379e460 r13=000000000379d0a0
+15673.629:013c:trace:seh:RtlUnwindEx r14=000000000379fce0 r15=00000000003b0000 mxcsr=00001f80
+15673.629:013c:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFF936AA0 (rec=000000000379E460, frame=000000000379E660 context=000000000379D0A0, dispatch=000000000379CA60)
+15673.629:013c:trace:seh:RtlUnwindEx handler at 00006FFFFF936AA0 returned 1
+15673.629:013c:trace:seh:RtlRestoreContext returning to 00006FFFFFAC273A stack 000000000379FAF0
+15673.629:013c:err:service:device_notify_proc failed to get event, error 1726
+15673.629:013c:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFFC0D157
+15673.629:013c:trace:seh:dispatch_exception rip=00006fffffc0d157 rsp=000000000379e460 rbp=000000000379e550 eflags=00000206
+15673.629:013c:trace:seh:dispatch_exception rax=000000000379e480 rbx=000000000379f310 rcx=000000000379e480 rdx=0000000000000000
+15673.629:013c:trace:seh:dispatch_exception rsi=0000000000000014 rdi=00000000034cc380  r8=0000000000000000  r9=0000000000000000
+15673.629:013c:trace:seh:dispatch_exception r10=0000000000000000 r11=0000000000151800 r12=000000000379f310 r13=0000000000000001
+15673.629:013c:trace:seh:dispatch_exception r14=00006fffffad2ec0 r15=00000000034cc380 mxcsr=00001f80
+15673.629:013c:trace:seh:call_vectored_handlers calling handler at 00006FFFFD8705F0 code=6ba flags=0
+15673.629:013c:trace:seh:call_vectored_handlers handler at 00006FFFFD8705F0 returned 0
+15673.629:013c:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF936AA0 (rec=000000000379E480 frame=000000000379E6A0 context=000000000379DF80 dispatch=000000000379D720) sp=379f020
+15673.629:013c:trace:seh:call_seh_handlers TEB handler at 00006FFFFF936AA0 returned 1
+15673.629:013c:trace:seh:call_seh_handlers calling TEB handler 00006FFFFFAC8740 (rec=000000000379E480 frame=000000000379FE10 context=000000000379DF80 dispatch=000000000379D720) sp=379ff80
+15673.629:013c:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=000000000379FE10 target_ip=00006FFFFFAC273A
+15673.629:013c:trace:seh:RtlUnwindEx rip=00006ffffff748e5 rsp=000000000379ca00 rbp=000000000379ca80 eflags=00000206
+15673.629:013c:trace:seh:RtlUnwindEx rax=000000000379e6a0 rbx=000000000379fe10 rcx=000000000379d0c0 rdx=00006fffffac273a
+15673.629:013c:trace:seh:RtlUnwindEx rsi=000000000379d720 rdi=000000000379cb70  r8=000000000379e480  r9=00006fffffacdcc0
+15673.629:013c:trace:seh:RtlUnwindEx r10=0000000000000000 r11=0000000000000000 r12=000000000379e480 r13=000000000379d0c0
+15673.629:013c:trace:seh:RtlUnwindEx r14=000000000379fe10 r15=00000000003b0000 mxcsr=00001f80
+15673.629:013c:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFF936AA0 (rec=000000000379E480, frame=000000000379E6A0 context=000000000379D0C0, dispatch=000000000379CA80)
+15673.629:013c:trace:seh:RtlUnwindEx handler at 00006FFFFF936AA0 returned 1
+15673.629:013c:trace:seh:RtlRestoreContext returning to 00006FFFFFAC273A stack 000000000379FAF0

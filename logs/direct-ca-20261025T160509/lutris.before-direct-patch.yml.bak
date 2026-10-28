@@ -1,0 +1,12 @@
+game:
+  exe: /mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom/boomlaunch.exe
+  args: 127.0.0.1
+  prefix: /mnt/Games/boom-online-umu10
+  working_dir: /mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom
+wine:
+  version: UMU-Proton-10.0-4
+system:
+  env:
+    PROTON_LOG: '1'
+    PROTON_LOG_DIR: /mnt/Games/Projects/boom-re/logs/lutris-umu10
+    WINEDEBUG: '+timestamp,+pid,+tid,+seh,+loaddll'

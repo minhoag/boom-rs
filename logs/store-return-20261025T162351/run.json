@@ -1,0 +1,34 @@
+{
+  "pid": 127614,
+  "binary": "/mnt/Games/Projects/boom-re/server/target/release/boom-server",
+  "binary_sha256": "a8272bc39e3cdb30962764960edde93a05db06c73d01d8f0f8c1eadfeede7d1a",
+  "backup": "/mnt/Games/Projects/boom-re/logs/store-return-20261025T162351/boom-server.before-fix.bak",
+  "environment": {
+    "ROOM_TYPE": "0",
+    "ALL_MAPS": "1",
+    "BOOM_DIR": "/mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom",
+    "SERVER_IP": "127.0.0.1",
+    "MAP_INDEX": "0",
+    "AUTO_START": "0",
+    "START_OP": "117",
+    "TURN_START": "10",
+    "TURN_MODE": "1",
+    "GO_START": "3",
+    "PLAY_START": "4",
+    "POST_PLAY_START": "2",
+    "PLAYERS": "2"
+  },
+  "command": [
+    "/mnt/Games/Projects/boom-re/server/target/release/boom-server",
+    "--log",
+    "/mnt/Games/Projects/boom-re/logs/store-return-20261025T162351/server.log"
+  ],
+  "source_worktree": "/home/wumps/.local/share/opencode/worktree/3a8a04/fix-store-return",
+  "source_file": "server/src/session.rs",
+  "patch": "fix.patch",
+  "build_command": "nix shell nixpkgs#gcc --command cargo build --release --locked --target-dir /tmp/opencode/store-return-build-wbvpj2p9/target --manifest-path /tmp/opencode/store-return-build-wbvpj2p9/server/Cargo.toml",
+  "build_result": "passed",
+  "tests": "not run per instruction",
+  "runtime": "awaiting user Store -> Back confirmation",
+  "reason": "Store vf80 sends C102 flag 0; Store On_100 at 0x8008D1 decodes u16 stage, then calls ChangeStage; old server ignored C102"
+}

@@ -1,0 +1,201 @@
+{
+  "target": "/mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom/ca.exe",
+  "source": "/mnt/Games/Projects/boom-re/tools/launcher/boomlaunch.c",
+  "source_sha256": "b68fa9b18231bc745cc82e6050f84e100bde01843b6288de68cfb4a57a67c98b",
+  "before_sha256": "ebb97fd4c4bd17fb97ab02aa5b28dbe8f7ded83bf00d01fccc9690aaffb9a520",
+  "after_sha256": "fbd6b6eef3a5116d52542d5eade0073034c12e57ee741d487f3111d222dc170a",
+  "size": 18885632,
+  "patches": [
+    {
+      "va": "0x8e701d",
+      "offset": "0x4e641d",
+      "before": "7429",
+      "after": "eb29",
+      "changed": true
+    },
+    {
+      "va": "0x8e56ed",
+      "offset": "0x4e4aed",
+      "before": "90909090909090909090",
+      "after": "90909090909090909090",
+      "changed": false
+    },
+    {
+      "va": "0x480332",
+      "offset": "0x7f732",
+      "before": "e84accffff",
+      "after": "5883c8ff90",
+      "changed": true
+    },
+    {
+      "va": "0x69e636",
+      "offset": "0x29da36",
+      "before": "0f854c010000",
+      "after": "e94d01000090",
+      "changed": true
+    },
+    {
+      "va": "0x84e4ed",
+      "offset": "0x44d8ed",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x852e4f",
+      "offset": "0x45224f",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x855828",
+      "offset": "0x454c28",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x8e29a3",
+      "offset": "0x4e1da3",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x8e31d8",
+      "offset": "0x4e25d8",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x8e3899",
+      "offset": "0x4e2c99",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x8e4e57",
+      "offset": "0x4e4257",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x8f3108",
+      "offset": "0x4f2508",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x8f3207",
+      "offset": "0x4f2607",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x900d53",
+      "offset": "0x500153",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x900d62",
+      "offset": "0x500162",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x900d71",
+      "offset": "0x500171",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0x900d81",
+      "offset": "0x500181",
+      "before": "b001909090",
+      "after": "b001909090",
+      "changed": false
+    },
+    {
+      "va": "0xc88930",
+      "offset": "0x887d30",
+      "before": "3132372e302e302e3100000000000000",
+      "after": "3132372e302e302e3100000000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc88920",
+      "offset": "0x887d20",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc88910",
+      "offset": "0x887d10",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc88900",
+      "offset": "0x887d00",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc888f0",
+      "offset": "0x887cf0",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc888e0",
+      "offset": "0x887ce0",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc888d0",
+      "offset": "0x887cd0",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc888c0",
+      "offset": "0x887cc0",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc7c638",
+      "offset": "0x87ba38",
+      "before": "3132372e302e302e310000000000",
+      "after": "3132372e302e302e310000000000",
+      "changed": false
+    },
+    {
+      "va": "0xc83534",
+      "offset": "0x882934",
+      "before": "3132372e302e302e3100000000",
+      "after": "3132372e302e302e3100000000",
+      "changed": false
+    }
+  ],
+  "disabled_experiment": "0xA56791 deliberately excluded",
+  "runtime": "Direct installed ca.exe created an 800x600 Boom window with the Lutris prefix/runner; post-login not repeated."
+}

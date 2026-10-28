@@ -1,0 +1,31 @@
+run 2026-10-25 16:00:32 command=ca.exe ip=127.0.0.1 cwd=W:\Games\Projects\boom-re\logs\unlicense-20261025T065707Z\candidate-build-20261025T083000Z\runtime-single-20261025T090000Z\game-copy capture_path=disabled mapping=S:\->/mnt/Games
+created ca.exe pid=348 primaryWindowsTID=352 launch-to-exit ordinary process
+patch 008E701D ok at 0ms
+patch 008E56ED already patched
+patch 00480332 ok at 1ms
+patch 0069E636 ok at 1ms
+patch 0084E4ED already patched
+patch 00852E4F already patched
+patch 00855828 already patched
+patch 008E29A3 already patched
+patch 008E31D8 already patched
+patch 008E3899 already patched
+patch 008E4E57 already patched
+patch 008F3108 already patched
+patch 008F3207 already patched
+patch 00900D53 already patched
+patch 00900D62 already patched
+patch 00900D71 already patched
+patch 00900D81 already patched
+patch 00C88930 already patched
+patch 00C88920 already patched
+patch 00C88910 already patched
+patch 00C88900 already patched
+patch 00C888F0 already patched
+patch 00C888E0 already patched
+patch 00C888D0 already patched
+patch 00C888C0 already patched
+patch 00C7C638 already patched
+patch 00C83534 already patched
+patch summary: applied 27/27 complete
+final raw process code=0

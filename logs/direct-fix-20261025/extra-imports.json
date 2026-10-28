@@ -1,0 +1,418 @@
+[
+  {
+    "slot": "0xc0f7c4",
+    "target": "0x100107e0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOLogout"
+    ]
+  },
+  {
+    "slot": "0xc0f7c8",
+    "target": "0x10010aa0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetFriendInfo"
+    ]
+  },
+  {
+    "slot": "0xc0f7cc",
+    "target": "0x10010bb0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetMyIdCode"
+    ]
+  },
+  {
+    "slot": "0xc0f7d0",
+    "target": "0x100108a0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOChangeMyInfo"
+    ]
+  },
+  {
+    "slot": "0xc0f7d4",
+    "target": "0x10010b70",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetMyStatus"
+    ]
+  },
+  {
+    "slot": "0xc0f7d8",
+    "target": "0x100109e0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetAddFriendConfirmMessage"
+    ]
+  },
+  {
+    "slot": "0xc0f7dc",
+    "target": "0x100108e0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOBlockUser"
+    ]
+  },
+  {
+    "slot": "0xc0f7e0",
+    "target": "0x10010920",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCODeleteUser"
+    ]
+  },
+  {
+    "slot": "0xc0f7e4",
+    "target": "0x10010960",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOCreateChatSession"
+    ]
+  },
+  {
+    "slot": "0xc0f7e8",
+    "target": "0x10010d30",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMGSResetCallbackAndWantClose"
+    ]
+  },
+  {
+    "slot": "0xc0f7ec",
+    "target": "0x10010cc0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMGSRegisterCallbackMsg"
+    ]
+  },
+  {
+    "slot": "0xc0f7f0",
+    "target": "0x100109a0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetServerMessage"
+    ]
+  },
+  {
+    "slot": "0xc0f7f4",
+    "target": "0x10010820",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOAddNewFriend"
+    ]
+  },
+  {
+    "slot": "0xc0f7f8",
+    "target": "0x10010860",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOConfirmAddFriend"
+    ]
+  },
+  {
+    "slot": "0xc0f7fc",
+    "target": "0x100110d0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCSSendChatMessage"
+    ]
+  },
+  {
+    "slot": "0xc0f800",
+    "target": "0x10010750",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCORegisterCallbackMessage"
+    ]
+  },
+  {
+    "slot": "0xc0f804",
+    "target": "0x10010710",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOInitWithMultiServer"
+    ]
+  },
+  {
+    "slot": "0xc0f808",
+    "target": "0x10010af0",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetMyScreenName"
+    ]
+  },
+  {
+    "slot": "0xc0f80c",
+    "target": "0x10010b30",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetMyPosition"
+    ]
+  },
+  {
+    "slot": "0xc0f810",
+    "target": "0x10010790",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOLogin"
+    ]
+  },
+  {
+    "slot": "0xc0f814",
+    "target": "0x10010f30",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMGSGetMemberList"
+    ]
+  },
+  {
+    "slot": "0xc0f818",
+    "target": "0x10010e10",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMGSGetInviteCandidateList"
+    ]
+  },
+  {
+    "slot": "0xc0f81c",
+    "target": "0x10011050",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCSGetChatMessage"
+    ]
+  },
+  {
+    "slot": "0xc0f820",
+    "target": "0x10010d90",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMGSInviteUser"
+    ]
+  },
+  {
+    "slot": "0xc0f824",
+    "target": "0x10010a20",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetFriendList"
+    ]
+  },
+  {
+    "slot": "0xc0f828",
+    "target": "0x10010a60",
+    "module": {
+      "name": "nmco3.dll",
+      "base": "0x10000000",
+      "size": 565248,
+      "path": "W:\\Games\\Projects\\boom-re\\logs\\unlicense-20261025T065707Z\\dep-probe-20261025T075000Z\\game-copy\\nmco3.dll"
+    },
+    "names": [
+      "NMCOGetIdCodeFromIdx"
+    ]
+  },
+  {
+    "slot": "0xc0f830",
+    "target": "0x7714afc0",
+    "module": {
+      "name": "ole32.dll",
+      "base": "0x77140000",
+      "size": 778240,
+      "path": "C:\\windows\\system32\\ole32.dll"
+    },
+    "names": [
+      "CoInitialize"
+    ]
+  },
+  {
+    "slot": "0xc0f834",
+    "target": "0x77172c30",
+    "module": {
+      "name": "ole32.dll",
+      "base": "0x77140000",
+      "size": 778240,
+      "path": "C:\\windows\\system32\\ole32.dll"
+    },
+    "names": [
+      "OleUninitialize"
+    ]
+  },
+  {
+    "slot": "0xc0f838",
+    "target": "0x77170180",
+    "module": {
+      "name": "ole32.dll",
+      "base": "0x77140000",
+      "size": 778240,
+      "path": "C:\\windows\\system32\\ole32.dll"
+    },
+    "names": [
+      "OleInitialize"
+    ]
+  },
+  {
+    "slot": "0xc0f83c",
+    "target": "0x770ebae0",
+    "module": {
+      "name": "combase.dll",
+      "base": "0x770e0000",
+      "size": 327680,
+      "path": "C:\\windows\\system32\\combase.dll"
+    },
+    "names": [
+      "CoUninitialize"
+    ]
+  },
+  {
+    "slot": "0xc0f840",
+    "target": "0x770e6920",
+    "module": {
+      "name": "combase.dll",
+      "base": "0x770e0000",
+      "size": 327680,
+      "path": "C:\\windows\\system32\\combase.dll"
+    },
+    "names": [
+      "CoCreateInstance"
+    ]
+  },
+  {
+    "slot": "0xc0f844",
+    "target": "0x770e68c0",
+    "module": {
+      "name": "combase.dll",
+      "base": "0x770e0000",
+      "size": 327680,
+      "path": "C:\\windows\\system32\\combase.dll"
+    },
+    "names": [
+      "CoCreateGuid"
+    ]
+  }
+]

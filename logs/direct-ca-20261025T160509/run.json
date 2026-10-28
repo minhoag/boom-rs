@@ -1,0 +1,11 @@
+{
+  "wrapper_pid": 114457,
+  "command": [
+    "steam-run",
+    "/home/wumps/.local/share/lutris/runtime/umu/umu-run",
+    "/mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom/ca.exe"
+  ],
+  "cwd": "/mnt/Games/boom-online/drive_c/Program Files (x86)/VNG/Boom",
+  "prefix": "/mnt/Games/boom-online-umu10",
+  "start": 1792919133.6954355
+}

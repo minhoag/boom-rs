@@ -1,0 +1,111 @@
+INFO: umu-launcher version 1.4.4 (3.14.8 (main, Sep 30 2026, 17:55:09) [GCC 16.2.0])
+INFO: steamrt3 is up to date
+WARNING: Executable not found: W:\Games\Projects\boom-re\logs\unlicense-20261025T065707Z\dep-probe-20261025T075000Z\winpython\python.exe
+INFO: Running 'UMU-Proton-10.0-4' using runtime 'sniper'
+INFO: Running 'steamrt3' using runtime 'host'
+pressure-vessel-wrap[110344]: W: "/run/current-system/sw/bin/getent" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[110344]: W: Unable to determine architecture of provider / ldconfig: Error reading "(null)" ELF header: invalid `Elf' handle
+pressure-vessel-wrap[110344]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[110344]: W: "run/opengl-driver-32/share/drirc.d" is unlikely to appear in "/run/host"
+pressure-vessel-wrap[110344]: W: "run/opengl-driver/share/drirc.d" is unlikely to appear in "/run/host"
+ProtonFixes[110455] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[110455] INFO: Running checks
+ProtonFixes[110455] INFO: All checks successful
+ProtonFixes[110455] WARN: Game title not found in CSV
+ProtonFixes[110455] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[110455] INFO: No store specified, using UMU database
+ProtonFixes[110455] INFO: Using early stage global defaults for UNKNOWN (umu-BoomTrace)
+ProtonFixes[110455] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[110455] INFO: No store specified, using UMU database
+ProtonFixes[110455] INFO: No early stage global protonfix found for UNKNOWN (umu-BoomTrace)
+ProtonFixes[110455] INFO: Running protonfixes on "UMU-Proton-10.0-4", build at 2026-03-30 07:33:47+00:00.
+ProtonFixes[110455] INFO: Running checks
+ProtonFixes[110455] INFO: All checks successful
+ProtonFixes[110455] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[110455] INFO: No store specified, using UMU database
+ProtonFixes[110455] INFO: Using main stage global defaults for UNKNOWN (umu-BoomTrace)
+ProtonFixes[110455] INFO: Non-steam game UNKNOWN (umu-BoomTrace)
+ProtonFixes[110455] INFO: No store specified, using UMU database
+ProtonFixes[110455] INFO: No main stage global protonfix found for UNKNOWN (umu-BoomTrace)
+Proton: W:\Games\Projects\boom-re\logs\unlicense-20261025T065707Z\dep-probe-20261025T075000Z\winpython\python.exe
+Proton: Executable is inside wine prefix, launching normally.
+fsync: up and running.
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstaudioparsers.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstaudioparsers.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideoparsersbad.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideoparsersbad.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstdeinterlace.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstdeinterlace.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstdebug.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstdebug.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstadder.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstadder.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstximagesink.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstximagesink.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsthls.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsthls.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstid3demux.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstid3demux.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideoconvertscale.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideoconvertscale.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideobox.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideobox.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsttheora.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsttheora.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstavi.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstavi.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstsoup.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstsoup.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstdav1d.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstdav1d.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstapp.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstapp.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstmpegtsdemux.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstmpegtsdemux.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideofilter.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvideofilter.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstlibav.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstlibav.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsttypefindfunctions.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsttypefindfunctions.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvorbis.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvorbis.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstopus.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstopus.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstnavigationtest.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstnavigationtest.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstapetag.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstapetag.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstaudioresample.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstaudioresample.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvpx.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvpx.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstaudioconvert.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstaudioconvert.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.195: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstisomp4.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstisomp4.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstopengl.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstopengl.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstmpg123.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstmpg123.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstplayback.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstplayback.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstogg.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstogg.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstcoreelements.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstcoreelements.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstcoretracers.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstcoretracers.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstpbtypes.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstpbtypes.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstwavparse.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstwavparse.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstmatroska.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstmatroska.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstautodetect.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgstautodetect.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.196: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsticydemux.so': /mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/x86_64-linux-gnu/gstreamer-1.0/libgsticydemux.so: wrong ELF class: ELFCLASS64
+
+(wine:110598): GStreamer-WARNING **: 15:57:05.202: Failed to load plugin '/mnt/Games/Steam/compatibilitytools.d/UMU-Proton-10.0-4/files/lib/i386-linux-gnu/gstreamer-1.0/libgstlibav.so': libavfilter.so.7: cannot open shared object file: No such file or directory
+wine: Call from 7BC3B858 to unimplemented function winedmo.dll.winedmo_create_color_converter, aborting
